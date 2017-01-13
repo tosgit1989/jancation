@@ -28,5 +28,13 @@ class DataHandler {
         $query->execute();
         return $query->fetchAll();
     }
+
+    // getUserByEmail($Email)
+    public function getUserByEmail($Email) {
+        $pdo = $this->getPdo();
+        $queryUser = $pdo->prepare('SELECT * FROM users where email = :email');
+        $queryUser->execute(['email' => $Email]);
+        return $queryUser->fetch();
+    }
 }
 ?>
