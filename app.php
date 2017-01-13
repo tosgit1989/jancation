@@ -4,6 +4,7 @@ require_once ('/Users/kagatoshio/projects/jancation/src/Services/Methods.php');
 $dataConnect = new \Services\DataHandler();
 $methods = new \Services\Methods();
 $requests = $dataConnect->getAll('requests');
+$RequestId = $methods->getRequestId($_SERVER['REQUEST_URI']);
 
 session_start();
 
