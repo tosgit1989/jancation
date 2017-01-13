@@ -19,5 +19,14 @@ class DataHandler {
         $query->execute();
         return $query->fetchAll();
     }
+
+    // getUsersOrderByWinRate()
+    public function getUsersOrderByWinRate() {
+        $pdo = $this->getPdo();
+        $prepareText = 'SELECT * FROM users ORDER BY win_rate DESC';
+        $query = $pdo->prepare($prepareText);
+        $query->execute();
+        return $query->fetchAll();
+    }
 }
 ?>
