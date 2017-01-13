@@ -43,6 +43,9 @@ if ($_SERVER['REQUEST_URI'] == '/users/sign_in.php') {
                 <li>
                     <a href="/users/show.php/#">マイページ</a>
                 </li>
+                <li>
+                    <a href="/users/sign_in.php">サインアウト</a>
+                </li>
             </ul>
         </div>
     </div>
