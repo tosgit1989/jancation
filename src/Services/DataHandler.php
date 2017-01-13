@@ -62,5 +62,54 @@ class DataHandler {
         $query = $pdo->prepare($prepareText2);
         $query->execute();
     }
+
+    // getKeyAndValsStrings($data)
+    protected function getKeysAndValsStrings($data) {
+        $Keys = [];
+        $Vals = [];
+        foreach ($data as $aKey => $aVal) {
+            $Keys[] = $aKey;
+            $Vals[] = $aVal;
+        }
+        $KeysString = implode(',', $Keys);
+        $ValsString = '';
+        foreach ($Vals as $k => $aVal) {
+            if (!is_numeric($aVal)) {
+                $aVal = "'" . $aVal . "'";
+            }
+            if ($k > 0) {
+                $ValsString .= ', ';
+            }
+            $ValsString .= $aVal;
+        }
+        return [
+            'val' => $ValsString,
+            'key' => $KeysString,
+        ];
+    }
+
+    // getUpdateParameterStrings($data, $isIdentify = false)
+    protected function getUpdateParameterStrings($data, $isIdentify = false) {
+        $Keys = [];
+        $Vals = [];
+        foreach ($data as $aKey => $aVal) {
+            $Keys[] = $aKey;
+            $Vals[] = $aVal;
+        }
+        $updateString = '';
+        foreach ($Vals as $k => $aVal) {
+            if (!is_numeric($aVal)) {
+                $aVal = "'" . $aVal . "'";
+            }
+            if ($k > 0) {
+                $updateString .= ', ';
+                if ($isIdentify) {
+                    $updateString .= ' and ';
+                }
+            }
+            $updateString .= sprintf('%s=%s', $Keys[$k], $aVal);
+        }
+        return $updateString;
+    }
 }
 ?>
