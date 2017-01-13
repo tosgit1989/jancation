@@ -19,7 +19,7 @@
 </nav>
 
 <!--フッター-->
-<footer class="bs-docs-footer navbar-fixed-bottom">
+<footer class="bs-docs-footer navbar-fixed-bottom" style="background-color: #000000; height: 30px">
     <div class="container">
         <p class="text-muted"></p>
     </div>
