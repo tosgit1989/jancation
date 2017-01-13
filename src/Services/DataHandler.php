@@ -10,5 +10,14 @@ class DataHandler {
         $pdo = new \PDO($dbConnect, $username, $password, $driverOptions);
         return $pdo;
     }
+
+    // getAll($TableName)
+    public function getAll($TableName) {
+        $pdo = $this->getPdo();
+        $prepareText = 'SELECT * FROM ' . $TableName . ' ORDER BY updated_at DESC';
+        $query = $pdo->prepare($prepareText);
+        $query->execute();
+        return $query->fetchAll();
+    }
 }
 ?>
