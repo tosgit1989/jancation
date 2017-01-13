@@ -4,7 +4,9 @@ require_once ('../app.php');
 
 <?php
 foreach ($requests as $request) {
-    echo $request['id'];
-    echo '<br>';
+    if ($request['from_user_id'] == $UserId) {
+        echo $request['id'];
+        echo '<br>';
+    }
 }
 ?>
