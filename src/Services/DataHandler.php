@@ -45,5 +45,22 @@ class DataHandler {
         $queryUser->execute(['email' => $Email]);
         return $queryUser->fetch();
     }
+
+    // updateScore($result, $identifier)
+    public function updateScore($result, $identifier) {
+        $pdo = $this->getPdo();
+        $identifierStr = $this->getUpdateParameterStrings($identifier, true);
+        $WLCount = $result . '_count';
+        $func1 = $WLCount . ' = ' . $WLCount . ' + 1';
+        $prepareText1 = 'UPDATE users SET ' . $func1 . ' WHERE ' . $identifierStr;
+        var_dump($prepareText1);
+        $query = $pdo->prepare($prepareText1);
+        $query->execute();
+        $func3 = 'win_rate = win_count * 100 / (win_count + lose_count)';
+        $prepareText2 = 'UPDATE users SET ' . $func3 . ' WHERE ' . $identifierStr;
+        var_dump($prepareText2);
+        $query = $pdo->prepare($prepareText2);
+        $query->execute();
+    }
 }
 ?>
