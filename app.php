@@ -4,6 +4,21 @@ require_once ('/Users/kagatoshio/projects/jancation/src/Services/Methods.php');
 $dataConnect = new \Services\DataHandler();
 $methods = new \Services\Methods();
 $requests = $dataConnect->getAll('requests');
+
+session_start();
+
+if ($_SERVER['REQUEST_URI'] == '/users/sign_in.php') {
+    //サインインページに移動した場合
+    unset($_SESSION['id']);
+} elseif ($_SESSION['id'] < 1) {
+    //セッションが効いていない状態でサインインページ以外のページに移動した場合
+    header('Location: /users/sign_in.php');
+} else {
+    //セッションが効いている状態でサインインページ以外のページに移動した場合
+    $UserId = $_SESSION['id'];
+    $user = $dataConnect->getById($UserId, 'users');
+}
+
 ?>
 
 <html>
