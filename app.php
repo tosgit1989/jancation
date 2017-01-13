@@ -1,3 +1,8 @@
+<?php
+require_once ('/Users/kagatoshio/projects/jancation/src/Services/DataHandler.php');
+$dataConnect = new \Services\DataHandler();
+?>
+
 <html>
 <head>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
