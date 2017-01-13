@@ -11,6 +11,11 @@
             <a class="active navbar-brand" href="#">jancation</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/requests/which.php">じゃんけんする</a>
+                </li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="/users/show.php/#">マイページ</a>
