@@ -29,6 +29,15 @@ class DataHandler {
         return $query->fetchAll();
     }
 
+    // getById($Id, $TableName)
+    public function getById($Id, $TableName) {
+        $pdo = $this->getPdo();
+        $prepareText = 'SELECT * FROM ' . $TableName . ' WHERE id = :id';
+        $query = $pdo->prepare($prepareText);
+        $query->execute(['id' => $Id]);
+        return $query->fetch();
+    }
+
     // getUserByEmail($Email)
     public function getUserByEmail($Email) {
         $pdo = $this->getPdo();
