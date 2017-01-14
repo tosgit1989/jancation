@@ -46,6 +46,15 @@ class DataHandler {
         return $queryUser->fetch();
     }
 
+    // insert($data, $TableName)
+    public function insert($data, $TableName) {
+        $pdo = $this->getPdo();
+        $res = $this->getKeysAndValsStrings($data);
+        $prepareText = 'INSERT INTO ' . $TableName . ' (' . $res['key'] . ') VALUES (' . $res['val'] . ')';
+        $query = $pdo->prepare($prepareText);
+        $query->execute();
+    }
+
     // updateScore($result, $identifier)
     public function updateScore($result, $identifier) {
         $pdo = $this->getPdo();
