@@ -55,6 +55,17 @@ class DataHandler {
         $query->execute();
     }
 
+    // update($data, $identifier, $TableName)
+    public function update($data, $identifier, $TableName) {
+        $pdo = $this->getPdo();
+        $paramsStr = $this->getUpdateParameterStrings($data);
+        $identifierStr = $this->getUpdateParameterStrings($identifier, true);
+        $prepareText = 'UPDATE ' . $TableName . ' SET ' . $paramsStr . ' WHERE ' . $identifierStr;
+        var_dump($prepareText);
+        $query = $pdo->prepare($prepareText);
+        $query->execute();
+    }
+
     // updateScore($result, $identifier)
     public function updateScore($result, $identifier) {
         $pdo = $this->getPdo();
