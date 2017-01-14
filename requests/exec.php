@@ -28,4 +28,14 @@ if ($_POST['exectype'] == 'newRequest') {
         <?php echo $ExecMessage ?>
     </p>
 </div>
-<a href="/index.php">トップページへ</a>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="bs-docs-section">
+
+                <a href="/index.php">トップページへ</a>
+
+            </div>
+        </div>
+    </div>
+</div>

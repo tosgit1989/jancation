@@ -31,12 +31,22 @@ if (($handYou - $handAit + 3) % 3 == 2) {
 <div style="background-color: brown; margin-bottom: 15px">
     <p style="font-family: 'Times New Roman'; font-size: 40px; font-style: italic; color: white">じゃんけんの結果</p>
 </div>
-<p>あなた: <?php echo $handSort[$_POST['hand']]?>, 相手: <?php echo $handSort[$handAit]?></p>
-<p>判定: <?php echo $judge ?></p>
-<a href="/requests/play.php/<?php echo $RequestId ?>">連戦する</a>
-<a href="" data-toggle="link" onclick="document.LinkToExecPhp.submit();return false;">ゲーム終了</a>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="bs-docs-section">
 
-<!--hidden form-->
-<form name="LinkToExecPhp" method="POST" action="/requests/exec.php/<?php echo $RequestId ?>">
-    <input class="form-control" name="exectype" type="hidden" value="exitPlay">
-</form>
+                <p>あなた: <?php echo $handSort[$_POST['hand']]?>, 相手: <?php echo $handSort[$handAit]?></p>
+                <p>判定: <?php echo $judge ?></p>
+                <a href="/requests/play.php/<?php echo $RequestId ?>">連戦する</a>
+                <a href="" data-toggle="link" onclick="document.LinkToExecPhp.submit();return false;">ゲーム終了</a>
+
+                <!--hidden form-->
+                <form name="LinkToExecPhp" method="POST" action="/requests/exec.php/<?php echo $RequestId ?>">
+                    <input class="form-control" name="exectype" type="hidden" value="exitPlay">
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
