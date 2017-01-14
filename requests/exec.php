@@ -1,6 +1,15 @@
 <?php
 require_once ('../app.php');
-if ($_POST['exectype'] == 'exitPlay') {
+
+if ($_POST['exectype'] == 'newRequest') {
+    // 申請新規作成時
+    $ExecMessage = '申請が完了しました。';
+    $requestNew['to_user_id'] = $_POST['to_user_id'];
+    $requestNew['from_user_id'] = $UserId;
+    $requestNew['created_at'] = $now = date('Y/m/d H:i:s');
+    $requestNew['updated_at'] = $now = date('Y/m/d H:i:s');
+    $dataConnect->insert($requestNew, 'requests');
+} elseif ($_POST['exectype'] == 'exitPlay') {
     // 申請削除時またはゲーム終了時
     $ExecMessage = '申請を削除しました。';
     $dataConnect->delete(['id' => $RequestId], 'requests');
