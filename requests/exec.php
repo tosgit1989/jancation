@@ -9,6 +9,12 @@ if ($_POST['exectype'] == 'newRequest') {
     $requestNew['created_at'] = $now = date('Y/m/d H:i:s');
     $requestNew['updated_at'] = $now = date('Y/m/d H:i:s');
     $dataConnect->insert($requestNew, 'requests');
+} elseif ($_POST['exectype'] == 'editRequest') {
+    // 申請更新時
+    $ExecMessage = '申請を更新しました。';
+    $requestUpd['to_user_id'] = $_POST['to_user_id'];
+    $requestUpd['updated_at'] = $now = date('Y/m/d H:i:s');
+    $dataConnect->update($requestUpd, ['id' => $RequestId], 'requests');
 } elseif ($_POST['exectype'] == 'exitPlay') {
     // 申請削除時またはゲーム終了時
     $ExecMessage = '申請を削除しました。';
