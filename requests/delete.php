@@ -1,5 +1,6 @@
 <?php
 require_once ('../app.php');
+$request = $dataConnect->getById($RequestId, 'requests');
 ?>
 
 <h3>本当に削除しますか？</h3>
