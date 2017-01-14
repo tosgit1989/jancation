@@ -4,6 +4,9 @@ $WinRateRankers = $dataConnect->getUsersOrderByWinRate();
 ?>
 
 <div style="height:50px; background-color:transparent"></div>
+<div style="background-color: brown; margin-bottom: 15px">
+    <p style="font-family: 'Times New Roman'; font-size: 40px; font-style: italic; color: white">トップページ</p>
+</div>
 <h3 class="text-middle">勝率ランキング</h3>
 <?php
 foreach ($WinRateRankers as $WinRateRanker) {

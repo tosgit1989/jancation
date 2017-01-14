@@ -6,6 +6,11 @@ $userAit = $dataConnect->getById($request['from_user_id'], 'users');
 ?>
 
 <div style="height:50px; background-color:transparent"></div>
+<div style="background-color: brown; margin-bottom: 15px">
+    <p style="font-family: 'Times New Roman'; font-size: 40px; font-style: italic; color: white">
+        <?php echo $userAit['nickname'] ?>さんとじゃんけん
+    </p>
+</div>
 <h6>どの手を出しますか？</h6>
 <!--グー(hand番号: 1)を出す-->
 <a href="" data-toggle="link" onclick="document.Hand1.submit();return false;">グー</a>

@@ -28,6 +28,9 @@ if (($handYou - $handAit + 3) % 3 == 2) {
 ?>
 
 <div style="height:50px; background-color:transparent"></div>
+<div style="background-color: brown; margin-bottom: 15px">
+    <p style="font-family: 'Times New Roman'; font-size: 40px; font-style: italic; color: white">じゃんけんの結果</p>
+</div>
 <p>あなた: <?php echo $handSort[$_POST['hand']]?>, 相手: <?php echo $handSort[$handAit]?></p>
 <p>判定: <?php echo $judge ?></p>
 <a href="/requests/play.php/<?php echo $RequestId ?>">連戦する</a>
