@@ -2,6 +2,7 @@
 require_once ('../app.php');
 ?>
 
+<div style="height:50px; background-color:transparent"></div>
 <!--フォーム-->
 <form action="/users/session.php" method="post">
     <div class="form-group">

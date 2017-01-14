@@ -22,4 +22,5 @@ if ($_POST['exectype'] == 'newRequest') {
 }
 ?>
 
+<div style="height:50px; background-color:transparent"></div>
 <a href="/index.php">トップページへ</a>

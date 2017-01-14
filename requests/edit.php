@@ -3,6 +3,7 @@ require_once ('../app.php');
 $request = $dataConnect->getById($RequestId, 'requests');
 ?>
 
+<div style="height:50px; background-color:transparent"></div>
 <!--フォーム-->
 <form method="POST" action="/requests/exec.php/<?php echo $RequestId ?>">
     <div class="form-group">

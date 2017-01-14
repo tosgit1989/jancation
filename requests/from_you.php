@@ -2,6 +2,7 @@
 require_once ('../app.php');
 ?>
 
+<div style="height:50px; background-color:transparent"></div>
 <?php
 foreach ($requests as $request) {
     if ($request['from_user_id'] == $UserId) {

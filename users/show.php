@@ -2,6 +2,7 @@
 require_once ('../app.php');
 ?>
 
+<div style="height:50px; background-color:transparent"></div>
 <!--自分の基本情報を表示-->
 <h3 class="text-middle">基本情報</h3>
 <h4>ニックネーム  : <?php echo $user['nickname'] ?></h4>

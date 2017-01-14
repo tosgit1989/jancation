@@ -27,6 +27,7 @@ if (($handYou - $handAit + 3) % 3 == 2) {
 
 ?>
 
+<div style="height:50px; background-color:transparent"></div>
 <p>あなた: <?php echo $handSort[$_POST['hand']]?>, 相手: <?php echo $handSort[$handAit]?></p>
 <p>判定: <?php echo $judge ?></p>
 <a href="/requests/play.php/<?php echo $RequestId ?>">連戦する</a>
