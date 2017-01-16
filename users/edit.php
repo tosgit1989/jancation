@@ -2,6 +2,7 @@
 require_once ('../app.php');
 ?>
 
+<div style="height:50px; background-color:transparent"></div>
 <!--フォーム-->
 <form method="POST" action="/users/exec.php/<?php echo $UserId ?>">
     <div class="form-group">
