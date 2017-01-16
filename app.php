@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_URI'] == '/users/sign_in.php') {
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="/users/show.php/#">マイページ</a>
+                    <a href="/users/show.php/<?php echo $UserId ?>">マイページ</a>
                 </li>
                 <li>
                     <a href="/users/sign_in.php">サインアウト</a>
