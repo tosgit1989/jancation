@@ -15,6 +15,7 @@ require_once ('../app.php');
                 <h3 class="text-middle">基本情報</h3>
                 <h4>ニックネーム  : <?php echo $user['nickname'] ?></h4>
                 <h4>メールアドレス: <?php echo $user['email'] ?></h4>
+                <a href="/users/edit.php/<?php echo $user['id'] ?>" class="btn btn-primary" role="button">編集</a>
 
                 <!--自分の対戦成績を表示-->
                 <h3 class="text-middle"><?php echo $user['nickname'] ?>さんの対戦成績</h3>
