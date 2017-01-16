@@ -11,10 +11,14 @@ require_once ('../app.php');
         <div class="col-xs-12">
             <div class="bs-docs-section">
 
-                <h3>いずれか1つを選択</h3>
-                <a href="/requests/new.php">じゃんけんを申請する</a>
-                <a href="/requests/to_you.php">あなたへの申請一覧</a>
-                <a href="/requests/from_you.php">あなたからの申請一覧</a>
+                <h3>相手を選択して対戦</h3>
+                <a href="/requests/to_you.php">あなたへの申請一覧へ</a>
+
+                <h3>じゃんけんの申請</h3>
+                <a href="/requests/new.php">申請新規作成ページへ</a>
+
+                <h3>申請内容の確認・編集・削除</h3>
+                <a href="/requests/from_you.php">あなたの申請一覧へ</a>
 
             </div>
         </div>
