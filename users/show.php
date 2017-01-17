@@ -1,5 +1,7 @@
 <?php
 require_once ('../app.php');
+$TabStatus = $methods->getTabStatus($_POST['tab']);
+$ContentStatus = $methods->getContentStatus($_POST['tab']);
 ?>
 
 <div style="height:50px; background-color:transparent"></div>
@@ -11,18 +13,41 @@ require_once ('../app.php');
         <div class="col-xs-12">
             <div class="bs-docs-section">
 
-                <!--自分の基本情報を表示-->
-                <h3 class="text-middle">基本情報</h3>
-                <h4>ニックネーム  : <?php echo $user['nickname'] ?></h4>
-                <h4>メールアドレス: <?php echo $user['email'] ?></h4>
-                <a href="/users/edit.php/<?php echo $user['id'] ?>" class="btn btn-primary" role="button">編集</a>
-
-                <!--自分の対戦成績を表示-->
-                <h3 class="text-middle"><?php echo $user['nickname'] ?>さんの対戦成績</h3>
-                <p>プレイ回数: <?php echo $user['win_count'] + $user['lose_count'] ?></p>
-                <p>勝ち回数: <?php echo $user['win_count'] ?></p>
-                <p>負け回数: <?php echo $user['lose_count'] ?></p>
-                <p>勝率: <?php echo $user['win_rate'] ?>％</p>
+                <!--タブ-->
+                <ul class="nav nav-tabs">
+                    <li class=<?php echo $TabStatus['tab1'] ?>>
+                        <a href="" data-toggle="tab" onclick="document.tabform1.submit();return false;">基本情報</a>
+                        <form name="tabform1" method="POST" action="/users/show.php/<?php echo $UserId ?>">
+                            <input type="hidden" name="tab" value="tab1">
+                        </form>
+                    </li>
+                    <li class=<?php echo $TabStatus['tab2'] ?>>
+                        <a href="" data-toggle="tab" onclick="document.tabform2.submit();return false;">対戦成績</a>
+                        <form name="tabform2" method="POST" action="/users/show.php/<?php echo $UserId ?>">
+                            <input type="hidden" name="tab" value="tab2">
+                        </form>
+                    </li>
+                </ul>
+                <!-- / タブ-->
+                <!--コンテンツ-->
+                <div id="myTabContent" class="tab-content">
+                    <div <?php echo $ContentStatus['tab1'] ?>>
+                        <!--自分の基本情報を表示-->
+                        <h3 class="text-middle">基本情報</h3>
+                        <h4>ニックネーム  : <?php echo $user['nickname'] ?></h4>
+                        <h4>メールアドレス: <?php echo $user['email'] ?></h4>
+                        <a href="/users/edit.php/<?php echo $user['id'] ?>" class="btn btn-primary" role="button">編集</a>
+                    </div>
+                    <div <?php echo $ContentStatus['tab2'] ?>>
+                        <!--自分の対戦成績を表示-->
+                        <h3 class="text-middle"><?php echo $user['nickname'] ?>さんの対戦成績</h3>
+                        <p>プレイ回数: <?php echo $user['win_count'] + $user['lose_count'] ?></p>
+                        <p>勝ち回数: <?php echo $user['win_count'] ?></p>
+                        <p>負け回数: <?php echo $user['lose_count'] ?></p>
+                        <p>勝率: <?php echo $user['win_rate'] ?>％</p>
+                    </div>
+                </div>
+                <!-- /コンテンツ-->
 
             </div>
         </div>
