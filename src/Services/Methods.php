@@ -6,6 +6,15 @@ class Methods{
         return array_pop(explode('/', $reqURL));
     }
 
+    // getHeaderStatus($SessionId)
+    public function getHeaderStatus($SessionId) {
+        if (isset($SessionId)) {
+            return '';
+        } else {
+            return 'hidden';
+        }
+    }
+
     // getTabStatus($tab)
     public function getTabStatus($tab) {
         if (!isset($tab)) {
