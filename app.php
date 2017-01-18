@@ -8,14 +8,14 @@ $RequestId = $methods->getRequestId($_SERVER['REQUEST_URI']);
 
 session_start();
 
-if ($_SERVER['REQUEST_URI'] == '/users/sign_in.php') {
-    //サインインページに移動した場合
+if ($_SERVER['REQUEST_URI'] == '/users/sign_in.php' or $_SERVER['REQUEST_URI'] == '/users/sign_up.php') {
+    //サインイン(orサインアップ)ページに移動した場合
     unset($_SESSION['id']);
 } elseif ($_SESSION['id'] < 1) {
-    //セッションが効いていない状態でサインインページ以外のページに移動した場合
+    //セッションが効いていない状態でサインイン(orサインアップ)ページ以外のページに移動した場合
     header('Location: /users/sign_in.php');
 } else {
-    //セッションが効いている状態でサインインページ以外のページに移動した場合
+    //セッションが効いている状態でサインイン(orサインアップ)ページ以外のページに移動した場合
     $UserId = $_SESSION['id'];
     $user = $dataConnect->getById($UserId, 'users');
 }
