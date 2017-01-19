@@ -44,7 +44,11 @@ $ContentStatus = $methods->getContentStatus($_POST['tab']);
                         <p>プレイ回数: <?php echo $user['win_count'] + $user['lose_count'] ?></p>
                         <p>勝ち回数: <?php echo $user['win_count'] ?></p>
                         <p>負け回数: <?php echo $user['lose_count'] ?></p>
-                        <p>勝率: <?php echo $user['win_rate'] ?>％</p>
+                        <?php
+                            if ($user['win_count'] + $user['lose_count'] > 0) {
+                                echo '<p>勝率: ' . $user['win_rate'] . '％</p>';
+                            }
+                        ?>
                     </div>
                 </div>
                 <!-- /コンテンツ-->
