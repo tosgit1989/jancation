@@ -20,7 +20,7 @@ class Methods{
         if (!isset($tab)) {
             $tab = 'tab1';
         }
-        $TabStatus = ['tab1' => '', 'tab2' => ''];
+        $TabStatus = ['tab1' => '', 'tab2' => '', 'tab3' => ''];
         $TabStatus[$tab] = 'active';
         return $TabStatus;
     }
@@ -30,7 +30,7 @@ class Methods{
         if (!isset($tab)) {
             $tab = 'tab1';
         }
-        $ContentStatus = ['tab1' => 'hidden', 'tab2' => 'hidden'];
+        $ContentStatus = ['tab1' => 'hidden', 'tab2' => 'hidden', 'tab3' => 'hidden'];
         $ContentStatus[$tab] = '';
         return $ContentStatus;
     }

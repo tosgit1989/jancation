@@ -27,6 +27,12 @@ $ContentStatus = $methods->getContentStatus($_POST['tab']);
                             <input type="hidden" name="tab" value="tab2">
                         </form>
                     </li>
+                    <li class=<?php echo $TabStatus['tab3'] ?>>
+                        <a href="" data-toggle="tab" onclick="document.tabform3.submit();return false;">タブ3</a>
+                        <form name="tabform3" method="POST" action="/users/show.php/<?php echo $UserId ?>">
+                            <input type="hidden" name="tab" value="tab3">
+                        </form>
+                    </li>
                 </ul>
                 <!-- / タブ-->
                 <!--コンテンツ-->
@@ -49,6 +55,9 @@ $ContentStatus = $methods->getContentStatus($_POST['tab']);
                                 echo '<p>勝率: ' . $user['win_rate'] . '％</p>';
                             }
                         ?>
+                    </div>
+                    <div <?php echo $ContentStatus['tab3'] ?>>
+                        <h3>コンテンツ3</h3>
                     </div>
                 </div>
                 <!-- /コンテンツ-->
