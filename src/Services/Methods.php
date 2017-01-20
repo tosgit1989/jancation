@@ -34,5 +34,18 @@ class Methods{
         $ContentStatus[$tab] = '';
         return $ContentStatus;
     }
+
+    // getPanelHtml($heading, $body, $footer)
+    public function getPanelHtml($heading, $body, $footer) {
+        $HeadingHtml = sprintf('<div class="panel-heading"><strong>%s</strong></div>', $heading);
+        $BodyHtml = sprintf('<div class="panel-body">%s</div>', $body);
+        if ($footer == false) {
+            $FooterHtml = '';
+        } else {
+            $FooterHtml = sprintf('<div class="panel-footer">%s</div>', $footer);
+        }
+        $PanelHtml = '<div class="panel panel-primary">' . $HeadingHtml . $BodyHtml . $FooterHtml . '</div>';
+        return $PanelHtml;
+    }
 }
 ?>
