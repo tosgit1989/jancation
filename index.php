@@ -15,11 +15,13 @@ $WinRateRankers = $dataConnect->getUsersOrderByWinRate();
                 <h3 class="text-middle">勝率ランキング</h3>
                 <?php
                 foreach ($WinRateRankers as $WinRateRanker) {
-                    echo sprintf('<p>ニックネーム: %s</p>', $WinRateRanker['nickname']);
                     if ($WinRateRanker['win_count'] + $WinRateRanker['lose_count'] > 0) {
-                        echo sprintf('<p>勝率: %s％</p><br>', $WinRateRanker['win_rate']);
+                        $BodyHtml = sprintf('勝率: %s％<br>', $WinRateRanker['win_rate']);
+                    } else {
+                        $BodyHtml = '-';
                     }
-                    
+                    $PanelHtml = $methods->getPanelHtml($WinRateRanker['nickname'], $BodyHtml, false);
+                    echo $PanelHtml;
                 }
                 ?>
 
