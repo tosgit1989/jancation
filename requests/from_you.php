@@ -16,7 +16,7 @@ require_once ('../app.php');
                     if ($request['from_user_id'] == $UserId) {
                         $HeadingHtml = sprintf('%s->%s', $UserId, $request['to_user_id']);
                         $BodyHtml = sprintf('<a href="/requests/edit.php/%s">編集</a><a href="/requests/delete.php/%s">削除</a>', $request['id'], $request['id']);
-                        $FooterHtml = '';
+                        $FooterHtml = sprintf('申請日時: %s 更新日時: %s', $request['created_at'], $request['updated_at']);
                         $PanelHtml = $methods->getPanelHtml($HeadingHtml, $BodyHtml, $FooterHtml);
                         echo $PanelHtml;
                     }

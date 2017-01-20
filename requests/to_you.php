@@ -16,7 +16,7 @@ require_once ('../app.php');
                     if ($request['to_user_id'] == $UserId) {
                         $HeadingHtml = sprintf('%s->%s', $request['from_user_id'], $UserId);
                         $BodyHtml = sprintf('<a href="/requests/play.php/%s">対戦</a>', $request['id']);
-                        $FooterHtml = '';
+                        $FooterHtml = sprintf('申請日時: %s 更新日時: %s', $request['created_at'], $request['updated_at']);
                         $PanelHtml = $methods->getPanelHtml($HeadingHtml, $BodyHtml, $FooterHtml);
                         echo $PanelHtml;
                     }
