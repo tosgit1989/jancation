@@ -28,7 +28,7 @@ $ContentStatus = $methods->getContentStatus($_POST['tab']);
                         </form>
                     </li>
                     <li class=<?php echo $TabStatus['tab3'] ?>>
-                        <a href="" data-toggle="tab" onclick="document.tabform3.submit();return false;">タブ3</a>
+                        <a href="" data-toggle="tab" onclick="document.tabform3.submit();return false;">申請一覧</a>
                         <form name="tabform3" method="POST" action="/users/show.php/<?php echo $UserId ?>">
                             <input type="hidden" name="tab" value="tab3">
                         </form>
@@ -57,7 +57,17 @@ $ContentStatus = $methods->getContentStatus($_POST['tab']);
                         ?>
                     </div>
                     <div <?php echo $ContentStatus['tab3'] ?>>
-                        <h3>コンテンツ3</h3>
+                        <h3><?php echo $user['nickname'] ?>さんのじゃんけん申請一覧</h3>
+                        <?php
+                        foreach ($requests as $request) {
+                            if ($request['from_user_id'] == $UserId) {
+                                echo $request['id'];
+                                echo sprintf('<a href="/requests/edit.php/%s">編集</a>', $request['id']);
+                                echo sprintf('<a href="/requests/delete.php/%s">削除</a>', $request['id']);
+                                echo '<br>';
+                            }
+                        }
+                        ?>
                     </div>
                 </div>
                 <!-- /コンテンツ-->
