@@ -1,5 +1,6 @@
 <?php
 require_once ('../app.php');
+$FromUser = $dataConnect->getById($UserId, 'users');
 ?>
 
 <div style="height:50px; background-color:transparent"></div>
@@ -14,7 +15,8 @@ require_once ('../app.php');
                 <?php
                 foreach ($requests as $request) {
                     if ($request['from_user_id'] == $UserId) {
-                        $HeadingHtml = sprintf('%s->%s', $UserId, $request['to_user_id']);
+                        $ToUser = $dataConnect->getById($request['to_user_id'], 'users');
+                        $HeadingHtml = sprintf('%s->%s', $FromUser['nickname'], $ToUser['nickname']);
                         $BodyHtml = sprintf('<a href="/requests/edit.php/%s">編集</a><a href="/requests/delete.php/%s">削除</a>', $request['id'], $request['id']);
                         $FooterHtml = sprintf('申請日時: %s 更新日時: %s', $request['created_at'], $request['updated_at']);
                         $PanelHtml = $methods->getPanelHtml($HeadingHtml, $BodyHtml, $FooterHtml);
