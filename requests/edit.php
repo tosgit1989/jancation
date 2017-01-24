@@ -1,6 +1,7 @@
 <?php
 require_once ('../app.php');
 $request = $dataConnect->getById($RequestId, 'requests');
+$users = $dataConnect->getAll('users');
 ?>
 
 <div style="height:50px; background-color:transparent"></div>
@@ -15,8 +16,18 @@ $request = $dataConnect->getById($RequestId, 'requests');
                 <!--フォーム-->
                 <form method="POST" action="/requests/exec.php/<?php echo $RequestId ?>">
                     <div class="form-group">
-                        <p><strong>申請情報</strong></p>
-                        <input required="required" class="form-control" placeholder="対戦相手のIDを入力" name="to_user_id" type="text" value="<?php echo $request['to_user_id'] ?>"><br>
+                        <p><strong>対戦相手を選択</strong></p>
+                        <?php
+                        foreach($users as $ToUser) {
+                            if ($ToUser['id'] !== $UserId) {
+                                $ischecked = '';
+                                if ($ToUser['id'] == $request['to_user_id']) {$ischecked = 'checked="checked"';}
+                                echo sprintf('<div class="radio-inline"><input type="radio" value=%s name="to_user_id" %s><label>', $ToUser['id'], $ischecked);
+                                echo $ToUser['nickname'];
+                                echo '</label></div><br>';
+                            }
+                        }
+                        ?>
                         <input class="form-control" name="exectype" type="hidden" value="editRequest">
                     </div>
                     <button class="btn btn-primary" type="submit">更新する</button>

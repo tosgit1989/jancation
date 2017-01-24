@@ -1,5 +1,6 @@
 <?php
 require_once ('../app.php');
+$users = $dataConnect->getAll('users');
 ?>
 
 <div style="height:50px; background-color:transparent"></div>
@@ -14,8 +15,16 @@ require_once ('../app.php');
                 <!--フォーム-->
                 <form method="POST" action="/requests/exec.php/new">
                     <div class="form-group">
-                        <p><strong>申請情報</strong></p>
-                        <input required="required" class="form-control" placeholder="対戦相手のIDを入力" name="to_user_id" type="text"><br>
+                        <p><strong>対戦相手を選択</strong></p>
+                        <?php
+                        foreach($users as $ToUser) {
+                            if ($ToUser['id'] !== $UserId) {
+                                echo sprintf('<div class="radio-inline"><input type="radio" value=%s name="to_user_id"><label>', $ToUser['id']);
+                                echo $ToUser['nickname'];
+                                echo '</label></div><br>';
+                            }
+                        }
+                        ?>
                         <input class="form-control" name="exectype" type="hidden" value="newRequest">
                     </div>
                     <button class="btn btn-primary" type="submit">申請する</button>
