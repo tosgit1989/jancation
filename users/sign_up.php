@@ -33,6 +33,10 @@ require_once ('../app.php');
                     </div>
                 </form>
 
+                <hr>
+
+                <a href="/users/sign_in.php" class="btn btn-info" value="サインイン">アカウントを持っている方は、こちら</a>
+
             </div>
         </div>
     </div>

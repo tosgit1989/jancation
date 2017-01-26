@@ -28,6 +28,10 @@ require_once ('../app.php');
                     </div>
                 </form>
 
+                <hr>
+
+                <a href="/users/sign_up.php" class="btn btn-info" value="サインイン">アカウントを持っていない方は、こちら</a>
+
             </div>
         </div>
     </div>
