@@ -17,7 +17,7 @@ $ToUser = $dataConnect->getById($UserId, 'users');
                     if ($request['to_user_id'] == $UserId) {
                         $FromUser = $dataConnect->getById($request['from_user_id'], 'users');
                         $HeadingHtml = sprintf('%s->%s', $FromUser['nickname'], $ToUser['nickname']);
-                        $BodyHtml = sprintf('<a href="/requests/play.php/%s">対戦</a>', $request['id']);
+                        $BodyHtml = sprintf('<a href="/requests/play.php/%s" class="btn btn-primary" role="button">対戦</a>', $request['id']);
                         $FooterHtml = sprintf('申請日時: %s 更新日時: %s', $request['created_at'], $request['updated_at']);
                         $PanelHtml = $methods->getPanelHtml($HeadingHtml, $BodyHtml, $FooterHtml);
                         echo $PanelHtml;

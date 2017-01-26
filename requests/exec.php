@@ -33,7 +33,7 @@ if ($_POST['exectype'] == 'newRequest') {
         <div class="col-xs-12">
             <div class="bs-docs-section">
 
-                <a href="/index.php">トップページへ</a>
+                <a href="/index.php" class="btn btn-primary" role="button">トップページへ</a>
 
             </div>
         </div>

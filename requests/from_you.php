@@ -17,7 +17,8 @@ $FromUser = $dataConnect->getById($UserId, 'users');
                     if ($request['from_user_id'] == $UserId) {
                         $ToUser = $dataConnect->getById($request['to_user_id'], 'users');
                         $HeadingHtml = sprintf('%s->%s', $FromUser['nickname'], $ToUser['nickname']);
-                        $BodyHtml = sprintf('<a href="/requests/edit.php/%s">編集</a><a href="/requests/delete.php/%s">削除</a>', $request['id'], $request['id']);
+                        $BodyHtml = sprintf('<a href="/requests/edit.php/%s" class="btn btn-primary" role="button">編集</a>', $request['id'])
+                                    . sprintf('<a href="/requests/delete.php/%s" class="btn btn-danger" role="button">削除</a>', $request['id']);
                         $FooterHtml = sprintf('申請日時: %s 更新日時: %s', $request['created_at'], $request['updated_at']);
                         $PanelHtml = $methods->getPanelHtml($HeadingHtml, $BodyHtml, $FooterHtml);
                         echo $PanelHtml;

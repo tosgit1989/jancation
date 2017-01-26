@@ -38,8 +38,8 @@ if (($handYou - $handAit + 3) % 3 == 2) {
 
                 <p>あなた: <?php echo $handSort[$_POST['hand']]?>, 相手: <?php echo $handSort[$handAit]?></p>
                 <p>判定: <?php echo $judge ?></p>
-                <a href="/requests/play.php/<?php echo $RequestId ?>">連戦する</a>
-                <a href="" data-toggle="link" onclick="document.LinkToExecPhp.submit();return false;">ゲーム終了</a>
+                <a href="/requests/play.php/<?php echo $RequestId ?>" class="btn btn-primary" role="button">連戦する</a>
+                <a href="" data-toggle="link" onclick="document.LinkToExecPhp.submit();return false;" class="btn btn-danger" role="button">ゲーム終了</a>
 
                 <!--hidden form-->
                 <form name="LinkToExecPhp" method="POST" action="/requests/exec.php/<?php echo $RequestId ?>">

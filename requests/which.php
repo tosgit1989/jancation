@@ -12,13 +12,13 @@ require_once ('../app.php');
             <div class="bs-docs-section">
 
                 <h3>相手を選択して対戦</h3>
-                <a href="/requests/to_you.php">あなたへの申請一覧へ</a>
+                <a href="/requests/to_you.php" class="btn btn-primary" role="button">あなたへの申請一覧へ</a>
 
                 <h3>じゃんけんの申請</h3>
-                <a href="/requests/new.php">申請新規作成ページへ</a>
+                <a href="/requests/new.php" class="btn btn-primary" role="button">申請新規作成ページへ</a>
 
                 <h3>申請内容の確認・編集・削除</h3>
-                <a href="/requests/from_you.php">あなたの申請一覧へ</a>
+                <a href="/requests/from_you.php" class="btn btn-primary" role="button">あなたの申請一覧へ</a>
 
             </div>
         </div>
