@@ -24,6 +24,7 @@ $WinRateRankers = $dataConnect->getUsersOrderByWinRate();
                     echo $PanelHtml;
                 }
                 ?>
+                <div style="height:30px"></div>
 
             </div>
         </div>

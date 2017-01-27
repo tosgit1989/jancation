@@ -24,6 +24,7 @@ $ToUser = $dataConnect->getById($UserId, 'users');
                     }
                 }
                 ?>
+                <div style="height:30px"></div>
 
             </div>
         </div>

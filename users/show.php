@@ -72,6 +72,7 @@ $ContentStatus = $methods->getContentStatus($_POST['tab']);
                             }
                         }
                         ?>
+                        <div style="height:30px"></div>
                     </div>
                 </div>
                 <!-- /コンテンツ-->
