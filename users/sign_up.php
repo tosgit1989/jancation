@@ -29,7 +29,7 @@ require_once ('../app.php');
                     <div class="form-group">
                         <!--サインアップボタン-->
                         <input type="submit" name="sign-up" class="btn btn-primary" value="サインアップ">
-                        <input type="hidden" name="SignInOrSignUp" value="SignUp">
+                        <input type="hidden" name="SignInOrUpOrOut" value="SignUp">
                     </div>
                 </form>
 

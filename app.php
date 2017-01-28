@@ -8,14 +8,16 @@ $RequestId = $methods->getRequestId($_SERVER['REQUEST_URI']);
 
 session_start();
 
-if ($_SERVER['REQUEST_URI'] == '/users/sign_in.php' or $_SERVER['REQUEST_URI'] == '/users/sign_up.php') {
-    //サインイン(orサインアップ)ページに移動した場合
-    unset($_SESSION['id']);
+if (preg_match('"users/session.php"', $_SERVER['REQUEST_URI'])
+    or preg_match('"users/message.php"', $_SERVER['REQUEST_URI'])
+    or preg_match('"users/sign_in.php"', $_SERVER['REQUEST_URI'])
+    or preg_match('"users/sign_up.php"', $_SERVER['REQUEST_URI'])) {
+    // 上記4通りの場合は、セッションが効いていなくても何もしない
 } elseif ($_SESSION['id'] < 1) {
-    //セッションが効いていない状態でサインイン(orサインアップ)ページ以外のページに移動した場合
-    header('Location: /users/sign_in.php');
+    // 上記の場合以外で、セッションが効いていない場合
+    header('Location: /users/message.php/SessionTimeOut');
 } else {
-    //セッションが効いている状態でサインイン(orサインアップ)ページ以外のページに移動した場合
+    //セッションが効いている場合
     $UserId = $_SESSION['id'];
     $user = $dataConnect->getById($UserId, 'users');
 }
@@ -49,8 +51,11 @@ $HeaderStatus = $methods->getHeaderStatus($_SESSION['id']);
                 <li>
                     <a href="/users/show.php/<?php echo $UserId ?>">マイページ</a>
                 </li>
-                <li>
-                    <a href="/users/sign_in.php">サインアウト</a>
+                <li style="max-height: 50px">
+                    <a href="" data-toggle="link" onclick="document.SignOut.submit();return false;">サインアウト</a>
+                    <form name="SignOut" method="POST" action="/users/session.php">
+                        <input type="hidden" name="SignInOrUpOrOut" value="SignOut">
+                    </form>
                 </li>
             </ul>
         </div>

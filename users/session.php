@@ -1,6 +1,7 @@
 <?php
 require_once ('../app.php');
-if ($_POST['SignInOrSignUp'] == 'SignUp') {
+// サインアップ時のみ実行
+if ($_POST['SignInOrUpOrOut'] == 'SignUp') {
     $users = $dataConnect->getAll('users');
     $p = 0;
     foreach ($users as $user) {
@@ -22,22 +23,32 @@ if ($_POST['SignInOrSignUp'] == 'SignUp') {
     }
 }
 
-if (isset($_POST['email']) and isset($_POST['psw'])) {
-    $users = $dataConnect->getAll('users');
-    $p = 0;
-    foreach ($users as $user) {
-        if ($_POST['email'] == $user['email'] and $_POST['psw'] == $user['psw']) {
-            $p += 1;
+// サインイン時とサインアップ時に実行
+if ($_POST['SignInOrUpOrOut'] == 'SignIn' or $_POST['SignInOrUpOrOut'] == 'SignUp') {
+    if (isset($_POST['email']) and isset($_POST['psw'])) {
+        $users = $dataConnect->getAll('users');
+        $p = 0;
+        foreach ($users as $user) {
+            if ($_POST['email'] == $user['email'] and $_POST['psw'] == $user['psw']) {
+                $p += 1;
+            }
+        }
+        if($p == 1) {
+            if(isset($_POST['email'])) setcookie("email", $_POST['email'], time()+120);
+            $getUserByEmail = $dataConnect->getUserByEmail($_POST['email']);
+            $_SESSION['id'] = $getUserByEmail['id'];
+            header('Location: /index.php');
+        } else {
+            $_SESSION['id'] = null;
+            header('Location: /users/message.php/FailedToSignIn');
         }
     }
-    if($p == 1) {
-        if(isset($_POST['email'])) setcookie("email", $_POST['email'], time()+120);
-        $getUserByEmail = $dataConnect->getUserByEmail($_POST['email']);
-        $_SESSION['id'] = $getUserByEmail['id'];
-        header('Location: /index.php');
-    } else {
-        $_SESSION['id'] = null;
-        header('Location: /users/sign_in.php');
-    }
 }
+
+// サインアウト時のみ実行
+if ($_POST['SignInOrUpOrOut'] == 'SignOut') {
+    unset($_SESSION['id']);
+    header('Location: /users/message.php/DoSignOut');
+}
+
 ?>
