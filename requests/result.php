@@ -27,9 +27,8 @@ if (($handYou - $handAit + 3) % 3 == 2) {
 
 ?>
 
-<div style="height:50px; background-color:transparent"></div>
-<div style="background-color: brown; margin-bottom: 15px">
-    <p style="font-family: 'Times New Roman'; font-size: 40px; font-style: italic; color: white">じゃんけんの結果</p>
+<div class="page-title">
+    <p class="page-title-text">じゃんけんの結果</p>
 </div>
 <div class="container">
     <div class="row">

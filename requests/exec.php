@@ -22,9 +22,8 @@ if ($_POST['exectype'] == 'newRequest') {
 }
 ?>
 
-<div style="height:50px; background-color:transparent"></div>
-<div style="background-color: brown; margin-bottom: 15px">
-    <p style="font-family: 'Times New Roman'; font-size: 40px; font-style: italic; color: white">
+<div class="page-title">
+    <p class="page-title-text">
         <?php echo $ExecMessage ?>
     </p>
 </div>

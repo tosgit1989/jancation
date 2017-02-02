@@ -3,9 +3,8 @@ require_once ('app.php');
 $WinRateRankers = $dataConnect->getUsersOrderByWinRate();
 ?>
 
-<div style="height:50px; background-color:transparent"></div>
-<div style="background-color: brown; margin-bottom: 15px">
-    <p style="font-family: 'Times New Roman'; font-size: 40px; font-style: italic; color: white">トップページ</p>
+<div class="page-title">
+    <p class="page-title-text">トップページ</p>
 </div>
 <div class="container">
     <div class="row">
