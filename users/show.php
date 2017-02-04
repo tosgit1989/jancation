@@ -64,6 +64,7 @@ $ContentStatus = $methods->getContentStatus($_POST['tab']);
                                 $ToUser = $dataConnect->getById($request['to_user_id'], 'users');
                                 $HeadingHtml = sprintf('%s→%sっっｚ', $FromUser['nickname'], $ToUser['nickname']);
                                 $BodyHtml = sprintf('<a href="/requests/edit.php/%s" class="btn btn-primary" role="button">編集</a>', $request['id'])
+                                            . ' '
                                             . sprintf('<a href="/requests/delete.php/%s" class="btn btn-danger" role="button">削除</a>', $request['id']);
                                 $FooterHtml = sprintf('申請日時: %s 更新日時: %s', $request['created_at'], $request['updated_at']);
                                 $PanelHtml = $methods->getPanelHtml($HeadingHtml, $BodyHtml, $FooterHtml);
