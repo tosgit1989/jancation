@@ -50,7 +50,7 @@ $HeaderStatus = $methods->getHeaderStatus($_SESSION['id']);
             </ul>
             <ul <?php echo $HeaderStatus ?> class="nav navbar-nav navbar-right">
                 <li>
-                    <ul style="color: white">現在のユーザー: <?php echo $user['nickname'] ?></ul>
+                    <a style="color: white">現在のユーザー: <?php echo $user['nickname'] ?></a>
                 </li>
                 <li>
                     <a href="/users/show.php/<?php echo $UserId ?>">マイページ</a>
