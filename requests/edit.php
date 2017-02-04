@@ -21,7 +21,7 @@ $users = $dataConnect->getAll('users');
                             if ($ToUser['id'] !== $UserId) {
                                 $ischecked = '';
                                 if ($ToUser['id'] == $request['to_user_id']) {$ischecked = 'checked="checked"';}
-                                echo sprintf('<div class="radio-inline"><input type="radio" value=%s name="to_user_id" %s><label>', $ToUser['id'], $ischecked);
+                                echo sprintf('<div class="radio-inline"><input type="radio" value=%s name="to_user_id" id="to_user_id_%s" %s><label for="to_user_id_%s">', $ToUser['id'], $ToUser['id'], $ischecked, $ToUser['id']);
                                 echo $ToUser['nickname'];
                                 echo '</label></div><br>';
                             }

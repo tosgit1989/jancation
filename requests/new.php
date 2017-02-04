@@ -18,7 +18,7 @@ $users = $dataConnect->getAll('users');
                         <?php
                         foreach($users as $ToUser) {
                             if ($ToUser['id'] !== $UserId) {
-                                echo sprintf('<div class="radio-inline"><input type="radio" value=%s name="to_user_id"><label>', $ToUser['id']);
+                                echo sprintf('<div class="radio-inline"><input type="radio" value=%s name="to_user_id" id="to_user_id_%s"><label for="to_user_id_%s">', $ToUser['id'], $ToUser['id'], $ToUser['id']);
                                 echo $ToUser['nickname'];
                                 echo '</label></div><br>';
                             }

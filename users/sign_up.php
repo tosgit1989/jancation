@@ -14,17 +14,17 @@ require_once ('../app.php');
                 <form action="/users/session.php" method="post">
                     <div class="form-group">
                         <!--メールアドレス入力欄-->
-                        <p><strong>メールアドレス</strong></p>
-                        <input class="form-control" type="text" name="email" placeholder="メールアドレスを入力" value=""><br>
+                        <label for="email"><strong>メールアドレス</strong></label>
+                        <input class="form-control" type="text" name="email" id="email" placeholder="メールアドレスを入力" value=""><br>
                         <!--パスワード入力欄-->
-                        <p><strong>パスワード</strong></p>
-                        <input class="form-control" type="password" name="psw" placeholder="パスワードを入力" value=""><br>
+                        <label for="psw"><strong>パスワード</strong></label>
+                        <input class="form-control" type="password" name="psw" id="psw" placeholder="パスワードを入力" value=""><br>
                         <!--パスワード(確認)入力欄-->
-                        <p><strong>パスワード(確認)</strong></p>
-                        <input class="form-control" type="password" name="pswconfirm" placeholder="パスワード(確認)を入力" value=""><br>
+                        <label for="pswconfirm"><strong>パスワード(確認)</strong></label>
+                        <input class="form-control" type="password" name="pswconfirm" id="pswconfirm" placeholder="パスワード(確認)を入力" value=""><br>
                         <!--ニックネーム入力欄-->
-                        <p><strong>ニックネーム</strong></p>
-                        <input class="form-control" type="text" name="nickname" placeholder="ニックネームを入力" value=""><br>
+                        <label for="nickname"><strong>ニックネーム</strong></label>
+                        <input class="form-control" type="text" name="nickname" id="nickname" placeholder="ニックネームを入力" value=""><br>
                     </div>
                     <div class="form-group">
                         <!--サインアップボタン-->
