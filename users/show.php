@@ -62,7 +62,7 @@ $ContentStatus = $methods->getContentStatus($_POST['tab']);
                         foreach ($requests as $request) {
                             if ($request['from_user_id'] == $UserId) {
                                 $ToUser = $dataConnect->getById($request['to_user_id'], 'users');
-                                $HeadingHtml = sprintf('%s→%sっっｚ', $FromUser['nickname'], $ToUser['nickname']);
+                                $HeadingHtml = sprintf('%s→%s', $FromUser['nickname'], $ToUser['nickname']);
                                 $BodyHtml = sprintf('<a href="/requests/edit.php/%s" class="btn btn-primary" role="button">編集</a>', $request['id'])
                                             . ' '
                                             . sprintf('<a href="/requests/delete.php/%s" class="btn btn-danger" role="button">削除</a>', $request['id']);
