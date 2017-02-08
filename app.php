@@ -3,8 +3,7 @@ session_start();
 
 require_once('var.php');
 
-if (preg_match('"users/session.php"', $_SERVER['REQUEST_URI'])
-    or preg_match('"users/message.php"', $_SERVER['REQUEST_URI'])
+if (preg_match('"users/message.php"', $_SERVER['REQUEST_URI'])
     or preg_match('"users/sign_in.php"', $_SERVER['REQUEST_URI'])
     or preg_match('"users/sign_up.php"', $_SERVER['REQUEST_URI'])) {
     // 上記4通りの場合は、セッションが効いていなくても何もしない
