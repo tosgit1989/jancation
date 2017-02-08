@@ -11,7 +11,7 @@ require_once ('../app.php');
             <div class="bs-docs-section">
 
                 <!--フォーム-->
-                <form action="/users/session.php" method="post">
+                <form action="/users/session.php/SignIn" method="post">
                     <div class="form-group">
                         <!--メールアドレス入力欄-->
                         <label for="email"><strong>メールアドレス</strong></label>
@@ -22,7 +22,6 @@ require_once ('../app.php');
                     </div>
                     <div class="form-group">
                         <!--サインインボタン-->
-                        <input type="hidden" name="SignInOrUpOrOut" value="SignIn">
                         <input type="submit" name="sign-in" class="btn btn-primary" value="サインイン">
                     </div>
                 </form>

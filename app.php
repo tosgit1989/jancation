@@ -49,11 +49,8 @@ $HeaderStatus = $methods->getHeaderStatus($_SESSION['id']);
                 <li>
                     <a href="/users/show.php/<?php echo $UserId ?>">マイページ</a>
                 </li>
-                <li style="max-height: 50px">
-                    <a href="" data-toggle="link" onclick="document.SignOut.submit();return false;">サインアウト</a>
-                    <form name="SignOut" method="POST" action="/users/session.php">
-                        <input type="hidden" name="SignInOrUpOrOut" value="SignOut">
-                    </form>
+                <li>
+                    <a href="/users/session.php/SignOut">サインアウト</a>
                 </li>
             </ul>
         </div>

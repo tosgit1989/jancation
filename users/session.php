@@ -2,9 +2,10 @@
 session_start();
 
 require_once ('../var.php');
+$SignType = array_pop(explode('/', $_SERVER['REQUEST_URI']));
 
 // サインアップ時のみ実行
-if ($_POST['SignInOrUpOrOut'] == 'SignUp') {
+if ($SignType == 'SignUp') {
     $users = $dataConnect->getAll('users');
     $p = 0;
     foreach ($users as $user) {
@@ -27,7 +28,7 @@ if ($_POST['SignInOrUpOrOut'] == 'SignUp') {
 }
 
 // サインイン時とサインアップ時に実行
-if ($_POST['SignInOrUpOrOut'] == 'SignIn' or $_POST['SignInOrUpOrOut'] == 'SignUp') {
+if ($SignType == 'SignIn' or $SignType == 'SignUp') {
     if (isset($_POST['email']) and isset($_POST['psw'])) {
         $users = $dataConnect->getAll('users');
         $p = 0;
@@ -49,7 +50,7 @@ if ($_POST['SignInOrUpOrOut'] == 'SignIn' or $_POST['SignInOrUpOrOut'] == 'SignU
 }
 
 // サインアウト時のみ実行
-if ($_POST['SignInOrUpOrOut'] == 'SignOut') {
+if ($SignType == 'SignOut') {
     unset($_SESSION['id']);
     header('Location: /users/message.php/DoSignOut');
 }
