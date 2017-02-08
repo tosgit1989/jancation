@@ -1,12 +1,7 @@
 <?php
 session_start();
 
-require_once ('/Users/kagatoshio/projects/jancation/src/Services/DataHandler.php');
-require_once ('/Users/kagatoshio/projects/jancation/src/Services/Methods.php');
-$dataConnect = new \Services\DataHandler();
-$methods = new \Services\Methods();
-$requests = $dataConnect->getAll('requests');
-$RequestId = $methods->getRequestId($_SERVER['REQUEST_URI']);
+require_once('var.php');
 
 if (preg_match('"users/session.php"', $_SERVER['REQUEST_URI'])
     or preg_match('"users/message.php"', $_SERVER['REQUEST_URI'])
