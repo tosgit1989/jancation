@@ -1,5 +1,8 @@
 <?php
-require_once ('../app.php');
+session_start();
+
+require_once ('../var.php');
+
 // サインアップ時のみ実行
 if ($_POST['SignInOrUpOrOut'] == 'SignUp') {
     $users = $dataConnect->getAll('users');
