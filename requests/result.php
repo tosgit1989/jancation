@@ -13,13 +13,13 @@ $handAit = rand(1, 3);
 if (($handYou - $handAit + 3) % 3 == 2) {
     // じゃんけんに勝った場合
     $judge = "あなたの勝ち";
-    $dataConnect->updateScore('win', ['id' => $UserId]);
-    $dataConnect->updateScore('lose', ['id' => $request['from_user_id']]);
+    $dataConnect->updateScore('win', ['user_id' => $UserId]);
+    $dataConnect->updateScore('lose', ['user_id' => $request['from_user_id']]);
 } elseif (($handYou - $handAit + 3) % 3 == 1) {
     // じゃんけんに負けた場合
     $judge = "あなたの負け";
-    $dataConnect->updateScore('lose', ['id' => $UserId]);
-    $dataConnect->updateScore('win', ['id' => $request['from_user_id']]);
+    $dataConnect->updateScore('lose', ['user_id' => $UserId]);
+    $dataConnect->updateScore('win', ['user_id' => $request['from_user_id']]);
 } else {
     // それ以外の場合
     $judge = "あいこ";
