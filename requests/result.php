@@ -1,6 +1,6 @@
 <?php
 require_once ('../app.php');
-$request = $dataConnect->getById($RequestId, 'requests');
+$request = $dataConnect->getById($requestId, 'requests');
 
 // hand番号は、グー:1 , チョキ:2 , パー:3
 $handSort = ['0', 'グー', 'チョキ', 'パー'];
@@ -13,12 +13,12 @@ $handAit = rand(1, 3);
 if (($handYou - $handAit + 3) % 3 == 2) {
     // じゃんけんに勝った場合
     $judge = "あなたの勝ち";
-    $dataConnect->updateScore('win', ['user_id' => $UserId]);
+    $dataConnect->updateScore('win', ['user_id' => $userId]);
     $dataConnect->updateScore('lose', ['user_id' => $request['from_user_id']]);
 } elseif (($handYou - $handAit + 3) % 3 == 1) {
     // じゃんけんに負けた場合
     $judge = "あなたの負け";
-    $dataConnect->updateScore('lose', ['user_id' => $UserId]);
+    $dataConnect->updateScore('lose', ['user_id' => $userId]);
     $dataConnect->updateScore('win', ['user_id' => $request['from_user_id']]);
 } else {
     // それ以外の場合
@@ -37,11 +37,11 @@ if (($handYou - $handAit + 3) % 3 == 2) {
 
                 <p>あなた: <?php echo $handSort[$_POST['hand']]?>, 相手: <?php echo $handSort[$handAit]?></p>
                 <p>判定: <?php echo $judge ?></p>
-                <a href="/requests/play.php/<?php echo $RequestId ?>" class="btn btn-primary" role="button">連戦する</a>
+                <a href="/requests/play.php/<?php echo $requestId ?>" class="btn btn-primary" role="button">連戦する</a>
                 <a href="" data-toggle="link" onclick="document.LinkToExecPhp.submit();return false;" class="btn btn-danger" role="button">ゲーム終了</a>
 
                 <!--hidden form-->
-                <form name="LinkToExecPhp" method="POST" action="/requests/exec.php/<?php echo $RequestId ?>">
+                <form name="LinkToExecPhp" method="POST" action="/requests/exec.php/<?php echo $requestId ?>">
                     <input class="form-control" name="exectype" type="hidden" value="exitPlay">
                 </form>
 

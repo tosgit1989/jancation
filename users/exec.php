@@ -4,7 +4,7 @@ require_once ('../app.php');
 $userUpd['nickname'] = $_POST['nickname'];
 $userUpd['email'] = $_POST['email'];
 $userUpd['updated_at'] = $now = date('Y/m/d H:i:s');
-$dataConnect->update($userUpd, ['id' => $UserId], 'users');
+$dataConnect->update($userUpd, ['id' => $userId], 'users');
 ?>
 
 <div class="page-title">
@@ -17,7 +17,7 @@ $dataConnect->update($userUpd, ['id' => $UserId], 'users');
         <div class="col-xs-12">
             <div class="bs-docs-section">
 
-                <a href="/users/show.php/<?php echo $UserId ?>" class="btn btn-primary" role="button">マイページへ</a>
+                <a href="/users/show.php/<?php echo $userId ?>" class="btn btn-primary" role="button">マイページへ</a>
 
             </div>
         </div>

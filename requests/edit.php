@@ -1,6 +1,6 @@
 <?php
 require_once ('../app.php');
-$request = $dataConnect->getById($RequestId, 'requests');
+$request = $dataConnect->getById($requestId, 'requests');
 $users = $dataConnect->getAll('users');
 ?>
 
@@ -13,18 +13,18 @@ $users = $dataConnect->getAll('users');
             <div class="bs-docs-section">
 
                 <!--フォーム-->
-                <form method="POST" action="/requests/exec.php/<?php echo $RequestId ?>">
+                <form method="POST" action="/requests/exec.php/<?php echo $requestId ?>">
                     <div class="form-group">
                         <p><strong>対戦相手を選択</strong></p>
                         <?php
-                        foreach($users as $ToUser) {
-                            if ($ToUser['id'] !== $UserId) {
+                        foreach($users as $toUser) {
+                            if ($toUser['id'] !== $userId) {
                                 $ischecked = '';
-                                if ($ToUser['id'] == $request['to_user_id']) {$ischecked = 'checked="checked"';}
+                                if ($toUser['id'] == $request['to_user_id']) {$ischecked = 'checked="checked"';}
                                 echo '<div class="radio-inline">';
-                                echo sprintf('<input type="radio" value=%s name="to_user_id" id="to_user_id_%s" %s>', $ToUser['id'], $ToUser['id'], $ischecked);
-                                echo sprintf('<label for="to_user_id_%s">', $ToUser['id']);
-                                echo $ToUser['nickname'];
+                                echo sprintf('<input type="radio" value=%s name="to_user_id" id="to_user_id_%s" %s>', $toUser['id'], $toUser['id'], $ischecked);
+                                echo sprintf('<label for="to_user_id_%s">', $toUser['id']);
+                                echo $toUser['nickname'];
                                 echo '</label></div><br>';
                             }
                         }

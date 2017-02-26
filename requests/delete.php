@@ -1,6 +1,6 @@
 <?php
 require_once ('../app.php');
-$request = $dataConnect->getById($RequestId, 'requests');
+$request = $dataConnect->getById($requestId, 'requests');
 ?>
 
 <div class="page-title">
@@ -12,12 +12,12 @@ $request = $dataConnect->getById($RequestId, 'requests');
             <div class="bs-docs-section">
 
                 <h3>本当に削除しますか？</h3>
-                <form method="POST" action="/requests/exec.php/<?php echo $RequestId ?>">
+                <form method="POST" action="/requests/exec.php/<?php echo $requestId ?>">
                     <div class="form-group">
                         <input class="form-control" name="exectype" type="hidden" value="deleteRequest">
                     </div>
                     <button class="btn btn-danger" type="submit">削除</button>
-                    <a href="/users/show.php/<?php echo $UserId ?>" class="btn" style="background-color: silver; color: black">いいえ</a>
+                    <a href="/users/show.php/<?php echo $userId ?>" class="btn" style="background-color: silver; color: black">いいえ</a>
                 </form>
 
             </div>

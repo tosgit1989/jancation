@@ -11,7 +11,7 @@ require_once ('../app.php');
             <div class="bs-docs-section">
 
                 <!--フォーム-->
-                <form method="POST" action="/users/exec.php/<?php echo $UserId ?>">
+                <form method="POST" action="/users/exec.php/<?php echo $userId ?>">
                     <div class="form-group">
                         <label for="email"><strong>メールアドレス</strong></label>
                         <input required="required" class="form-control" placeholder="メールアドレスを入力" name="email" id="email" type="text" value="<?php echo $user['email'] ?>"><br>

@@ -1,13 +1,13 @@
 <?php
 require_once ('../app.php');
 $message1 = array_pop(explode('/', $_SERVER['REQUEST_URI']));
-if ($message1 == 'FailedToSignIn') {
+if ($message1 == 'failedToSignIn') {
     $message2 = 'サインインに失敗しました';
     $message3 = 'メールアドレスまたはパスワードが正しくありません';
-} elseif ($message1 == 'DoSignOut') {
+} elseif ($message1 == 'doSignOut') {
     $message2 = 'サインアウトしました';
     $message3 = '';
-} elseif ($message1 == 'SessionTimeOut') {
+} elseif ($message1 == 'sessionTimeOut') {
     $message2 = 'セッションがタイムアウトです';
     $message3 = 'もう一度サインインしてください';
 }

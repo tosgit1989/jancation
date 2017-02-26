@@ -16,12 +16,12 @@ $users = $dataConnect->getAll('users');
                     <div class="form-group">
                         <p><strong>対戦相手を選択</strong></p>
                         <?php
-                        foreach($users as $ToUser) {
-                            if ($ToUser['id'] !== $UserId) {
+                        foreach($users as $toUser) {
+                            if ($toUser['id'] !== $userId) {
                                 echo '<div class="radio-inline">';
-                                echo sprintf('<input type="radio" value=%s name="to_user_id" id="to_user_id_%s">', $ToUser['id'], $ToUser['id']);
-                                echo sprintf('<label for="to_user_id_%s">', $ToUser['id']);
-                                echo $ToUser['nickname'];
+                                echo sprintf('<input type="radio" value=%s name="to_user_id" id="to_user_id_%s">', $toUser['id'], $toUser['id']);
+                                echo sprintf('<label for="to_user_id_%s">', $toUser['id']);
+                                echo $toUser['nickname'];
                                 echo '</label></div><br>';
                             }
                         }

@@ -11,7 +11,7 @@ require_once ('../app.php');
             <div class="bs-docs-section">
 
                 <!--フォーム-->
-                <form action="/users/session.php/SignUp" method="post">
+                <form action="/users/session.php/signUp" method="post">
                     <div class="form-group">
                         <!--メールアドレス入力欄-->
                         <label for="email"><strong>メールアドレス</strong></label>

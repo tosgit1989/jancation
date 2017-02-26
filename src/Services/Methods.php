@@ -20,9 +20,9 @@ class Methods{
         if (!isset($tab)) {
             $tab = 'tab1';
         }
-        $TabStatus = ['tab1' => '', 'tab2' => '', 'tab3' => ''];
-        $TabStatus[$tab] = 'active';
-        return $TabStatus;
+        $tabStatus = ['tab1' => '', 'tab2' => '', 'tab3' => ''];
+        $tabStatus[$tab] = 'active';
+        return $tabStatus;
     }
 
     // getContentStatus($tab)
@@ -30,22 +30,22 @@ class Methods{
         if (!isset($tab)) {
             $tab = 'tab1';
         }
-        $ContentStatus = ['tab1' => 'hidden', 'tab2' => 'hidden', 'tab3' => 'hidden'];
-        $ContentStatus[$tab] = '';
-        return $ContentStatus;
+        $contentStatus = ['tab1' => 'hidden', 'tab2' => 'hidden', 'tab3' => 'hidden'];
+        $contentStatus[$tab] = '';
+        return $contentStatus;
     }
 
     // getPanelHtml($heading, $body, $footer)
     public function getPanelHtml($heading, $body, $footer) {
-        $HeadingHtml = sprintf('<div class="panel-heading"><strong>%s</strong></div>', $heading);
-        $BodyHtml = sprintf('<div class="panel-body">%s</div>', $body);
+        $headingHtml = sprintf('<div class="panel-heading"><strong>%s</strong></div>', $heading);
+        $bodyHtml = sprintf('<div class="panel-body">%s</div>', $body);
         if ($footer == false) {
-            $FooterHtml = '';
+            $footerHtml = '';
         } else {
-            $FooterHtml = sprintf('<div class="panel-footer">%s</div>', $footer);
+            $footerHtml = sprintf('<div class="panel-footer">%s</div>', $footer);
         }
-        $PanelHtml = '<div class="panel panel-primary">' . $HeadingHtml . $BodyHtml . $FooterHtml . '</div>';
-        return $PanelHtml;
+        $panelHtml = '<div class="panel panel-primary">' . $headingHtml . $bodyHtml . $footerHtml . '</div>';
+        return $panelHtml;
     }
 }
 ?>

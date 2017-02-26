@@ -2,10 +2,10 @@
 session_start();
 
 require_once ('../var.php');
-$SignType = array_pop(explode('/', $_SERVER['REQUEST_URI']));
+$signType = array_pop(explode('/', $_SERVER['REQUEST_URI']));
 
 // サインアップ時のみ実行
-if ($SignType == 'SignUp') {
+if ($signType == 'signUp') {
     $users = $dataConnect->getAll('users');
     $p = 0;
     foreach ($users as $user) {
@@ -28,7 +28,7 @@ if ($SignType == 'SignUp') {
 }
 
 // サインイン時とサインアップ時に実行
-if ($SignType == 'SignIn' or $SignType == 'SignUp') {
+if ($signType == 'signIn' or $signType == 'signUp') {
     if (isset($_POST['email']) and isset($_POST['psw'])) {
         $users = $dataConnect->getAll('users');
         $p = 0;
@@ -44,15 +44,15 @@ if ($SignType == 'SignIn' or $SignType == 'SignUp') {
             header('Location: /index.php');
         } else {
             $_SESSION['id'] = null;
-            header('Location: /users/message.php/FailedToSignIn');
+            header('Location: /users/message.php/failedToSignIn');
         }
     }
 }
 
 // サインアウト時のみ実行
-if ($SignType == 'SignOut') {
+if ($signType == 'signOut') {
     unset($_SESSION['id']);
-    header('Location: /users/message.php/DoSignOut');
+    header('Location: /users/message.php/doSignOut');
 }
 
 ?>
