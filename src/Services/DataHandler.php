@@ -61,7 +61,6 @@ class DataHandler {
         $paramsStr = $this->getUpdateParameterStrings($data);
         $identifierStr = $this->getUpdateParameterStrings($identifier, true);
         $prepareText = 'UPDATE ' . $TableName . ' SET ' . $paramsStr . ' WHERE ' . $identifierStr;
-        var_dump($prepareText);
         $query = $pdo->prepare($prepareText);
         $query->execute();
     }
@@ -73,12 +72,10 @@ class DataHandler {
         $WLCount = $result . '_count';
         $func1 = $WLCount . ' = ' . $WLCount . ' + 1';
         $prepareText1 = 'UPDATE playscores SET ' . $func1 . ' WHERE ' . $identifierStr;
-        var_dump($prepareText1);
         $query = $pdo->prepare($prepareText1);
         $query->execute();
         $func3 = 'win_rate = win_count * 100 / (win_count + lose_count)';
         $prepareText2 = 'UPDATE playscores SET ' . $func3 . ' WHERE ' . $identifierStr;
-        var_dump($prepareText2);
         $query = $pdo->prepare($prepareText2);
         $query->execute();
     }
