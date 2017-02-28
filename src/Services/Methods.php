@@ -6,9 +6,9 @@ class Methods{
         return array_pop(explode('/', $reqURL));
     }
 
-    // getHeaderStatus($SessionId)
-    public function getHeaderStatus($SessionId) {
-        if (isset($SessionId)) {
+    // getHeaderStatus($sessionId)
+    public function getHeaderStatus($sessionId) {
+        if (isset($sessionId)) {
             return '';
         } else {
             return 'hidden';
