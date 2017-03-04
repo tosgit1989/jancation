@@ -14,6 +14,7 @@ if (preg_match('"users/message.php"', $_SERVER['REQUEST_URI'])
     //セッションが効いている場合
     $userId = $_SESSION['id'];
     $user = $dataConnect->getById($userId, 'users');
+    $userScore = $dataConnect->getScoreByUserId($userId);
 }
 
 $headerStatus = $methods->getHeaderStatus($_SESSION['id']);

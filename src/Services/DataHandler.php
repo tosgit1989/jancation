@@ -20,10 +20,10 @@ class DataHandler {
         return $query->fetchAll();
     }
 
-    // getUsersOrderByWinRate()
-    public function getUsersOrderByWinRate() {
+    // getPlayScoresOrderByWinRate()
+    public function getPlayScoresOrderByWinRate() {
         $pdo = $this->getPdo();
-        $prepareText = 'SELECT * FROM users ORDER BY win_rate DESC';
+        $prepareText = 'SELECT * FROM playscores ORDER BY win_rate DESC';
         $query = $pdo->prepare($prepareText);
         $query->execute();
         return $query->fetchAll();
@@ -35,6 +35,15 @@ class DataHandler {
         $prepareText = 'SELECT * FROM ' . $tableName . ' WHERE id = :id';
         $query = $pdo->prepare($prepareText);
         $query->execute(['id' => $Id]);
+        return $query->fetch();
+    }
+
+    // getScoreByUserId($Id)
+    public function getScoreByUserId($userId) {
+        $pdo = $this->getPdo();
+        $prepareText = 'SELECT * FROM playscores WHERE user_id = :id';
+        $query = $pdo->prepare($prepareText);
+        $query->execute(['id' => $userId]);
         return $query->fetch();
     }
 

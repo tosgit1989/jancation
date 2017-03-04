@@ -1,6 +1,6 @@
 <?php
 require_once ('app.php');
-$winRankers = $dataConnect->getUsersOrderByWinRate();
+$playScores = $dataConnect->getPlayScoresOrderByWinRate();
 ?>
 
 <div class="page-title">
@@ -13,13 +13,13 @@ $winRankers = $dataConnect->getUsersOrderByWinRate();
 
                 <h3 class="text-middle">勝率ランキング</h3>
                 <?php
-                foreach ($winRankers as $winRanker) {
-                    if ($winRanker['win_count'] + $winRanker['lose_count'] > 0) {
-                        $bodyHtml = sprintf('勝率: %s％<br>', $winRanker['win_rate']);
+                foreach ($playScores as $playScore) {
+                    if ($playScore['win_count'] + $playScore['lose_count'] > 0) {
+                        $bodyHtml = sprintf('勝率: %s％<br>', $playScore['win_rate']);
                     } else {
                         $bodyHtml = '-';
                     }
-                    $panelHtml = $methods->getPanelHtml($winRanker['nickname'], $bodyHtml, false);
+                    $panelHtml = $methods->getPanelHtml($playScore['nickname'], $bodyHtml, false);
                     echo $panelHtml;
                 }
                 ?>

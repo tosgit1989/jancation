@@ -47,12 +47,12 @@ $contentStatus = $methods->getContentStatus($_POST['tab']);
                     <div <?php echo $contentStatus['tab2'] ?>>
                         <!--自分の対戦成績を表示-->
                         <h3 class="text-middle"><?php echo $user['nickname'] ?>さんの対戦成績</h3>
-                        <p>プレイ回数: <?php echo $user['win_count'] + $user['lose_count'] ?></p>
-                        <p>勝ち回数: <?php echo $user['win_count'] ?></p>
-                        <p>負け回数: <?php echo $user['lose_count'] ?></p>
+                        <p>プレイ回数: <?php echo $userScore['win_count'] + $userScore['lose_count'] ?></p>
+                        <p>勝ち回数: <?php echo $userScore['win_count'] ?></p>
+                        <p>負け回数: <?php echo $userScore['lose_count'] ?></p>
                         <?php
-                            if ($user['win_count'] + $user['lose_count'] > 0) {
-                                echo '<p>勝率: ' . $user['win_rate'] . '％</p>';
+                            if ($userScore['win_count'] + $userScore['lose_count'] > 0) {
+                                echo '<p>勝率: ' . $userScore['win_rate'] . '％</p>';
                             }
                         ?>
                     </div>
