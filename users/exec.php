@@ -1,10 +1,14 @@
 <?php
 require_once ('../app.php');
 
+// usersテーブルに編集内容を反映
 $userUpd['nickname'] = $_POST['nickname'];
 $userUpd['email'] = $_POST['email'];
 $userUpd['updated_at'] = $now = date('Y/m/d H:i:s');
 $dataConnect->update($userUpd, ['id' => $userId], 'users');
+// playscoresテーブルにも編集内容を反映
+$playscoreUpd['nickname'] = $_POST['nickname'];
+$dataConnect->update($playscoreUpd, ['user_id' => $userId], 'playscores');
 ?>
 
 <div class="page-title">

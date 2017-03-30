@@ -14,11 +14,10 @@ if ($signType == 'signUp') {
         }
     }
     if ($_POST['psw'] == $_POST['pswconfirm'] and $p == 0) {
+        // usersテーブルへのinsertを実行
         $userNew['email'] = $_POST['email'];
         $userNew['psw'] = $_POST['psw'];
         $userNew['nickname'] = $_POST['nickname'];
-        $userNew['win_count'] = 0;
-        $userNew['lose_count'] = 0;
         $userNew['created_at'] = $now = date('Y/m/d H:i:s');
         $userNew['updated_at'] = $now = date('Y/m/d H:i:s');
         $dataConnect->insert($userNew, 'users');
@@ -41,6 +40,16 @@ if ($signType == 'signIn' or $signType == 'signUp') {
             if(isset($_POST['email'])) setcookie("email", $_POST['email'], time()+120);
             $getUserByEmail = $dataConnect->getUserByEmail($_POST['email']);
             $_SESSION['id'] = $getUserByEmail['id'];
+            if ($signType == 'signUp') {
+                // ※サインアップ時のみ、playscoresテーブルへのinsertも行う
+                $playscoreNew['user_id'] = $getUserByEmail['id'];
+                $playscoreNew['win_count'] = 0;
+                $playscoreNew['lose_count'] = 0;
+                $playscoreNew['nickname'] = $_POST['nickname'];
+                $playscoreNew['created_at'] = $now = date('Y/m/d H:i:s');
+                $playscoreNew['updated_at'] = $now = date('Y/m/d H:i:s');
+                $dataConnect->insert($playscoreNew, 'playscores');
+            }
             header('Location: /index.php');
         } else {
             $_SESSION['id'] = null;
