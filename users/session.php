@@ -13,16 +13,20 @@ if ($signType == 'signUp') {
             $p += 1;
         }
     }
-    if ($_POST['psw'] == $_POST['pswconfirm'] and $p == 0) {
-        // usersテーブルへのinsertを実行
-        $userNew['email'] = $_POST['email'];
-        $userNew['psw'] = $_POST['psw'];
-        $userNew['nickname'] = $_POST['nickname'];
-        $userNew['created_at'] = $now = date('Y/m/d H:i:s');
-        $userNew['updated_at'] = $now = date('Y/m/d H:i:s');
-        $dataConnect->insert($userNew, 'users');
+    if ($_POST['psw'] == $_POST['pswconfirm']) {
+        if ($p == 0) {
+            // usersテーブルへのinsertを実行
+            $userNew['email'] = $_POST['email'];
+            $userNew['psw'] = $_POST['psw'];
+            $userNew['nickname'] = $_POST['nickname'];
+            $userNew['created_at'] = $now = date('Y/m/d H:i:s');
+            $userNew['updated_at'] = $now = date('Y/m/d H:i:s');
+            $dataConnect->insert($userNew, 'users');
+        } else {
+            header('Location: /users/message.php/failedToSignUp2');
+        }
     } else {
-        header('Location: /users/sign_up.php');
+        header('Location: /users/message.php/failedToSignUp1');
     }
 }
 

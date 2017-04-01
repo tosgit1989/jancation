@@ -4,6 +4,12 @@ $message1 = array_pop(explode('/', $_SERVER['REQUEST_URI']));
 if ($message1 == 'failedToSignIn') {
     $message2 = 'サインインに失敗しました';
     $message3 = 'メールアドレスまたはパスワードが正しくありません';
+} elseif ($message1 == 'failedToSignUp1') {
+    $message2 = 'サインアップに失敗しました';
+    $message3 = 'パスワードとパスワード(確認用)の入力値が一致しません';
+} elseif ($message1 == 'failedToSignUp2') {
+    $message2 = 'サインアップに失敗しました';
+    $message3 = 'メールアドレス、パスワード、ニックネームのいずれかの入力値を既に他のユーザーが使用しています';
 } elseif ($message1 == 'doSignOut') {
     $message2 = 'サインアウトしました';
     $message3 = '';
