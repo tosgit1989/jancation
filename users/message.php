@@ -1,19 +1,19 @@
 <?php
 require_once ('../app.php');
 $message1 = array_pop(explode('/', $_SERVER['REQUEST_URI']));
-if ($message1 == 'failedToSignIn1') {
+if ($message1 == 'failedToSignInWrong') {
     $message2 = 'サインインに失敗しました';
     $message3 = 'メールアドレスまたはパスワードが正しくありません';
-} elseif ($message1 == 'failedToSignIn2') {
+} elseif ($message1 == 'failedToSignInEmpty') {
     $message2 = 'サインインに失敗しました';
     $message3 = 'メールアドレス、パスワードのいずれかの入力値が空です';
-} elseif ($message1 == 'failedToSignUp1') {
+} elseif ($message1 == 'failedToSignUpMismatch') {
     $message2 = 'サインアップに失敗しました';
     $message3 = 'パスワードとパスワード(確認用)の入力値が一致しません';
-} elseif ($message1 == 'failedToSignUp2') {
+} elseif ($message1 == 'failedToSignUpUsed') {
     $message2 = 'サインアップに失敗しました';
     $message3 = 'メールアドレス、パスワード、ニックネームのいずれかの入力値を既に他のユーザーが使用しています';
-} elseif ($message1 == 'failedToSignUp3') {
+} elseif ($message1 == 'failedToSignUpEmpty') {
     $message2 = 'サインアップに失敗しました';
     $message3 = 'メールアドレス、パスワード、パスワード(確認)、ニックネームのいずれかの入力値が空です';
 } elseif ($message1 == 'doSignOut') {
