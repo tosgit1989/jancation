@@ -15,24 +15,38 @@ class Methods{
         }
     }
 
-    // getTabStatus($tab)
-    public function getTabStatus($tab) {
-        if (!isset($tab)) {
-            $tab = 'tab1';
+    // getTabOrContentSta($type, $tabNum)
+    public function getTabOrContentSta($activeNum, $type) {
+        // $activeNum(選択状態の番号)の初期値
+        if (!isset($activeNum)) {
+            $activeNum = 1;
         }
-        $tabStatus = ['tab1' => '', 'tab2' => '', 'tab3' => ''];
-        $tabStatus[$tab] = 'active';
-        return $tabStatus;
-    }
 
-    // getContentStatus($tab)
-    public function getContentStatus($tab) {
-        if (!isset($tab)) {
-            $tab = 'tab1';
+        // ステータスのArrayを作成
+        $staArrForTab = [];
+        $staArrForContent = [];
+        $i = 1;
+        while ($i <= 100) {
+            if ($i == $activeNum) {
+                // $iが選択状態の番号である場合
+                $staArrForTab += [$i => 'active'];
+                $staArrForContent += [$i => ''];
+            } else {
+                // $iが選択状態の番号でない場合
+                $staArrForTab += [$i => ''];
+                $staArrForContent += [$i => 'hidden'];
+            }
+            $i ++;
         }
-        $contentStatus = ['tab1' => 'hidden', 'tab2' => 'hidden', 'tab3' => 'hidden'];
-        $contentStatus[$tab] = '';
-        return $contentStatus;
+
+        // $typeがtabならタブステータス、contentならコンテントステータスをArray形式で返す
+        if ($type == 'tab') {
+            return $staArrForTab;
+        } elseif ($type == 'content') {
+            return $staArrForContent;
+        } else {
+            return '';
+        }
     }
 
     // getPanelHtml($heading, $body, $footer)
