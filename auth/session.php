@@ -41,15 +41,15 @@ if ($signType == 'signUp') {
                 header('Location: /index.php');
             } else {
                 unset($_SESSION['id']);
-                header('Location: /users/message.php/failedToSignUpUsed');
+                header('Location: /auth/message.php/failedToSignUpUsed');
             }
         } else {
             unset($_SESSION['id']);
-            header('Location: /users/message.php/failedToSignUpMismatch');
+            header('Location: /auth/message.php/failedToSignUpMismatch');
         }
     } else {
         unset($_SESSION['id']);
-        header('Location: /users/message.php/failedToSignUpEmpty');
+        header('Location: /auth/message.php/failedToSignUpEmpty');
     }
 }
 
@@ -73,18 +73,18 @@ if ($signType == 'signIn') {
             header('Location: /index.php');
         } else {
             unset($_SESSION['id']);
-            header('Location: /users/message.php/failedToSignInWrong');
+            header('Location: /auth/message.php/failedToSignInWrong');
         }
     } else {
         unset($_SESSION['id']);
-        header('Location: /users/message.php/failedToSignInEmpty');
+        header('Location: /auth/message.php/failedToSignInEmpty');
     }
 }
 
 // ③サインアウト時
 if ($signType == 'signOut') {
     unset($_SESSION['id']);
-    header('Location: /users/message.php/doSignOut');
+    header('Location: /auth/message.php/doSignOut');
 }
 
 ?>

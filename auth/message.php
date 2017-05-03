@@ -34,7 +34,7 @@ if ($message1 == 'failedToSignInWrong') {
             <div class="bs-docs-section">
 
                 <h3><?php echo $message3 ?></h3>
-                <a href="/users/sign_in.php" class="btn btn-info" value="サインイン">サインインページへ</a>
+                <a href="/auth/sign_in.php" class="btn btn-info" value="サインイン">サインインページへ</a>
 
             </div>
         </div>

@@ -2,7 +2,7 @@
 session_start();
 
 require_once('var.php');
-require_once('sessioncheck.php');
+require_once('auth/sessioncheck.php');
 
 $headerStatus = $methods->getHeaderStatus($_SESSION['id']);
 
@@ -44,7 +44,7 @@ $headerStatus = $methods->getHeaderStatus($_SESSION['id']);
                     <a href="/users/show.php/<?php echo $userId ?>">マイページ</a>
                 </li>
                 <li>
-                    <a href="/users/session.php/signOut">サインアウト</a>
+                    <a href="/auth/session.php/signOut">サインアウト</a>
                 </li>
             </ul>
         </div>

@@ -11,7 +11,7 @@ require_once ('../app.php');
             <div class="bs-docs-section">
 
                 <!--フォーム-->
-                <form action="/users/session.php/signIn" method="post">
+                <form action="/auth/session.php/signUp" method="post">
                     <div class="form-group">
                         <!--メールアドレス入力欄-->
                         <label for="email"><strong>メールアドレス</strong></label>
@@ -19,16 +19,22 @@ require_once ('../app.php');
                         <!--パスワード入力欄-->
                         <label for="psw"><strong>パスワード</strong></label>
                         <input required="required" class="form-control" type="password" name="psw" id="psw" placeholder="パスワードを入力" value=""><br>
+                        <!--パスワード(確認)入力欄-->
+                        <label for="pswconfirm"><strong>パスワード(確認)</strong></label>
+                        <input required="required" class="form-control" type="password" name="pswconfirm" id="pswconfirm" placeholder="パスワード(確認)を入力" value=""><br>
+                        <!--ニックネーム入力欄-->
+                        <label for="nickname"><strong>ニックネーム</strong></label>
+                        <input required="required" class="form-control" type="text" name="nickname" id="nickname" placeholder="ニックネームを入力" value=""><br>
                     </div>
                     <div class="form-group">
-                        <!--サインインボタン-->
-                        <input type="submit" name="sign-in" class="btn btn-primary" value="サインイン">
+                        <!--サインアップボタン-->
+                        <input type="submit" name="sign-up" class="btn btn-primary" value="サインアップ">
                     </div>
                 </form>
 
                 <hr>
 
-                <a href="/users/sign_up.php" class="btn btn-info" value="サインイン">アカウントを持っていない方は、こちら</a>
+                <a href="/auth/sign_in.php" class="btn btn-info" value="サインイン">アカウントを持っている方は、こちら</a>
 
             </div>
         </div>
