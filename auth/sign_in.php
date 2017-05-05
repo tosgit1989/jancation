@@ -3,7 +3,7 @@ require_once ('../app.php');
 ?>
 
 <div class="page-title">
-    <p class="page-title-text">サインアップページ</p>
+    <p class="page-title-text">サインインページ</p>
 </div>
 <div class="container">
     <div class="row">
