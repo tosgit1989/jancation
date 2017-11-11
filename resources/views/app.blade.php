@@ -3,8 +3,10 @@
 	<head>
 		<meta charset="utf-8">
 		<title>jancation</title>
-		<link rel="stylesheet" href="/css/bootstrap.min.css">
-		<link rel="stylesheet" href="/css/application.css">
+		<!--Bootstrapのcssファイル読み込み-->
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+		<!--Vueのjsファイル読み込み-->
+		<script src="https://unpkg.com/vue@2.1.6/dist/vue.js"></script>
 	</head>
 	<body style="background-color:white">
 
@@ -28,5 +30,9 @@
 			</div>
 		</footer>
 
+		<!--jQueryのjsファイル読み込み-->
+		<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+		<!--Bootstrapのjsファイル読み込み-->
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	</body>
 </html>
