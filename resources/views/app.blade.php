@@ -7,6 +7,7 @@
 		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 		<!--Vueのjsファイル読み込み-->
 		<script src="https://unpkg.com/vue@2.1.6/dist/vue.js"></script>
+		<!-- <script src="vuvu.js"></script> -->
 	</head>
 	<body style="background-color:white">
 
@@ -18,10 +19,30 @@
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
+						<li style="max-height: 50px">
+							じゃんけんする
+						</li>
 					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a style="color: white">現在のユーザー: </a>
+						</li>
+						<li style="max-height: 50px">
+							マイページ
+						</li>
+						<li style="max-height: 50px">
+							サインアウト
+						</li>
+					</ul>
+
 				</div>
 			</div>
 		</nav>
+
+
+		<!-- コンテンツ -->
+		<div id="app">
+		</div>
 
 		<!--フッター-->
 		<footer class="bs-docs-footer navbar-fixed-bottom" style="background-color: #000000; height: 30px">
