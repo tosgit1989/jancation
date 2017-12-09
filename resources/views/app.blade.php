@@ -20,7 +20,7 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li style="max-height: 50px">
-							じゃんけんする
+							<a href="/menu" role="button">じゃんけんする</a>
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
@@ -28,10 +28,10 @@
 							<a style="color: white">現在のユーザー: </a>
 						</li>
 						<li style="max-height: 50px">
-							マイページ
+							<a href="/mypage" role="button">マイページ</a>
 						</li>
 						<li style="max-height: 50px">
-							サインアウト
+							<a href="/signin" role="button">サインアウト</a>
 						</li>
 					</ul>
 

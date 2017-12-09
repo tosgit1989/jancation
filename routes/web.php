@@ -12,5 +12,21 @@
 */
 
 Route::get('/', function () {
-	return view('app');
+	return view('index');
+});
+
+Route::get('/menu', function () {
+	return view('menu');
+});
+
+Route::get('/mypage', function () {
+	return view('mypage');
+});
+
+Route::get('/play1', function () {
+	return view('play1');
+});
+
+Route::get('/play2', function () {
+	return view('play2');
 });
