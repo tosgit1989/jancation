@@ -31,7 +31,7 @@
 							<a href="/mypage" role="button">マイページ</a>
 						</li>
 						<li style="max-height: 50px">
-							<a href="/signin" role="button">サインアウト</a>
+							<a href="/dosignout" role="button">サインアウト</a>
 						</li>
 					</ul>
 
