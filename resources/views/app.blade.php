@@ -3,11 +3,12 @@
 	<head>
 		<meta charset="utf-8">
 		<title>jancation</title>
+		<!--cssファイル読み込み-->
+		<link href="/css/jancation.css" rel="stylesheet">
 		<!--Bootstrapのcssファイル読み込み-->
 		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 		<!--Vueのjsファイル読み込み-->
 		<script src="https://unpkg.com/vue@2.1.6/dist/vue.js"></script>
-		<!-- <script src="vuvu.js"></script> -->
 	</head>
 	<body style="background-color:white">
 
@@ -15,7 +16,7 @@
 		<nav class="navbar navbar-fixed-top navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header" style="max-height: 50px">
-					<a class="active navbar-brand">jancation</a>
+					<a href="/" class="active navbar-brand">jancation</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
@@ -25,7 +26,9 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<a style="color: white">現在のユーザー: </a>
+							<a style="color: white">
+								現在のユーザー: {{ \App\Http\Controllers\FuncController::getUserBy(1) }}
+							</a>
 						</li>
 						<li style="max-height: 50px">
 							<a href="/mypage" role="button">マイページ</a>

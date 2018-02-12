@@ -1,30 +1,14 @@
 @extends('app')
 
 <div class="page-title" style="padding-top: 50px">
-	<p class="page-title-text">マイページ</p>
+	<p class="page-title-text">あなたの申請一覧</p>
 </div>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="bs-docs-section">
 
-				<!--自分の基本情報を表示-->
-				<h3 class="text-middle">基本情報</h3>
-				<h4>ニックネーム  : {{ $curUser->nickname }}</h4>
-				<h4>メールアドレス: {{ $curUser->email }}</h4>
-
-				<hr>
-
-				<!--自分の対戦成績を表示-->
-				<h3 class="text-middle"><?= 'nickname' ?>さんの対戦成績</h3>
-				<p>プレイ回数: {{ ($curPlayScore->win_count) + ($curPlayScore->lose_count) }}</p>
-				<p>勝ち回数: {{ $curPlayScore->win_count }}</p>
-				<p>負け回数: {{ $curPlayScore->lose_count }}</p>
-
-				<hr>
-
-				<!--自分のじゃんけん申請一覧を表示-->
-				<h3>{{ $curUser->nickname }}さんのじゃんけん申請一覧</h3>
+				<div style="height:30px"></div>
 				@if (count($PlayRequests) >= 1)
 					@foreach($PlayRequests as $PlayRequest)
 						@if ($PlayRequest->fromUserId == $curUser->userId)
@@ -32,7 +16,7 @@
 								<div class="panel-heading">
 									<strong>
 										{{ \App\Http\Controllers\FuncController::getUserBy($PlayRequest->from_user_id) }}
-										→
+											→
 										{{ \App\Http\Controllers\FuncController::getUserBy($PlayRequest->to_user_id) }}
 									</strong>
 								</div>
@@ -40,7 +24,7 @@
 									<a href="/editplayrequest/{{ $PlayRequest->id }}" class="btn btn-primary">編集</a>
 									<a href="/deleteplayrequest/{{ $PlayRequest->id }}" class="btn btn-danger">削除</a>
 								</div>
-								<div class="panel-body">
+								<div class="panel-footer">
 									申請日時: {{ $PlayRequest->created_at }} 更新日時: {{ $PlayRequest->updated_at }}
 								</div>
 							</div>
@@ -49,11 +33,6 @@
 				@else
 					<p>申請はありません。</p>
 				@endif
-
-						<div style="height:30px"></div>
-					</div>
-				</div>
-				<!-- /コンテンツ-->
 
 			</div>
 		</div>
