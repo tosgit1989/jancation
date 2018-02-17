@@ -9,11 +9,11 @@ use App\Http\Requests;
 class PlayLogsController extends Controller
 {
 
-    public function index()
-    {
-        $PlayLogs = PlayLog::all();
-        return view('index')->with([
-            'PlayLogs' => $PlayLogs
-        ]);
-    }
+	public function index()
+	{
+		$PlayLogs = PlayLog::all();
+		return view('index')->with([
+			'PlayLogs' => $PlayLogs
+		]);
+	}
 }

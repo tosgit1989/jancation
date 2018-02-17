@@ -19,16 +19,16 @@ class TopPageController extends Controller
 	}
 
 	public static function getUserBy($id)
-    {
-        $Users = User::all();
-        $nickname = 'undefined';
-        foreach ($Users as $User)
-        {
-            if($id == $User->id)
-            {
-                $nickname = $User->nickname;
-            }
-        }
-        return $nickname;
-    }
+	{
+		$Users = User::all();
+		$nickname = 'undefined';
+		foreach ($Users as $User)
+		{
+			if($id == $User->id)
+			{
+				$nickname = $User->nickname;
+			}
+		}
+		return $nickname;
+	}
 }

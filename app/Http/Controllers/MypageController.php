@@ -14,12 +14,12 @@ class MyPageController extends Controller
 	public function index()
 	{
 		$curUser = User::find(1);
-        $curPlayScore = PlayScore::find(1);
-        $PlayRequests = PlayRequest::all();
+		$curPlayScore = PlayScore::find(1);
+		$PlayRequests = PlayRequest::all();
 		return view('mypage')->with([
-            'curUser' => $curUser,
-            'curPlayScore' => $curPlayScore,
-            'PlayRequests' => $PlayRequests
+			'curUser' => $curUser,
+			'curPlayScore' => $curPlayScore,
+			'PlayRequests' => $PlayRequests
 		]);
 	}
 }
