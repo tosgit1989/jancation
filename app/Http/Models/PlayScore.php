@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class PlayScore extends Model
 {
-	protected $table = 'playscores';
+	protected $table = 'play_scores';
 	protected $fillable = ['user_id', 'win_count', 'lose_count', 'created_at'];
 }

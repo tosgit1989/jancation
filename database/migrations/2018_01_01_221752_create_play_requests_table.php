@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlayLogsTable extends Migration
+class CreatePlayRequestsTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -13,12 +13,12 @@ class CreatePlayLogsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('PlayLogs', function (Blueprint $table) {
+		Schema::create('play_requests', function (Blueprint $table) {
 			$table->increments('id');
 			$table->integer('from_user_id');
 			$table->integer('to_user_id');
-			$table->integer('result');
 			$table->timestamp('created_at')->nullable();
+			$table->timestamp('updated_at')->nullable();
 		});
 	}
 
@@ -29,6 +29,6 @@ class CreatePlayLogsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('PlayLogs');
+		Schema::dropIfExists('play_requests');
 	}
 }
