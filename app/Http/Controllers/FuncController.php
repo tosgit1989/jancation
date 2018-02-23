@@ -12,41 +12,41 @@ class FuncController extends Controller
 	//  ------------------------------------------------------------
 	//  共通関数
 	//  ------------------------------------------------------------
-	public static function getUserBy($id)
+	public static function getUserBy($Id)
 	{
 		$Users = User::all();
-		$nickname = 'undefined';
+		$NickName = 'undefined';
 		foreach ($Users as $User)
 		{
-			if($id == $User->id)
+			if($Id == $User->id)
 			{
-				$nickname = $User->nickname;
+				$NickName = $User->nickname;
 			}
 		}
-		return $nickname;
+		return $NickName;
 	}
 
 	public static function UsersOption()
 	{
 		$Users = User::all();
-		$arr = [];
+		$Arr = [];
 		foreach($Users as $User)
 		{
-			$arr[] = [ $User->id => $User->nickname ];
+			$Arr[] = [ $User->id => $User->nickname ];
 		}
-		return $arr;
+		return $Arr;
 	}
 
-	public static function Hand($id)
+	public static function Hand($HandId)
 	{
-		$arr = [ 1 => 'グー', 2 => 'チョキ', 3 => 'パー' ];
-		return $arr[$id];
+		$HandList = [ 1 => 'グー', 2 => 'チョキ', 3 => 'パー' ];
+		return $HandList[$HandId];
 	}
 
-	public static function Judge($idY, $idA)
+	public static function Judge($YourHandId, $AiteHandId)
 	{
-		$num1 = ($idY > $idA) ? $idY - $idA : $idY - $idA + 3;
-		$arr = [ 1 => 'あなたの負け', 2 => 'あなたの勝ち', 3 => 'あいこ' ];
-		return $arr[$num1];
+		$JudgeId = ($YourHandId > $AiteHandId) ? $YourHandId - $AiteHandId : $YourHandId - $AiteHandId + 3;
+		$JudgeList = [ 1 => 'あなたの負け', 2 => 'あなたの勝ち', 3 => 'あいこ' ];
+		return $JudgeList[$JudgeId];
 	}
 }

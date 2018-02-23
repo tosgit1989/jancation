@@ -21,11 +21,11 @@ class AuthController extends Controller
 
 	public function doSignIn(Request $HttpRequest, $IdForSignIn)
 	{
-		$data = $HttpRequest->all();
-		$dt = new Carbon();
+		$allHttpRequest = $HttpRequest->all();
+		$curDateTime = new Carbon();
 		$SignInUser = User::find($IdForSignIn * 0 + 1);
-		$SignInUser->to_user_id = $data['to_user_id'];
-		$SignInUser->updated_at = $dt;
+		$SignInUser->to_user_id = $allHttpRequest['to_user_id'];
+		$SignInUser->updated_at = $curDateTime;
 		$SignInUser->save();
 		return view('/index');
 	}

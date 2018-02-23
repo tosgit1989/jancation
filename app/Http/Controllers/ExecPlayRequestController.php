@@ -26,13 +26,13 @@ class ExecPlayRequestController extends Controller
 	public function postNew(Request $HttpRequest)
 	{
 		$curUser = User::find(1);
-		$data = $HttpRequest->all();
-		$dt = new Carbon();
+		$allHttpRequest = $HttpRequest->all();
+		$curDateTime = new Carbon();
 		$NewPlayRequest = new PlayRequest();
 		$NewPlayRequest->from_user_id = $curUser->id;
-		$NewPlayRequest->to_user_id = $data['to_user_id'];
-		$NewPlayRequest->created_at = $dt;
-		$NewPlayRequest->updated_at = $dt;
+		$NewPlayRequest->to_user_id = $allHttpRequest['to_user_id'];
+		$NewPlayRequest->created_at = $curDateTime;
+		$NewPlayRequest->updated_at = $curDateTime;
 		$NewPlayRequest->save();
 		return redirect()->to('/');
 	}
@@ -52,11 +52,11 @@ class ExecPlayRequestController extends Controller
 	public function postEdit(Request $HttpRequest, $IdForEdit)
 	{
 		$curUser = User::find(1);
-		$data = $HttpRequest->all();
-		$dt = new Carbon();
+		$allHttpRequest = $HttpRequest->all();
+		$curDateTime = new Carbon();
 		$EditPlayRequest = PlayRequest::find($IdForEdit);
-		$EditPlayRequest->to_user_id = $data['to_user_id'];
-		$EditPlayRequest->updated_at = $dt;
+		$EditPlayRequest->to_user_id = $allHttpRequest['to_user_id'];
+		$EditPlayRequest->updated_at = $curDateTime;
 		$EditPlayRequest->save();
 		return redirect()->to('/');
 	}
