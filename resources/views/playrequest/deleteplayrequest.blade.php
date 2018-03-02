@@ -9,8 +9,15 @@
 			<div class="bs-docs-section">
 
 				<div class="panel panel-primary">
-					<div class ="panel-footer" style = "height: 55px">
-						<div class="col-xs-3">対戦相手のID: {{ $DeletePlayRequest->to_user_id }}</div>
+					<div class="panel-heading">
+						<strong>
+							{{ \App\Http\Controllers\FuncController::getUserBy($DeletePlayRequest->from_user_id) }}
+							→
+							{{ \App\Http\Controllers\FuncController::getUserBy($DeletePlayRequest->to_user_id) }}
+						</strong>
+					</div>
+					<div class="panel-footer">
+						申請日時: {{ $DeletePlayRequest->created_at }} 更新日時: {{ $DeletePlayRequest->updated_at }}
 					</div>
 				</div>
 
