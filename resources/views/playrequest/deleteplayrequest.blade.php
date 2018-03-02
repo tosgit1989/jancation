@@ -25,7 +25,7 @@
 				{!! Form::open(['action' => ['ExecPlayRequestController@postDelete', $DeletePlayRequest->id], 'style' => 'display: inline']) !!}
 				<button type="submit" class="btn btn-danger">はい</button>
 				{!! Form::close() !!}
-				<a href="/" class="btn" style="background-color: silver; color: black">いいえ</a>
+				<a href="/myplayrequests" class="btn" style="background-color: silver; color: black">いいえ</a>
 
 			</div>
 		</div>
