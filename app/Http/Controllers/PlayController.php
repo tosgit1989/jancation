@@ -7,6 +7,7 @@ use App\Http\Models\PlayRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\FuncController;
 use App\Http\Requests;
+use Carbon\Carbon;
 
 class PlayController extends Controller
 {
@@ -14,7 +15,7 @@ class PlayController extends Controller
 	public function select()
 	{
 		$curUser = User::find(1);
-		$PlayRequests = PlayRequest::all();
+		$PlayRequests = PlayRequest::all()->where('expired_at', null);
 		return view('play.playselect')->with([
 			'curUser' => $curUser,
 			'PlayRequests' => $PlayRequests
@@ -35,13 +36,15 @@ class PlayController extends Controller
 	{
 		$curUser = User::find(1);
 		$curPlayRequest = PlayRequest::find($IdForPlay);
+        $curDateTime = new Carbon();
 		$AiteHandNum = rand(1, 3);
 		$YourHand = FuncController::Hand($YourHandNum);
 		$AiteHand = FuncController::Hand($AiteHandNum);
 		$Judge = FuncController::Judge($YourHandNum, $AiteHandNum);
-		if($Judge !== 'あいこ')
+		if($Judge !== 'あいこ' and !isset($curPlayRequest->expired_at))
 		{
-			$curPlayRequest->delete();
+			$curPlayRequest->expired_at = $curDateTime;
+            $curPlayRequest->save();
 		}
 		return view('play.playresult')->with([
 			'curUser' => $curUser,

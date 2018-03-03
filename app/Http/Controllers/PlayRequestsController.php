@@ -10,7 +10,7 @@ class PlayRequestsController extends Controller
 {
 	public function index()
 	{
-		$PlayRequests = PlayRequest::all();
+		$PlayRequests = PlayRequest::all()->where('expired_at', null);
 		return view('index')->with([
 			'playrequests' => $PlayRequests
 		]);

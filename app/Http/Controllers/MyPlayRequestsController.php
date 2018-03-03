@@ -12,7 +12,7 @@ class MyPlayRequestsController extends Controller
 	public function index()
 	{
 		$curUser = User::find(1);
-		$PlayRequests = PlayRequest::all();
+        $PlayRequests = PlayRequest::all()->where('expired_at', null);
 		return view('playrequest.myplayrequests')->with([
 			'curUser' => $curUser,
 			'PlayRequests' => $PlayRequests
