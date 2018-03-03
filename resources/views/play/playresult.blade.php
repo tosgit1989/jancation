@@ -16,17 +16,13 @@
 					<a href="" class="btn btn-primary" role="button">もう一回</a>
 				@endif
 				<!--リンクここから-->
-				<a class="active navbar-brand" href="" data-toggle="link" onclick="document.LinkToPlay3Php.submit();return false;" class="btn btn-primary" role="button">連戦する</a>
+				<a href="/playhand/{{ $curPlayRequest->id }}" class="btn btn-primary">連戦する</a>
 				<!--リンクここまで-->
 				<!--リンクここから-->
-				<a class="active navbar-brand" href="" data-toggle="link" onclick="document.LinkToExecPhp.submit();return false;" class="btn btn-danger" role="button">ゲーム終了</a>
+				<a href="/" class="btn btn-primary">ゲーム終了</a>
 				<!--リンクここまで-->
 
 			</div>
 		</div>
 	</div>
 </div>
-
-<form name="LinkToExecPhp" method="POST" action="/requests/exec/{{ $curPlayRequest->id }}">
-	<input class="form-control" name="exectype" type="hidden" value="exitPlay">
-</form>
