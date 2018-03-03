@@ -15,7 +15,6 @@
 				@if($Judge == 'あいこ')
 					<a href="" class="btn btn-primary" role="button">もう一回</a>
 				@endif
-				<a href="" class="btn btn-primary" role="button">グー</a>
 				<!--リンクここから-->
 				<a class="active navbar-brand" href="" data-toggle="link" onclick="document.LinkToPlay3Php.submit();return false;" class="btn btn-primary" role="button">連戦する</a>
 				<!--リンクここまで-->
