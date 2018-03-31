@@ -10,14 +10,21 @@ use App\Http\Requests;
 
 class MyPageController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
 	public function index()
 	{
-		$curUser = User::find(1);
 		$curPlayScore = PlayScore::find(1);
 		$PlayRequests = PlayRequest::all();
 		return view('mypage')->with([
-			'curUser' => $curUser,
 			'curPlayScore' => $curPlayScore,
 			'PlayRequests' => $PlayRequests
 		]);

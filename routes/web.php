@@ -51,7 +51,7 @@ Route::get('/mypage', [
 ]);
 
 Route::get('/myplayrequests', [
-	'uses' => 'MyPlayRequestsController@index',
+	'uses' => 'PlayRequestsController@index',
 	'as' => 'top'
 ]);
 
@@ -99,3 +99,7 @@ Route::get('/playresult/{id1}/{id2}', [
     'uses' => 'PlayController@result',
     'as' => 'top'
 ]);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -1,6 +1,7 @@
-@extends('app')
+@extends('layouts.app')
 
-<div class="page-title" style="padding-top: 50px">
+@section('content')
+<div class="page-title">
 	<p class="page-title-text">マイページ</p>
 </div>
 <div class="container">
@@ -10,13 +11,13 @@
 
 				<!--自分の基本情報を表示-->
 				<h3 class="text-middle">基本情報</h3>
-				<h4>ニックネーム  : {{ $curUser->nickname }}</h4>
-				<h4>メールアドレス: {{ $curUser->email }}</h4>
+				<h4>ニックネーム  : {{ Auth::user()->nickname }}</h4>
+				<h4>メールアドレス: {{ Auth::user()->email }}</h4>
 
 				<hr>
 
 				<!--自分の対戦成績を表示-->
-				<h3 class="text-middle"><?= 'nickname' ?>さんの対戦成績</h3>
+				<h3 class="text-middle">{{ Auth::user()->nickname }}さんの対戦成績</h3>
 				<p>プレイ回数: {{ ($curPlayScore->win_count) + ($curPlayScore->lose_count) }}</p>
 				<p>勝ち回数: {{ $curPlayScore->win_count }}</p>
 				<p>負け回数: {{ $curPlayScore->lose_count }}</p>
@@ -24,10 +25,10 @@
 				<hr>
 
 				<!--自分のじゃんけん申請一覧を表示-->
-				<h3>{{ $curUser->nickname }}さんのじゃんけん申請一覧</h3>
+				<h3>{{ Auth::user()->nickname }}さんのじゃんけん申請一覧</h3>
 				@if (count($PlayRequests) >= 1)
 					@foreach($PlayRequests as $PlayRequest)
-						@if ($PlayRequest->fromUserId == $curUser->userId)
+						@if ($PlayRequest->fromUserId == Auth::user()->userId)
 							<div class="panel panel-primary">
 								<div class="panel-heading">
 									<strong>
@@ -50,12 +51,11 @@
 					<p>申請はありません。</p>
 				@endif
 
-						<div style="height:30px"></div>
-					</div>
-				</div>
+				<div style="height:30px"></div>
 				<!-- /コンテンツ-->
 
 			</div>
 		</div>
 	</div>
 </div>
+@endsection

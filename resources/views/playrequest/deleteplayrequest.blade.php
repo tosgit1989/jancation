@@ -1,6 +1,7 @@
-@extends('app')
+@extends('layouts.app')
 
-<div class="page-title" style="padding-top: 50px">
+@section('content')
+<div class="page-title">
 	<p class="page-title-text">申請の削除</p>
 </div>
 <div class="container">
@@ -31,3 +32,4 @@
 		</div>
 	</div>
 </div>
+@endsection

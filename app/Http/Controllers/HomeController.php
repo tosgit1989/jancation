@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
 
-class MenuController extends Controller
+class HomeController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -17,8 +16,13 @@ class MenuController extends Controller
         $this->middleware('auth');
     }
 
-	public function index()
-	{
-		return view('menu');
-	}
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('home');
+    }
 }

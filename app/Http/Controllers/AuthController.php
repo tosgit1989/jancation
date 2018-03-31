@@ -13,8 +13,8 @@ class AuthController extends Controller
 
 	public function showSignIn()
 	{
-		$SignInUser = User::find(1);
-		return view('/signin')->with([
+	    $SignInUser = User::find(1);
+        return view('/signin')->with([
 			'SignInUser' => $SignInUser
 		]);
 	}

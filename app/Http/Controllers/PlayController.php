@@ -11,30 +11,34 @@ use Carbon\Carbon;
 
 class PlayController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
 	public function select()
 	{
-		$curUser = User::find(1);
 		$PlayRequests = PlayRequest::all()->where('expired_at', null);
 		return view('play.playselect')->with([
-			'curUser' => $curUser,
 			'PlayRequests' => $PlayRequests
 		]);
 	}
 
 	public function hand($IdForPlay)
 	{
-		$curUser = User::find(1);
 		$curPlayRequest = PlayRequest::find($IdForPlay);
 		return view('play.playhand')->with([
-			'curUser' => $curUser,
 			'curPlayRequest' => $curPlayRequest,
 		]);
 	}
 
 	public static function result($IdForPlay, $YourHandNum)
 	{
-		$curUser = User::find(1);
 		$curPlayRequest = PlayRequest::find($IdForPlay);
         $curDateTime = new Carbon();
 		$AiteHandNum = rand(1, 3);
@@ -47,7 +51,6 @@ class PlayController extends Controller
             $curPlayRequest->save();
 		}
 		return view('play.playresult')->with([
-			'curUser' => $curUser,
 			'curPlayRequest' => $curPlayRequest,
 			'YourHand' => $YourHand,
 			'AiteHand' => $AiteHand,

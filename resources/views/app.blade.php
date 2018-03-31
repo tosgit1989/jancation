@@ -27,7 +27,7 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li>
 							<a style="color: white">
-								現在のユーザー: {{ \App\Http\Controllers\FuncController::getUserBy(1) }}
+								現在のユーザー: {{ Auth::user()->nickname }}
 							</a>
 						</li>
 						<li style="max-height: 50px">

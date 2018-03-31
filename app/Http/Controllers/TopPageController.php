@@ -9,6 +9,16 @@ use App\Http\Requests;
 
 class TopPageController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
 	public function index()
 	{
 		//$PlayScores = Playscore::all()->orderBy('if( winCount+loseCount>0, winCount/(winCount+loseCount), 0 )');

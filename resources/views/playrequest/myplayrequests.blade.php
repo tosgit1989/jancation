@@ -1,6 +1,7 @@
-@extends('app')
+@extends('layouts.app')
 
-<div class="page-title" style="padding-top: 50px">
+@section('content')
+<div class="page-title">
 	<p class="page-title-text">あなたの申請一覧</p>
 </div>
 <div class="container">
@@ -11,7 +12,7 @@
 				<div style="height:30px"></div>
 				@if (count($PlayRequests) >= 1)
 					@foreach($PlayRequests as $PlayRequest)
-						@if ($PlayRequest->fromUserId == $curUser->userId)
+						@if ($PlayRequest->from_user_id == Auth::user()->id)
 							<div class="panel panel-primary">
 								<div class="panel-heading">
 									<strong>
@@ -38,3 +39,4 @@
 		</div>
 	</div>
 </div>
+@endsection

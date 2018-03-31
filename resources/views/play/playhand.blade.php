@@ -1,6 +1,7 @@
-@extends('app')
+@extends('layouts.app')
 
-<div class="page-title" style="padding-top: 50px">
+@section('content')
+<div class="page-title">
 	<p class="page-title-text">
 		{{ \App\Http\Controllers\FuncController::getUserBy($curPlayRequest->from_user_id) }}さんとじゃんけん
 	</p>
@@ -22,3 +23,4 @@
 		</div>
 	</div>
 </div>
+@endsection
