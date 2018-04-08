@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Models\PlayRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\FuncController;
 use App\Http\Requests;
 use Carbon\Carbon;
