@@ -16,7 +16,7 @@
 				<a href="/playselect" class="btn btn-primary" role="button">あなたへの申請一覧へ</a>
 
 				<h3>申請内容の確認・編集・削除</h3>
-				<a href="/myplayrequests" class="btn btn-primary" role="button">あなたの申請一覧へ</a>
+				<a href="/yourplayrequests" class="btn btn-primary" role="button">あなたの申請一覧へ</a>
 
 			</div>
 		</div>

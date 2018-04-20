@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Models\User;
 use App\Http\Models\PlayRequest;
-use Illuminate\Http\Request;
 use App\Http\Controllers\FuncController;
-use App\Http\Requests;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class PlayController extends Controller
 {
@@ -23,9 +21,9 @@ class PlayController extends Controller
 
 	public function select()
 	{
-		$PlayRequests = PlayRequest::all()->where('expired_at', null);
+		$PlayRequestsToYou = PlayRequest::all()->where('expired_at', null)->where('to_user_id', Auth::user()->id);
 		return view('play.playselect')->with([
-			'PlayRequests' => $PlayRequests
+			'PlayRequestsToYou' => $PlayRequestsToYou
 		]);
 	}
 

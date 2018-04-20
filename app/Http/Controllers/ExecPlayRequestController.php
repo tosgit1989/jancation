@@ -6,7 +6,6 @@ use App\Http\Models\PlayRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\FuncController;
-use App\Http\Requests;
 use Carbon\Carbon;
 
 class ExecPlayRequestController extends Controller
@@ -15,7 +14,7 @@ class ExecPlayRequestController extends Controller
 	{
 		$UsersOption = FuncController::UsersOption();
 		$NewPlayRequest = new PlayRequest();
-		return view('playrequest.newplayrequest')->with([
+		return view('playrequests.newplayrequest')->with([
 			'UsersOption' => $UsersOption,
 			'NewPlayRequest' => $NewPlayRequest
 		]);
@@ -39,7 +38,7 @@ class ExecPlayRequestController extends Controller
 	{
 		$UsersOption = FuncController::UsersOption();
 		$EditPlayRequest = PlayRequest::find($IdForEdit);
-		return view('playrequest.editplayrequest')->with([
+		return view('playrequests.editplayrequest')->with([
 			'UsersOption' => $UsersOption,
 			'EditPlayRequest' => $EditPlayRequest
 		]);
@@ -59,7 +58,7 @@ class ExecPlayRequestController extends Controller
 	public function getDelete($IdForDelete)
 	{
 		$DeletePlayRequest = PlayRequest::find($IdForDelete);
-		return view('playrequest.deleteplayrequest')->with([
+		return view('playrequests.deleteplayrequest')->with([
 			'DeletePlayRequest' => $DeletePlayRequest
 		]);
 	}

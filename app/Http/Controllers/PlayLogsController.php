@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Models\PlayLog;
-use Illuminate\Http\Request;
-use App\Http\Requests;
 
 class PlayLogsController extends Controller
 {

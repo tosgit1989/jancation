@@ -15,31 +15,6 @@ Route::get('/', [
 	'as' => 'top'
 ]);
 
-Route::get('/showsignin', [
-    'uses' => 'AuthController@showSignIn',
-    'as' => 'top'
-]);
-
-Route::get('/dosignin', [
-    'uses' => 'AuthController@doSignIn',
-    'as' => 'top'
-]);
-
-Route::get('/dosignout', [
-    'uses' => 'AuthController@doSignOut',
-    'as' => 'top'
-]);
-
-Route::get('/showsignup', [
-    'uses' => 'AuthController@showSignUp',
-    'as' => 'top'
-]);
-
-Route::get('/dosignup', [
-    'uses' => 'AuthController@doSignUp',
-    'as' => 'top'
-]);
-
 Route::get('/menu', [
 	'uses' => 'MenuController@index',
 	'as' => 'top'
@@ -50,8 +25,8 @@ Route::get('/mypage', [
 	'as' => 'top'
 ]);
 
-Route::get('/myplayrequests', [
-	'uses' => 'PlayRequestsController@index',
+Route::get('/yourplayrequests', [
+	'uses' => 'PlayRequestsController@fromYou',
 	'as' => 'top'
 ]);
 

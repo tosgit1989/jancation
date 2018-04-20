@@ -10,8 +10,8 @@
 			<div class="bs-docs-section">
 
 				<div style="height:30px"></div>
-				@if (count($PlayRequests) >= 1)
-					@foreach($PlayRequests as $PlayRequest)
+				@if (count($PlayRequestsFromYou) >= 1)
+					@foreach($PlayRequestsFromYou as $PlayRequest)
 						@if ($PlayRequest->from_user_id == Auth::user()->id)
 							<div class="panel panel-primary">
 								<div class="panel-heading">

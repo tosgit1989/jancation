@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Models\PlayRequest;
-use App\Http\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 class MyPlayRequestsController extends Controller
 {
@@ -21,8 +19,8 @@ class MyPlayRequestsController extends Controller
 
 	public function index()
 	{
-        $PlayRequests = PlayRequest::all()->where('expired_at', null);
-		return view('playrequest.myplayrequests')->with([
+        $PlayRequests = PlayRequest::all()->where('expired_at', null)->where('to_user_id', Auth::user()->id);
+		return view('playrequests.yourplayrequests')->with([
 			'PlayRequests' => $PlayRequests
 		]);
 	}
