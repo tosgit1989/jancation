@@ -9,15 +9,15 @@ use Illuminate\Support\Facades\Auth;
 
 class PlayController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
 
 	public function select()
 	{
@@ -38,7 +38,7 @@ class PlayController extends Controller
 	public static function result($IdForPlay, $YourHandNum)
 	{
 		$curPlayRequest = PlayRequest::find($IdForPlay);
-        $curDateTime = new Carbon();
+		$curDateTime = new Carbon();
 		$AiteHandNum = rand(1, 3);
 		$YourHand = FuncController::Hand($YourHandNum);
 		$AiteHand = FuncController::Hand($AiteHandNum);
@@ -46,7 +46,7 @@ class PlayController extends Controller
 		if($Judge !== 'あいこ' and !isset($curPlayRequest->expired_at))
 		{
 			$curPlayRequest->expired_at = $curDateTime;
-            $curPlayRequest->save();
+			$curPlayRequest->save();
 		}
 		return view('play.playresult')->with([
 			'curPlayRequest' => $curPlayRequest,

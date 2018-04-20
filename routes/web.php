@@ -66,13 +66,13 @@ Route::get('/playselect', [
 ]);
 
 Route::get('/playhand/{id}', [
-    'uses' => 'PlayController@hand',
-    'as' => 'top'
+	'uses' => 'PlayController@hand',
+	'as' => 'top'
 ]);
 
 Route::get('/playresult/{id1}/{id2}', [
-    'uses' => 'PlayController@result',
-    'as' => 'top'
+	'uses' => 'PlayController@result',
+	'as' => 'top'
 ]);
 
 Auth::routes();

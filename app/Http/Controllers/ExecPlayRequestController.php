@@ -29,7 +29,7 @@ class ExecPlayRequestController extends Controller
 		$NewPlayRequest->to_user_id = $allHttpRequest['to_user_id'];
 		$NewPlayRequest->created_at = $curDateTime;
 		$NewPlayRequest->updated_at = $curDateTime;
-        $NewPlayRequest->expired_at = null;
+		$NewPlayRequest->expired_at = null;
 		$NewPlayRequest->save();
 		return redirect()->to('/');
 	}
