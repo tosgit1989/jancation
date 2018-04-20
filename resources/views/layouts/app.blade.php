@@ -37,9 +37,11 @@
 				<div class="collapse navbar-collapse" id="app-navbar-collapse">
 					<!-- Left Side Of Navbar -->
 					<ul class="nav navbar-nav">
-						<li>
-							<a href="/menu" role="button">じゃんけんする</a>
-						</li>
+						@guest
+						<!-- 何も表示しない -->
+						@else
+							<li><a href="/menu" role="button">メニュー</a></li>
+						@endguest
 					</ul>
 
 					<!-- Right Side Of Navbar -->
@@ -55,6 +57,7 @@
 								</a>
 
 								<ul class="dropdown-menu">
+									<li><a href="/mypage">マイページ</a></li>
 									<li>
 										<a href="{{ route('logout') }}"
 											onclick="event.preventDefault();

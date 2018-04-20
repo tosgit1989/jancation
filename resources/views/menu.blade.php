@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="page-title">
-	<p class="page-title-text">じゃんけんする</p>
+	<p class="page-title-text">メニュー</p>
 </div>
 <div class="container">
 	<div class="row">
