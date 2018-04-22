@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Models\PlayScore;
+use DB;
 use App\Http\Models\User;
 
 class TopPageController extends Controller
@@ -19,8 +19,7 @@ class TopPageController extends Controller
 
 	public function index()
 	{
-		//$PlayScores = Playscore::all()->orderBy('if( winCount+loseCount>0, winCount/(winCount+loseCount), 0 )');
-		$PlayScores = PlayScore::all();
+		$PlayScores = DB::select('select * from play_scores order by if( win_count+lose_count>0, win_count/(win_count+lose_count), 0 ) DESC');
 		return view('index')->with([
 			'PlayScores' => $PlayScores,
 		]);
