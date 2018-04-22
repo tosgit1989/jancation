@@ -27,7 +27,7 @@ class PlayRequestsController extends Controller
 
 	public function fromYou()
 	{
-		$PlayRequestsFromYou = PlayRequest::all()->where('expired_at', null)->where('to_user_id', Auth::user()->id);
+		$PlayRequestsFromYou = PlayRequest::all()->where('expired_at', null)->where('from_user_id', Auth::user()->id);
 		return view('playrequests.yourplayrequests')->with([
 			'PlayRequestsFromYou' => $PlayRequestsFromYou
 		]);
