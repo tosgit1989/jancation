@@ -28,13 +28,13 @@
 				<h3>{{ Auth::user()->nickname }}さんのじゃんけん申請一覧</h3>
 				@if (count($PlayRequests) >= 1)
 					@foreach($PlayRequests as $PlayRequest)
-						@if ($PlayRequest->fromUserId == Auth::user()->userId)
+						@if ($PlayRequest->fromUserId == Auth::user()->id)
 							<div class="panel panel-primary">
 								<div class="panel-heading">
 									<strong>
-										{{ \App\Http\Controllers\FuncController::getUserBy($PlayRequest->from_user_id) }}
+										{{ \App\Http\Models\User::find($PlayRequest->from_user_id)->nickname }}
 										→
-										{{ \App\Http\Controllers\FuncController::getUserBy($PlayRequest->to_user_id) }}
+										{{ \App\Http\Models\User::find($PlayRequest->to_user_id)->nickname }}
 									</strong>
 								</div>
 								<div class="panel-body">
