@@ -12,24 +12,22 @@
 				<div style="height:30px"></div>
 				@if (count($PlayRequestsFromYou) >= 1)
 					@foreach($PlayRequestsFromYou as $PlayRequest)
-						@if ($PlayRequest->from_user_id == Auth::user()->id)
-							<div class="panel panel-primary">
-								<div class="panel-heading">
-									<strong>
-										{{ \App\Http\Models\User::find($PlayRequest->from_user_id)->nickname }}
-											→
-										{{ \App\Http\Models\User::find($PlayRequest->to_user_id)->nickname }}
-									</strong>
-								</div>
-								<div class="panel-body">
-									<a href="/editplayrequest/{{ $PlayRequest->id }}" class="btn btn-primary">編集</a>
-									<a href="/deleteplayrequest/{{ $PlayRequest->id }}" class="btn btn-danger">削除</a>
-								</div>
-								<div class="panel-footer">
-									申請日時: {{ $PlayRequest->created_at }} 更新日時: {{ $PlayRequest->updated_at }}
-								</div>
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<strong>
+									{{ \App\Http\Models\User::find($PlayRequest->from_user_id)->nickname }}
+										→
+									{{ \App\Http\Models\User::find($PlayRequest->to_user_id)->nickname }}
+								</strong>
 							</div>
-						@endif
+							<div class="panel-body">
+								<a href="/editplayrequest/{{ $PlayRequest->id }}" class="btn btn-primary">編集</a>
+								<a href="/deleteplayrequest/{{ $PlayRequest->id }}" class="btn btn-danger">削除</a>
+							</div>
+							<div class="panel-footer">
+								申請日時: {{ $PlayRequest->created_at }} 更新日時: {{ $PlayRequest->updated_at }}
+							</div>
+						</div>
 					@endforeach
 				@else
 					<p>申請はありません。</p>
