@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Models\PlayLog;
 use App\Http\Models\PlayRequest;
 use App\Http\Controllers\FuncController;
+use App\Http\Models\PlayScore;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,11 +45,37 @@ class PlayController extends Controller
 		$YourHand = FuncController::Hand($YourHandNum);
 		$AiteHand = FuncController::Hand($AiteHandNum);
 		$Judge = FuncController::Judge($YourHandNum, $AiteHandNum);
-		if($Judge !== 'あいこ' and !isset($curPlayRequest->expired_at))
-		{
-			$curPlayRequest->expired_at = $curDateTime;
-			$curPlayRequest->save();
-		}
+        //  勝負がついた場合
+        if($Judge !== 'あいこ')
+        {
+            $YourWin = ($Judge == 'あなたの勝ち') ? 1 : 0;
+            //  プレイスコア更新
+            $curPlayScore1 = FuncController::findByUserId($curPlayRequest->to_user_id);
+            $curPlayScore2 = FuncController::findByUserId($curPlayRequest->from_user_id);
+            $WinCountBef1 = $curPlayScore1->win_count;
+            $WinCountBef2 = $curPlayScore2->win_count;
+            $LoseCountBef1 = $curPlayScore1->lose_count;
+            $LoseCountBef2 = $curPlayScore2->lose_count;
+            $curPlayScore1->win_count = $WinCountBef1 + $YourWin;
+            $curPlayScore2->win_count = $WinCountBef2 + (1 - $YourWin);
+            $curPlayScore1->lose_count = $LoseCountBef1 + (1 - $YourWin);
+            $curPlayScore2->lose_count = $LoseCountBef2 + $YourWin;
+            $curPlayScore1->save();
+            $curPlayScore2->save();
+            //  プレイログ作成
+            $NewPlayLog = new PlayLog();
+            $NewPlayLog->from_user_id = $curPlayRequest->from_user_id;
+            $NewPlayLog->to_user_id = $curPlayRequest->to_user_id;
+            $NewPlayLog->result = 0;
+            $NewPlayLog->save();
+            //  プレイリクエスト更新
+            if(!isset($curPlayRequest->expired_at))
+            {
+                $curPlayRequest->expired_at = $curDateTime;
+                $curPlayRequest->save();
+            }
+        }
+
 		return view('play.playresult')->with([
 			'curPlayRequest' => $curPlayRequest,
 			'YourHand' => $YourHand,
