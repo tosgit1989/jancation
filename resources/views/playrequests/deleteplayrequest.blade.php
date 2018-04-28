@@ -23,7 +23,7 @@
 				</div>
 
 				<p>本当に削除しますか？</p>
-				{!! Form::open(['action' => ['ExecPlayRequestController@postDelete', $DeletePlayRequest->id], 'style' => 'display: inline']) !!}
+				{!! Form::open(['action' => ['PlayRequestsController@postDelete', $DeletePlayRequest->id], 'style' => 'display: inline']) !!}
 				<button type="submit" class="btn btn-danger">はい</button>
 				{!! Form::close() !!}
 				<a href="/myplayrequests" class="btn" style="background-color: silver; color: black">いいえ</a>

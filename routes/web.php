@@ -31,32 +31,32 @@ Route::get('/yourplayrequests', [
 ]);
 
 Route::get('/newplayrequest', [
-	'uses' => 'ExecPlayRequestController@getNew',
+	'uses' => 'PlayRequestsController@getNew',
 	'as' => 'create'
 ]);
 
 Route::post('/newplayrequest', [
-	'uses' => 'ExecPlayRequestController@postNew',
+	'uses' => 'PlayRequestsController@postNew',
 	'as' => 'post_create'
 ]);
 
 Route::get('/editplayrequest/{id}', [
-	'uses' => 'ExecPlayRequestController@getEdit',
+	'uses' => 'PlayRequestsController@getEdit',
 	'as' => 'edit'
 ]);
 
 Route::post('/editplayrequest/{id}', [
-	'uses' => 'ExecPlayRequestController@postEdit',
+	'uses' => 'PlayRequestsController@postEdit',
 	'as' => 'post_edit'
 ]);
 
 Route::get('/deleteplayrequest/{id}', [
-	'uses' => 'ExecPlayRequestController@getDelete',
+	'uses' => 'PlayRequestsController@getDelete',
 	'as' => 'destroy'
 ]);
 
 Route::post('/deleteplayrequest/{id}', [
-	'uses' => 'ExecPlayRequestController@postDelete',
+	'uses' => 'PlayRequestsController@postDelete',
 	'as' => 'post_destroy'
 ]);
 
