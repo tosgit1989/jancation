@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="page-title">
-	<p class="page-title-text">申請のの新規作成</p>
+	<p class="page-title-text">申請の新規作成</p>
 </div>
 <div class="container">
 	<div class="row">
