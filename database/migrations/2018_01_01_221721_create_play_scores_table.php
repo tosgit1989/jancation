@@ -19,6 +19,7 @@ class CreatePlayScoresTable extends Migration
 			$table->integer('win_count')->default(0);
 			$table->integer('lose_count')->default(0);
 			$table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
 		});
 	}
 
