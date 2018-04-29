@@ -19,7 +19,7 @@ class CreatePlayLogsTable extends Migration
 			$table->integer('to_user_id');
 			$table->integer('result');
 			$table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+        	$table->timestamp('updated_at')->nullable();
 		});
 	}
 
