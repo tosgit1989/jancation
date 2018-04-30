@@ -28,8 +28,9 @@ class PlayRequestsController extends Controller
 		]);
 	}
 
-	public function fromYou()
+	public function fromYou(Request $request)
 	{
+		$request->session()->put('BackTo', '/yourplayrequests');
 		$PlayRequestsFromYou = PlayRequest::all()->where('expired_at', null)->where('from_user_id', Auth::user()->id);
 		return view('playrequests.yourplayrequests')->with([
 			'PlayRequestsFromYou' => $PlayRequestsFromYou
@@ -68,11 +69,13 @@ class PlayRequestsController extends Controller
 		return redirect()->to('/');
 	}
 
-	public function getEdit($IdForEdit)
+	public function getEdit(Request $request, $IdForEdit)
 	{
+		$BackTo = $request->session()->get('BackTo', '/');
 		$UsersOption = FuncController::UsersOption();
 		$EditPlayRequest = PlayRequest::find($IdForEdit);
 		return view('playrequests.editplayrequest')->with([
+			'BackTo' => $BackTo,
 			'UsersOption' => $UsersOption,
 			'EditPlayRequest' => $EditPlayRequest
 		]);
@@ -89,10 +92,12 @@ class PlayRequestsController extends Controller
 		return redirect()->to('/');
 	}
 
-	public function getDelete($IdForDelete)
+	public function getDelete(Request $request, $IdForDelete)
 	{
+		$BackTo = $request->session()->get('BackTo', '/');
 		$DeletePlayRequest = PlayRequest::find($IdForDelete);
 		return view('playrequests.deleteplayrequest')->with([
+			'BackTo' => $BackTo,
 			'DeletePlayRequest' => $DeletePlayRequest
 		]);
 	}

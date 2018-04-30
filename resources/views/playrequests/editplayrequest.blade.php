@@ -15,7 +15,7 @@
 					{!! Form::select('to_user_id', $UsersOption, ['placeholder' => '選択してください']) !!}
 				</div>
 				<button type="submit" class="btn btn-primary">更新</button>
-				<a href="/myplayrequests" class="btn" style="background-color: silver; color: black">キャンセル</a>
+				<a href={{ $BackTo }} class="btn" style="background-color: silver; color: black">キャンセル</a>
 				{!! Form::close() !!}
 
 			</div>

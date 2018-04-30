@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Models\PlayScore;
 use App\Http\Models\PlayRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MyPageController extends Controller
@@ -18,8 +19,9 @@ class MyPageController extends Controller
 		$this->middleware('auth');
 	}
 
-	public function index()
+	public function index(Request $request)
 	{
+		$request->session()->put('BackTo', '/mypage');
 		$curPlayScore = PlayScore::find(Auth::user()->id);
 		$PlayRequestsFromYou = PlayRequest::all()->where('expired_at', null)->where('from_user_id', Auth::user()->id);
 		return view('mypage')->with([
