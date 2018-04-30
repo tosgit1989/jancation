@@ -26,8 +26,8 @@
 
 				<!--自分のじゃんけん申請一覧を表示-->
 				<h3>{{ Auth::user()->nickname }}さんのじゃんけん申請一覧</h3>
-				@if (count($PlayRequests) >= 1)
-					@foreach($PlayRequests as $PlayRequest)
+				@if (count($PlayRequestsFromYou) >= 1)
+					@foreach($PlayRequestsFromYou as $PlayRequest)
 						<div class="panel panel-primary">
 							<div class="panel-heading">
 								<strong>

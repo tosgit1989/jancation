@@ -21,10 +21,10 @@ class MyPageController extends Controller
 	public function index()
 	{
 		$curPlayScore = PlayScore::find(Auth::user()->id);
-		$PlayRequests = PlayRequest::all();
+		$PlayRequestsFromYou = PlayRequest::all()->where('expired_at', null)->where('from_user_id', Auth::user()->id);
 		return view('mypage')->with([
 			'curPlayScore' => $curPlayScore,
-			'PlayRequests' => $PlayRequests
+			'PlayRequestsFromYou' => $PlayRequestsFromYou
 		]);
 	}
 }
