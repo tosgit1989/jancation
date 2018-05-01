@@ -45,18 +45,6 @@ class FuncController extends Controller
 		return $PlayScore;
 	}
 
-	public static function UsersOption()
-	{
-		//  ユーザープルダウンは現在ログイン中のユーザーを含まないようにする
-		$Users = User::all()->where('id', '<>', Auth::user()->id);
-		$Arr = [];
-		foreach($Users as $User)
-		{
-			$Arr[] = [ $User->id => $User->nickname ];
-		}
-		return $Arr;
-	}
-
 	public static function Hand($HandId)
 	{
 		$HandList = [ 1 => 'グー', 2 => 'チョキ', 3 => 'パー' ];

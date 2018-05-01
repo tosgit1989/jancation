@@ -10,12 +10,20 @@
 			<div class="bs-docs-section">
 
 				{!! Form::open(['action' => ['PlayRequestsController@postNew', $NewPlayRequest->id]]) !!}
-				<div class="form-group">
-					<label>対戦相手</label>
-					{!! Form::select('to_user_id', $UsersOption, ['placeholder' => '選択してください']) !!}
-				</div>
-				<button type="submit" class="btn btn-primary">作成</button>
-				<a href="/menu" class="btn" style="background-color: silver; color: black">キャンセル</a>
+					@if(count($UsersOption) > 0)
+						<div class="form-group">
+							<label>対戦相手</label>
+							<select name="to_user_id">
+								@foreach($UsersOption as $UserOption)
+									<option value={{ $UserOption->id }}>{{ $UserOption->nickname }}</option>
+								@endforeach
+							</select>
+						</div>
+						<button type="submit" class="btn btn-primary">作成</button>
+					@else
+						<p>他のユーザーが存在しないため申請を新規作成できません。</p>
+					@endif
+					<a href="/menu" class="btn" style="background-color: silver; color: black">キャンセル</a>
 				{!! Form::close() !!}
 
 			</div>

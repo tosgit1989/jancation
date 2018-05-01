@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Models\PlayRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\FuncController;
+use App\Http\Models\User;
 use Carbon\Carbon;
 
 class PlayRequestsController extends Controller
@@ -47,7 +47,8 @@ class PlayRequestsController extends Controller
 
 	public function getNew()
 	{
-		$UsersOption = FuncController::UsersOption();
+		//  ユーザープルダウンは現在ログイン中のユーザーを含まないようにする
+		$UsersOption = User::all()->where('id', '<>', Auth::user()->id);
 		$NewPlayRequest = new PlayRequest();
 		return view('playrequests.newplayrequest')->with([
 			'UsersOption' => $UsersOption,
@@ -72,7 +73,8 @@ class PlayRequestsController extends Controller
 	public function getEdit(Request $request, $IdForEdit)
 	{
 		$BackTo = $request->session()->get('BackTo', '/');
-		$UsersOption = FuncController::UsersOption();
+		//  ユーザープルダウンは現在ログイン中のユーザーを含まないようにする
+		$UsersOption = User::all()->where('id', '<>', Auth::user()->id);
 		$EditPlayRequest = PlayRequest::find($IdForEdit);
 		return view('playrequests.editplayrequest')->with([
 			'BackTo' => $BackTo,
