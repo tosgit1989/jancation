@@ -17,7 +17,7 @@
 								{{ \App\Http\Controllers\FuncController::getUserBy($PlayScore->user_id) }}
 							</div>
 							@if ( ($PlayScore->win_count) + ($PlayScore->lose_count) > 0 )
-								<div class="panel-body">勝率: {{ ($PlayScore->win_count) / ( ($PlayScore->win_count) + ($PlayScore->lose_count) ) }}ﾊﾟｰｾﾝﾄ</div>
+								<div class="panel-body">勝率: {{ 100 * ($PlayScore->win_count) / ( ($PlayScore->win_count) + ($PlayScore->lose_count) ) }}ﾊﾟｰｾﾝﾄ</div>
 							@else
 								<div class="panel-body">勝率: -</div>
 							@endif
