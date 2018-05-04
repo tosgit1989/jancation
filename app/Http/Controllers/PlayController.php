@@ -32,14 +32,24 @@ class PlayController extends Controller
 	public function hand($IdForPlay)
 	{
 		$curPlayRequest = PlayRequest::find($IdForPlay);
+		//  対象の申請があなた宛の申請でなければ処理を中断してエラーに飛ばす。
+		if( $curPlayRequest->to_user_id !== Auth::user()->id )
+		{
+			return $this->RedirectToError();
+		}
 		return view('play.playhand')->with([
 			'curPlayRequest' => $curPlayRequest,
 		]);
 	}
 
-	public static function result($IdForPlay, $YourHandNum)
+	public function result($IdForPlay, $YourHandNum)
 	{
 		$curPlayRequest = PlayRequest::find($IdForPlay);
+		//  対象の申請があなた宛の申請でなければ処理を中断してエラーに飛ばす。
+		if( $curPlayRequest->to_user_id !== Auth::user()->id )
+		{
+			return $this->RedirectToError();
+		}
 		$curDateTime = new Carbon();
 		$AiteHandNum = rand(1, 3);
 		$YourHand = FuncController::Hand($YourHandNum);
@@ -81,6 +91,13 @@ class PlayController extends Controller
 			'YourHand' => $YourHand,
 			'AiteHand' => $AiteHand,
 			'Judge' => $Judge
+		]);
+	}
+
+	protected function RedirectToError()
+	{
+		return view('error')->with([
+			'ErrorMsg' => "この申請はあなた宛の申請ではありません。",
 		]);
 	}
 }

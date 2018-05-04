@@ -76,6 +76,11 @@ class PlayRequestsController extends Controller
 		//  ユーザープルダウンは現在ログイン中のユーザーを含まないようにする
 		$UsersOption = User::all()->where('id', '<>', Auth::user()->id);
 		$EditPlayRequest = PlayRequest::find($IdForEdit);
+		//  対象の申請があなたの作成した申請でなければ処理を中断してエラーに飛ばす。
+		if( $EditPlayRequest->from_user_id !== Auth::user()->id )
+		{
+			return $this->RedirectToError();
+		}
 		return view('playrequests.editplayrequest')->with([
 			'BackTo' => $BackTo,
 			'UsersOption' => $UsersOption,
@@ -88,6 +93,11 @@ class PlayRequestsController extends Controller
 		$allHttpRequest = $HttpRequest->all();
 		$curDateTime = new Carbon();
 		$EditPlayRequest = PlayRequest::find($IdForEdit);
+		//  対象の申請があなたの作成した申請でなければ処理を中断してエラーに飛ばす。
+		if( $EditPlayRequest->from_user_id !== Auth::user()->id )
+		{
+			return $this->RedirectToError();
+		}
 		$EditPlayRequest->to_user_id = $allHttpRequest['to_user_id'];
 		$EditPlayRequest->updated_at = $curDateTime;
 		$EditPlayRequest->save();
@@ -98,6 +108,11 @@ class PlayRequestsController extends Controller
 	{
 		$BackTo = $request->session()->get('BackTo', '/');
 		$DeletePlayRequest = PlayRequest::find($IdForDelete);
+		//  対象の申請があなたの作成した申請でなければ処理を中断してエラーに飛ばす。
+		if( $DeletePlayRequest->from_user_id !== Auth::user()->id )
+		{
+			return $this->RedirectToError();
+		}
 		return view('playrequests.deleteplayrequest')->with([
 			'BackTo' => $BackTo,
 			'DeletePlayRequest' => $DeletePlayRequest
@@ -107,7 +122,19 @@ class PlayRequestsController extends Controller
 	public function postDelete($IdForDelete)
 	{
 		$DeletePlayRequest = PlayRequest::find($IdForDelete);
+		//  対象の申請があなたの作成した申請でなければ処理を中断してエラーに飛ばす。
+		if( $DeletePlayRequest->from_user_id !== Auth::user()->id )
+		{
+			return $this->RedirectToError();
+		}
 		$DeletePlayRequest->delete();
 		return redirect()->to('/');
+	}
+
+	protected function RedirectToError()
+	{
+		return view('error')->with([
+			'ErrorMsg' => "この申請はあなたの作成した申請ではありません。",
+		]);
 	}
 }
