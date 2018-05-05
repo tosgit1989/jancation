@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Models\PlayLog;
 use App\Http\Models\PlayRequest;
+use Illuminate\Http\Request;
 use App\Http\Controllers\FuncController;
 use App\Http\Models\PlayScore;
 use Carbon\Carbon;
@@ -21,34 +22,37 @@ class PlayController extends Controller
 		$this->middleware('auth');
 	}
 
-	public function select()
+	public function select(Request $HttpRequest)
 	{
+		$HttpRequest->session()->put('BackTo', '/playselect');
 		$PlayRequestsToYou = PlayRequest::all()->where('expired_at', null)->where('to_user_id', Auth::user()->id);
 		return view('play.playselect')->with([
 			'PlayRequestsToYou' => $PlayRequestsToYou
 		]);
 	}
 
-	public function hand($IdForPlay)
+	public function hand(Request $HttpRequest, $IdForPlay)
 	{
+		$BackTo = $HttpRequest->session()->get('BackTo', '/');
 		$curPlayRequest = PlayRequest::find($IdForPlay);
 		//  対象の申請があなた宛の申請でなければ処理を中断してエラーに飛ばす。
 		if( $curPlayRequest->to_user_id !== Auth::user()->id )
 		{
-			return $this->RedirectToError();
+			return $this->RedirectToError($BackTo);
 		}
 		return view('play.playhand')->with([
 			'curPlayRequest' => $curPlayRequest,
 		]);
 	}
 
-	public function result($IdForPlay, $YourHandNum)
+	public function result(Request $HttpRequest, $IdForPlay, $YourHandNum)
 	{
+		$BackTo = $HttpRequest->session()->get('BackTo', '/');
 		$curPlayRequest = PlayRequest::find($IdForPlay);
 		//  対象の申請があなた宛の申請でなければ処理を中断してエラーに飛ばす。
 		if( $curPlayRequest->to_user_id !== Auth::user()->id )
 		{
-			return $this->RedirectToError();
+			return $this->RedirectToError($BackTo);
 		}
 		$curDateTime = new Carbon();
 		$AiteHandNum = rand(1, 3);
@@ -94,9 +98,10 @@ class PlayController extends Controller
 		]);
 	}
 
-	protected function RedirectToError()
+	protected function RedirectToError($BackTo)
 	{
 		return view('error')->with([
+			'BackTo' => $BackTo,
 			'ErrorMsg' => "この申請はあなた宛の申請ではありません。",
 		]);
 	}

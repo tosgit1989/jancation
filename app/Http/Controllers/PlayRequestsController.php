@@ -79,7 +79,7 @@ class PlayRequestsController extends Controller
 		//  対象の申請があなたの作成した申請でなければ処理を中断してエラーに飛ばす。
 		if( $EditPlayRequest->from_user_id !== Auth::user()->id )
 		{
-			return $this->RedirectToError();
+			return $this->RedirectToError($BackTo);
 		}
 		return view('playrequests.editplayrequest')->with([
 			'BackTo' => $BackTo,
@@ -97,7 +97,7 @@ class PlayRequestsController extends Controller
 		//  対象の申請があなたの作成した申請でなければ処理を中断してエラーに飛ばす。
 		if( $EditPlayRequest->from_user_id !== Auth::user()->id )
 		{
-			return $this->RedirectToError();
+			return $this->RedirectToError($BackTo);
 		}
 		$EditPlayRequest->to_user_id = $allHttpRequest['to_user_id'];
 		$EditPlayRequest->updated_at = $curDateTime;
@@ -112,7 +112,7 @@ class PlayRequestsController extends Controller
 		//  対象の申請があなたの作成した申請でなければ処理を中断してエラーに飛ばす。
 		if( $DeletePlayRequest->from_user_id !== Auth::user()->id )
 		{
-			return $this->RedirectToError();
+			return $this->RedirectToError($BackTo);
 		}
 		return view('playrequests.deleteplayrequest')->with([
 			'BackTo' => $BackTo,
@@ -127,15 +127,16 @@ class PlayRequestsController extends Controller
 		//  対象の申請があなたの作成した申請でなければ処理を中断してエラーに飛ばす。
 		if( $DeletePlayRequest->from_user_id !== Auth::user()->id )
 		{
-			return $this->RedirectToError();
+			return $this->RedirectToError($BackTo);
 		}
 		$DeletePlayRequest->delete();
 		return redirect()->to($BackTo);
 	}
 
-	protected function RedirectToError()
+	protected function RedirectToError($BackTo)
 	{
 		return view('error')->with([
+			'BackTo' => $BackTo,
 			'ErrorMsg' => "この申請はあなたの作成した申請ではありません。",
 		]);
 	}
