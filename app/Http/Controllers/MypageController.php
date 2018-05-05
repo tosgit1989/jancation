@@ -19,9 +19,9 @@ class MyPageController extends Controller
 		$this->middleware('auth');
 	}
 
-	public function index(Request $request)
+	public function index(Request $HttpRequest)
 	{
-		$request->session()->put('BackTo', '/mypage');
+		$HttpRequest->session()->put('BackTo', '/mypage');
 		$curPlayScore = PlayScore::find(Auth::user()->id);
 		$PlayRequestsFromYou = PlayRequest::all()->where('expired_at', null)->where('from_user_id', Auth::user()->id);
 		return view('mypage')->with([
