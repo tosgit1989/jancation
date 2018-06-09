@@ -24,18 +24,4 @@ class TopPageController extends Controller
 			'PlayScores' => $PlayScores,
 		]);
 	}
-
-	public static function getUserBy($Id)
-	{
-		$Users = User::all();
-		$NickName = 'undefined';
-		foreach ($Users as $User)
-		{
-			if($Id == $User->id)
-			{
-				$NickName = $User->nickname;
-			}
-		}
-		return $NickName;
-	}
 }
