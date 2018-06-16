@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Http\Models\PlayRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,16 +23,24 @@ class PlayRequestsController extends Controller
 
 	public function index()
 	{
-		$PlayRequests = PlayRequest::all()->where('expired_at', null)->where('to_user_id', Auth::user()->id);
+		$PlayRequestsFromYou = DB::table('play_requests')
+			->leftJoin('users', 'play_requests.to_user_id', '=', 'users.id')
+			->where('expired_at', null)
+			->where('from_user_id', Auth::user()->id)
+			->get();
 		return view('playrequests.yourplayrequests')->with([
-			'PlayRequests' => $PlayRequests
+			'PlayRequestsFromYou' => $PlayRequestsFromYou
 		]);
 	}
 
 	public function fromYou(Request $HttpRequest)
 	{
 		$HttpRequest->session()->put('BackTo', '/yourplayrequests');
-		$PlayRequestsFromYou = PlayRequest::all()->where('expired_at', null)->where('from_user_id', Auth::user()->id);
+		$PlayRequestsFromYou = DB::table('play_requests')
+			->leftJoin('users', 'play_requests.to_user_id', '=', 'users.id')
+			->where('expired_at', null)
+			->where('from_user_id', Auth::user()->id)
+			->get();
 		return view('playrequests.yourplayrequests')->with([
 			'PlayRequestsFromYou' => $PlayRequestsFromYou
 		]);
@@ -39,7 +48,11 @@ class PlayRequestsController extends Controller
 
 	public function toYou()
 	{
-		$PlayRequestsToYou = PlayRequest::all()->where('expired_at', null)->where('to_user_id', Auth::user()->id);
+		$PlayRequestsToYou = DB::table('play_requests')
+			->leftJoin('users', 'play_requests.from_user_id', '=', 'users.id')
+			->where('expired_at', null)
+			->where('to_user_id', Auth::user()->id)
+			->get();
 		return view('play.playselect')->with([
 			'PlayRequestsToYou' => $PlayRequestsToYou
 		]);

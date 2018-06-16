@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Http\Models\PlayLog;
 use App\Http\Models\PlayRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\FuncController;
-use App\Http\Models\PlayScore;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +25,11 @@ class PlayController extends Controller
 	public function select(Request $HttpRequest)
 	{
 		$HttpRequest->session()->put('BackTo', '/playselect');
-		$PlayRequestsToYou = PlayRequest::all()->where('expired_at', null)->where('to_user_id', Auth::user()->id);
+		$PlayRequestsToYou = DB::table('play_requests')
+			->leftJoin('users', 'play_requests.from_user_id', '=', 'users.id')
+			->where('expired_at', null)
+			->where('to_user_id', Auth::user()->id)
+			->get();
 		return view('play.playselect')->with([
 			'PlayRequestsToYou' => $PlayRequestsToYou
 		]);

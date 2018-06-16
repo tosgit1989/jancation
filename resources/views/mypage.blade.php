@@ -36,9 +36,7 @@
 						<div class="panel panel-primary">
 							<div class="panel-heading">
 								<strong>
-									{{ \App\Http\Models\User::find($PlayRequest->from_user_id)->nickname }}
-									→
-									{{ \App\Http\Models\User::find($PlayRequest->to_user_id)->nickname }}
+									{{ $PlayRequest->nickname }}さんへの申請
 								</strong>
 							</div>
 							<div class="panel-body">

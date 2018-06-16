@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Http\Models\PlayScore;
-use App\Http\Models\PlayRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +23,11 @@ class MyPageController extends Controller
 	{
 		$HttpRequest->session()->put('BackTo', '/mypage');
 		$curPlayScore = PlayScore::find(Auth::user()->id);
-		$PlayRequestsFromYou = PlayRequest::all()->where('expired_at', null)->where('from_user_id', Auth::user()->id);
+		$PlayRequestsFromYou = DB::table('play_requests')
+			->leftJoin('users', 'play_requests.to_user_id', '=', 'users.id')
+			->where('expired_at', null)
+			->where('from_user_id', Auth::user()->id)
+			->get();
 		return view('mypage')->with([
 			'curPlayScore' => $curPlayScore,
 			'PlayRequestsFromYou' => $PlayRequestsFromYou
