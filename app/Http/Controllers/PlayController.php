@@ -26,6 +26,7 @@ class PlayController extends Controller
 	{
 		$HttpRequest->session()->put('BackTo', '/playselect');
 		$PlayRequestsToYou = DB::table('play_requests')
+			->select('play_requests.*', 'users.nickname')
 			->leftJoin('users', 'play_requests.from_user_id', '=', 'users.id')
 			->where('expired_at', null)
 			->where('to_user_id', Auth::user()->id)
@@ -38,7 +39,11 @@ class PlayController extends Controller
 	public function hand(Request $HttpRequest, $IdForPlay)
 	{
 		$BackTo = $HttpRequest->session()->get('BackTo', '/');
-		$curPlayRequest = PlayRequest::find($IdForPlay);
+		$curPlayRequest = DB::table('play_requests')
+			->select('play_requests.*', 'users.nickname')
+			->leftJoin('users', 'play_requests.from_user_id', '=', 'users.id')
+			->where('play_requests.id', $IdForPlay)
+			->first();
 		//  対象の申請があなた宛の申請でなければ処理を中断してエラーに飛ばす。
 		if( $curPlayRequest->to_user_id !== Auth::user()->id )
 		{
@@ -52,7 +57,11 @@ class PlayController extends Controller
 	public function result(Request $HttpRequest, $IdForPlay, $YourHandNum)
 	{
 		$BackTo = $HttpRequest->session()->get('BackTo', '/');
-		$curPlayRequest = PlayRequest::find($IdForPlay);
+		$curPlayRequest = DB::table('play_requests')
+			->select('play_requests.*', 'users.nickname')
+			->leftJoin('users', 'play_requests.from_user_id', '=', 'users.id')
+			->where('play_requests.id', $IdForPlay)
+			->first();
 		//  対象の申請があなた宛の申請でなければ処理を中断してエラーに飛ばす。
 		if( $curPlayRequest->to_user_id !== Auth::user()->id )
 		{

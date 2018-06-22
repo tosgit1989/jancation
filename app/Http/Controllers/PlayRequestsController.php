@@ -24,6 +24,7 @@ class PlayRequestsController extends Controller
 	public function index()
 	{
 		$PlayRequestsFromYou = DB::table('play_requests')
+			->select('play_requests.*', 'users.nickname')
 			->leftJoin('users', 'play_requests.to_user_id', '=', 'users.id')
 			->where('expired_at', null)
 			->where('from_user_id', Auth::user()->id)
@@ -37,6 +38,7 @@ class PlayRequestsController extends Controller
 	{
 		$HttpRequest->session()->put('BackTo', '/yourplayrequests');
 		$PlayRequestsFromYou = DB::table('play_requests')
+			->select('play_requests.*', 'users.nickname')
 			->leftJoin('users', 'play_requests.to_user_id', '=', 'users.id')
 			->where('expired_at', null)
 			->where('from_user_id', Auth::user()->id)
@@ -49,6 +51,7 @@ class PlayRequestsController extends Controller
 	public function toYou()
 	{
 		$PlayRequestsToYou = DB::table('play_requests')
+			->select('play_requests.*', 'users.nickname')
 			->leftJoin('users', 'play_requests.from_user_id', '=', 'users.id')
 			->where('expired_at', null)
 			->where('to_user_id', Auth::user()->id)
@@ -88,7 +91,11 @@ class PlayRequestsController extends Controller
 		$BackTo = $HttpRequest->session()->get('BackTo', '/');
 		//  ユーザープルダウンは現在ログイン中のユーザーを含まないようにする
 		$UsersOption = User::all()->where('id', '<>', Auth::user()->id);
-		$EditPlayRequest = PlayRequest::find($IdForEdit);
+		$EditPlayRequest = DB::table('play_requests')
+			->select('play_requests.*', 'users.nickname')
+			->leftJoin('users', 'play_requests.from_user_id', '=', 'users.id')
+			->where('play_requests.id', $IdForEdit)
+			->first();
 		//  対象の申請があなたの作成した申請でなければ処理を中断してエラーに飛ばす。
 		if( $EditPlayRequest->from_user_id !== Auth::user()->id )
 		{
@@ -106,7 +113,11 @@ class PlayRequestsController extends Controller
 		$allHttpRequest = $HttpRequest->all();
 		$BackTo = $HttpRequest->session()->get('BackTo', '/');
 		$curDateTime = new Carbon();
-		$EditPlayRequest = PlayRequest::find($IdForEdit);
+		$EditPlayRequest = DB::table('play_requests')
+			->select('play_requests.*', 'users.nickname')
+			->leftJoin('users', 'play_requests.from_user_id', '=', 'users.id')
+			->where('play_requests.id', $IdForEdit)
+			->first();
 		//  対象の申請があなたの作成した申請でなければ処理を中断してエラーに飛ばす。
 		if( $EditPlayRequest->from_user_id !== Auth::user()->id )
 		{
@@ -121,7 +132,11 @@ class PlayRequestsController extends Controller
 	public function getDelete(Request $HttpRequest, $IdForDelete)
 	{
 		$BackTo = $HttpRequest->session()->get('BackTo', '/');
-		$DeletePlayRequest = PlayRequest::find($IdForDelete);
+		$DeletePlayRequest = DB::table('play_requests')
+			->select('play_requests.*', 'users.nickname')
+			->leftJoin('users', 'play_requests.from_user_id', '=', 'users.id')
+			->where('play_requests.id', $IdForDelete)
+			->first();
 		//  対象の申請があなたの作成した申請でなければ処理を中断してエラーに飛ばす。
 		if( $DeletePlayRequest->from_user_id !== Auth::user()->id )
 		{
@@ -135,7 +150,11 @@ class PlayRequestsController extends Controller
 
 	public function postDelete(Request $HttpRequest, $IdForDelete)
 	{
-		$DeletePlayRequest = PlayRequest::find($IdForDelete);
+		$DeletePlayRequest = DB::table('play_requests')
+			->select('play_requests.*', 'users.nickname')
+			->leftJoin('users', 'play_requests.from_user_id', '=', 'users.id')
+			->where('play_requests.id', $IdForDelete)
+			->first();
 		$BackTo = $HttpRequest->session()->get('BackTo', '/');
 		//  対象の申請があなたの作成した申請でなければ処理を中断してエラーに飛ばす。
 		if( $DeletePlayRequest->from_user_id !== Auth::user()->id )

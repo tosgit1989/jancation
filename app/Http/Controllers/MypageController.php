@@ -24,6 +24,7 @@ class MyPageController extends Controller
 		$HttpRequest->session()->put('BackTo', '/mypage');
 		$curPlayScore = PlayScore::find(Auth::user()->id);
 		$PlayRequestsFromYou = DB::table('play_requests')
+			->select('play_requests.*', 'users.nickname')
 			->leftJoin('users', 'play_requests.to_user_id', '=', 'users.id')
 			->where('expired_at', null)
 			->where('from_user_id', Auth::user()->id)
