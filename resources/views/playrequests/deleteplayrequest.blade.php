@@ -12,9 +12,9 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<strong>
-							{{ \App\Http\Controllers\FuncController::getUserBy($curPlayRequest->from_user_id) }}
-							→
-							{{ \App\Http\Controllers\FuncController::getUserBy($curPlayRequest->to_user_id) }}
+							<strong>
+								{{ $curPlayRequest->nickname }}さんへの申請
+							</strong>
 						</strong>
 					</div>
 					<div class="panel-footer">
