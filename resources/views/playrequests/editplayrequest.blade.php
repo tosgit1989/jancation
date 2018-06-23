@@ -9,13 +9,13 @@
 		<div class="col-xs-12">
 			<div class="bs-docs-section">
 
-				{!! Form::open(['action' => ['PlayRequestsController@postEdit', $EditPlayRequest->id]]) !!}
+				{!! Form::open(['action' => ['PlayRequestsController@postEdit', $curPlayRequest->id]]) !!}
 					@if(count($UsersOption) > 0)
 						<div class="form-group">
 							<label>対戦相手</label>
 							<select name="to_user_id">
 								@foreach($UsersOption as $UserOption)
-									@if($UserOption->id == $EditPlayRequest->to_user_id)
+									@if($UserOption->id == $curPlayRequest->to_user_id)
 										<option value={{ $UserOption->id }} selected>{{ $UserOption->nickname }}</option>
 									@else
 										<option value={{ $UserOption->id }}>{{ $UserOption->nickname }}</option>

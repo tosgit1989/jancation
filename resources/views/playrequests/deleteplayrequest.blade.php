@@ -12,18 +12,18 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<strong>
-							{{ \App\Http\Controllers\FuncController::getUserBy($DeletePlayRequest->from_user_id) }}
+							{{ \App\Http\Controllers\FuncController::getUserBy($curPlayRequest->from_user_id) }}
 							→
-							{{ \App\Http\Controllers\FuncController::getUserBy($DeletePlayRequest->to_user_id) }}
+							{{ \App\Http\Controllers\FuncController::getUserBy($curPlayRequest->to_user_id) }}
 						</strong>
 					</div>
 					<div class="panel-footer">
-						申請日時: {{ $DeletePlayRequest->created_at }} 更新日時: {{ $DeletePlayRequest->updated_at }}
+						申請日時: {{ $curPlayRequest->created_at }} 更新日時: {{ $curPlayRequest->updated_at }}
 					</div>
 				</div>
 
 				<p>本当に削除しますか？</p>
-				{!! Form::open(['action' => ['PlayRequestsController@postDelete', $DeletePlayRequest->id], 'style' => 'display: inline']) !!}
+				{!! Form::open(['action' => ['PlayRequestsController@postDelete', $curPlayRequest->id], 'style' => 'display: inline']) !!}
 				<button type="submit" class="btn btn-danger">はい</button>
 				{!! Form::close() !!}
 				<a href={{ $BackTo }} class="btn" style="background-color: silver; color: black">いいえ</a>
