@@ -3,7 +3,7 @@
 @section('content')
 <div class="page-title">
 	<p class="page-title-text">
-		{{ \App\Http\Controllers\FuncController::getUserBy($curPlayRequest->from_user_id) }}さんとじゃんけんの結果
+		{{ $curPlayRequest->nickname }}さんとじゃんけんの結果
 	</p>
 </div>
 <div class="container">

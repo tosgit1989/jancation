@@ -14,7 +14,7 @@
 					@foreach($PlayScores as $PlayScore)
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								{{ \App\Http\Controllers\FuncController::getUserBy($PlayScore->user_id) }}
+								{{ $PlayScore->nickname }}さん
 							</div>
 							@if ( ($PlayScore->win_count) + ($PlayScore->lose_count) > 0 )
 								<div class="panel-body">勝率: {{ 100 * ($PlayScore->win_count) / ( ($PlayScore->win_count) + ($PlayScore->lose_count) ) }}ﾊﾟｰｾﾝﾄ</div>
