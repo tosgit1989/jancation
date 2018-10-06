@@ -3,7 +3,7 @@
 @section('content')
 <div class="page-title">
 	<p class="page-title-text">
-		{{ $curPlayRequest->nickname }}さんとじゃんけんの結果
+		{{ $curPlayRequest->user_nickname }}さんとじゃんけんの結果
 	</p>
 </div>
 <div class="container">

@@ -13,7 +13,7 @@
 					<div class="panel-heading">
 						<strong>
 							<strong>
-								{{ $curPlayRequest->nickname }}さんへの申請
+								{{ $curPlayRequest->user_nickname }}さんへの申請
 							</strong>
 						</strong>
 					</div>

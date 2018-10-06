@@ -15,7 +15,7 @@
 						<div class="panel panel-primary">
 							<div class="panel-heading">
 								<strong>
-									{{ $PlayRequest->nickname }}さんへの申請
+									{{ $PlayRequest->user_nickname }}さんへの申請
 								</strong>
 							</div>
 							<div class="panel-body">

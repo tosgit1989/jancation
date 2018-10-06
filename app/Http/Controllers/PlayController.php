@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use DB;
 use App\Http\Models\PlayLog;
 use App\Http\Models\PlayRequest;
+use App\Http\Models\User;
 use App\Http\Models\PlayScore;
 use Illuminate\Http\Request;
-use App\Http\Controllers\FuncController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,12 +25,12 @@ class PlayController extends Controller
 	public function select(Request $HttpRequest)
 	{
 		$HttpRequest->session()->put('BackTo', '/playselect');
-		$PlayRequestsToYou = DB::table('play_requests')
-			->select('play_requests.*', 'users.nickname')
-			->leftJoin('users', 'play_requests.from_user_id', '=', 'users.id')
-			->where('expired_at', null)
-			->where('to_user_id', Auth::user()->id)
-			->get();
+		$PlayRequestsToYou = PlayRequest::all()->where('expired_at', null)->where('to_user_id', Auth::user()->id);
+		foreach ($PlayRequestsToYou as $pr)
+		{
+			$UserOfCurPlayRequest = User::find($pr->from_user_id);
+			$pr->user_nickname = $UserOfCurPlayRequest->nickname;
+		}
 		return view('play.playselect')->with([
 			'PlayRequestsToYou' => $PlayRequestsToYou
 		]);
@@ -40,11 +39,10 @@ class PlayController extends Controller
 	public function hand(Request $HttpRequest, $IdForPlay)
 	{
 		$BackTo = $HttpRequest->session()->get('BackTo', '/');
-		$curPlayRequest = DB::table('play_requests')
-			->select('play_requests.*', 'users.nickname')
-			->leftJoin('users', 'play_requests.from_user_id', '=', 'users.id')
-			->where('play_requests.id', $IdForPlay)
-			->first();
+		$curPlayRequest = PlayRequest::find($IdForPlay);
+		$UserOfCurPlayRequest = User::find($curPlayRequest->from_user_id);
+		$curPlayRequest->user_nickname = $UserOfCurPlayRequest->nickname;
+
 		//  対象の申請があなた宛の申請でなければ処理を中断してエラーに飛ばす。
 		if( $curPlayRequest->to_user_id !== Auth::user()->id )
 		{
@@ -58,11 +56,10 @@ class PlayController extends Controller
 	public function result(Request $HttpRequest, $IdForPlay, $YourHandNum)
 	{
 		$BackTo = $HttpRequest->session()->get('BackTo', '/');
-		$curPlayRequest = DB::table('play_requests')
-			->select('play_requests.*', 'users.nickname')
-			->leftJoin('users', 'play_requests.from_user_id', '=', 'users.id')
-			->where('play_requests.id', $IdForPlay)
-			->first();
+		$curPlayRequest = PlayRequest::find($IdForPlay);
+		$UserOfCurPlayRequest = User::find($curPlayRequest->from_user_id);
+		$curPlayRequest->user_nickname = $UserOfCurPlayRequest->nickname;
+
 		//  対象の申請があなた宛の申請でなければ処理を中断してエラーに飛ばす。
 		if( $curPlayRequest->to_user_id !== Auth::user()->id )
 		{
