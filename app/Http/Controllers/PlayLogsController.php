@@ -18,9 +18,9 @@ class PlayLogsController extends Controller
 
 	public function index()
 	{
-		$PlayLogs = PlayLog::all();
+		$playLogs = PlayLog::all();
 		return view('index')->with([
-			'PlayLogs' => $PlayLogs
+			'playLogs' => $playLogs
 		]);
 	}
 }

@@ -11,9 +11,9 @@
 		<div class="col-xs-12">
 			<div class="bs-docs-section">
 
-				<p>あなた: {{ $YourHand }}, 相手: {{ $AiteHand }}</p>
-				<p>判定: {{ $Judge }}</p>
-				@if($Judge == 'あいこ')
+				<p>あなた: {{ $yourHand }}, 相手: {{ $aiteHand }}</p>
+				<p>判定: {{ $judge }}</p>
+				@if($judge == 'あいこ')
 					<a href="" class="btn btn-primary" role="button">もう一回</a>
 				@endif
 				<!--リンクここから-->

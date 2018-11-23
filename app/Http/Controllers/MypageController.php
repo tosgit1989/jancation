@@ -20,19 +20,19 @@ class MyPageController extends Controller
 		$this->middleware('auth');
 	}
 
-	public function index(Request $HttpRequest)
+	public function index(Request $httpRequest)
 	{
-		$HttpRequest->session()->put('BackTo', '/mypage');
+		$httpRequest->session()->put('backTo', '/mypage');
 		$curPlayScore = PlayScore::find(Auth::user()->id);
-		$PlayRequestsFromYou = PlayRequest::all()->where('expired_at', null)->where('from_user_id', Auth::user()->id);
-		foreach ($PlayRequestsFromYou as $pr)
+		$playRequestsFromYou = PlayRequest::all()->where('expired_at', null)->where('from_user_id', Auth::user()->id);
+		foreach ($playRequestsFromYou as $playRequest)
 		{
-			$UserPerPlayRequest = User::find($pr->to_user_id);
-			$pr->user_nickname = $UserPerPlayRequest->nickname;
+			$userPerPlayRequest = User::find($playRequest->to_user_id);
+			$playRequest->user_nickname = $userPerPlayRequest->nickname;
 		}
 		return view('mypage')->with([
 			'curPlayScore' => $curPlayScore,
-			'PlayRequestsFromYou' => $PlayRequestsFromYou
+			'playRequestsFromYou' => $playRequestsFromYou
 		]);
 	}
 }

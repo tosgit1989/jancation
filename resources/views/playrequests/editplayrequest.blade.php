@@ -10,15 +10,15 @@
 			<div class="bs-docs-section">
 
 				{!! Form::open(['action' => ['PlayRequestsController@postEdit', $curPlayRequest->id]]) !!}
-					@if(count($UsersOption) > 0)
+					@if(count($usersOption) > 0)
 						<div class="form-group">
 							<label>対戦相手</label>
 							<select name="to_user_id">
-								@foreach($UsersOption as $UserOption)
-									@if($UserOption->id == $curPlayRequest->to_user_id)
-										<option value={{ $UserOption->id }} selected>{{ $UserOption->nickname }}</option>
+								@foreach($usersOption as $userOption)
+									@if($userOption->id == $curPlayRequest->to_user_id)
+										<option value={{ $userOption->id }} selected>{{ $userOption->nickname }}</option>
 									@else
-										<option value={{ $UserOption->id }}>{{ $UserOption->nickname }}</option>
+										<option value={{ $userOption->id }}>{{ $userOption->nickname }}</option>
 									@endif
 								@endforeach
 							</select>
@@ -27,7 +27,7 @@
 					@else
 						<p>他のユーザーが存在しないため申請を編集できません。</p>
 					@endif
-				<a href={{ $BackTo }} class="btn" style="background-color: silver; color: black">キャンセル</a>
+				<a href={{ $backTo }} class="btn" style="background-color: silver; color: black">キャンセル</a>
 				{!! Form::close() !!}
 
 			</div>

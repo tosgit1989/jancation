@@ -10,20 +10,20 @@
 			<div class="bs-docs-section">
 
 				<div style="height:30px"></div>
-				@if (count($PlayRequestsFromYou) >= 1)
-					@foreach($PlayRequestsFromYou as $PlayRequest)
+				@if (count($playRequestsFromYou) >= 1)
+					@foreach($playRequestsFromYou as $playRequest)
 						<div class="panel panel-primary">
 							<div class="panel-heading">
 								<strong>
-									{{ $PlayRequest->user_nickname }}さんへの申請
+									{{ $playRequest->user_nickname }}さんへの申請
 								</strong>
 							</div>
 							<div class="panel-body">
-								<a href="/editplayrequest/{{ $PlayRequest->id }}" class="btn btn-primary">編集</a>
-								<a href="/deleteplayrequest/{{ $PlayRequest->id }}" class="btn btn-danger">削除</a>
+								<a href="/editplayrequest/{{ $playRequest->id }}" class="btn btn-primary">編集</a>
+								<a href="/deleteplayrequest/{{ $playRequest->id }}" class="btn btn-danger">削除</a>
 							</div>
 							<div class="panel-footer">
-								申請日時: {{ $PlayRequest->created_at }} 更新日時: {{ $PlayRequest->updated_at }}
+								申請日時: {{ $playRequest->created_at }} 更新日時: {{ $playRequest->updated_at }}
 							</div>
 						</div>
 					@endforeach

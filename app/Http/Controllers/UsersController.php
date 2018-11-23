@@ -8,9 +8,9 @@ class UsersController extends Controller
 {
 	public function index()
 	{
-		$Users = User::all();
+		$users = User::all();
 		return view('index')->with([
-			'users' => $Users
+			'users' => $users
 		]);
 	}
 }

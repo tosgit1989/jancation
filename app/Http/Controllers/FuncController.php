@@ -11,18 +11,18 @@ class FuncController extends Controller
 	//  ------------------------------------------------------------
 	//  共通関数
 	//  ------------------------------------------------------------
-	public static function getUserBy($Id)
+	public static function getUserBy($id)
 	{
-		$Users = User::all();
-		$NickName = 'undefined';
-		foreach ($Users as $User)
+		$users = User::all();
+		$nickName = 'undefined';
+		foreach ($users as $user)
 		{
-			if($Id == $User->id)
+			if($id == $user->id)
 			{
-				$NickName = $User->nickname;
+				$nickName = $user->nickname;
 			}
 		}
-		return $NickName;
+		return $nickName;
 	}
 
 

@@ -10,14 +10,14 @@
 			<div class="bs-docs-section">
 
 				<h3 class="text-middle">勝率ランキング</h3>
-				@if(count($PlayScores) >= 1)
-					@foreach($PlayScores as $PlayScore)
+				@if(count($playScores) >= 1)
+					@foreach($playScores as $playScore)
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								{{ $PlayScore->nickname }}さん
+								{{ $playScore->nickname }}さん
 							</div>
-							@if ( ($PlayScore->win_count) + ($PlayScore->lose_count) > 0 )
-								<div class="panel-body">勝率: {{ 100 * ($PlayScore->win_count) / ( ($PlayScore->win_count) + ($PlayScore->lose_count) ) }}ﾊﾟｰｾﾝﾄ</div>
+							@if ( ($playScore->win_count) + ($playScore->lose_count) > 0 )
+								<div class="panel-body">勝率: {{ 100 * ($playScore->win_count) / ( ($playScore->win_count) + ($playScore->lose_count) ) }}ﾊﾟｰｾﾝﾄ</div>
 							@else
 								<div class="panel-body">勝率: -</div>
 							@endif

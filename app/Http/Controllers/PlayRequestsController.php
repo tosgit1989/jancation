@@ -22,145 +22,145 @@ class PlayRequestsController extends Controller
 
 	public function index()
 	{
-		$PlayRequestsFromYou = PlayRequest::all()->where('expired_at', null)->where('from_user_id', Auth::user()->id);
-		foreach ($PlayRequestsFromYou as $pr)
+		$playRequestsFromYou = PlayRequest::all()->where('expired_at', null)->where('from_user_id', Auth::user()->id);
+		foreach ($playRequestsFromYou as $playRequest)
 		{
-			$UserPerPlayRequest = User::find($pr->to_user_id);
-			$pr->user_nickname = $UserPerPlayRequest->nickname;
+			$userPerPlayRequest = User::find($playRequest->to_user_id);
+			$playRequest->user_nickname = $userPerPlayRequest->nickname;
 		}
 		return view('playrequests.yourplayrequests')->with([
-			'PlayRequestsFromYou' => $PlayRequestsFromYou
+			'playRequestsFromYou' => $playRequestsFromYou
 		]);
 	}
 
-	public function fromYou(Request $HttpRequest)
+	public function fromYou(Request $httpRequest)
 	{
-		$HttpRequest->session()->put('BackTo', '/yourplayrequests');
-		$PlayRequestsFromYou = PlayRequest::all()->where('expired_at', null)->where('from_user_id', Auth::user()->id);
-		foreach ($PlayRequestsFromYou as $pr)
+		$httpRequest->session()->put('backTo', '/yourplayrequests');
+		$playRequestsFromYou = PlayRequest::all()->where('expired_at', null)->where('from_user_id', Auth::user()->id);
+		foreach ($playRequestsFromYou as $playRequest)
 		{
-			$UserPerPlayRequest = User::find($pr->to_user_id);
-			$pr->user_nickname = $UserPerPlayRequest->nickname;
+			$userPerPlayRequest = User::find($playRequest->to_user_id);
+			$playRequest->user_nickname = $userPerPlayRequest->nickname;
 		}
 		return view('playrequests.yourplayrequests')->with([
-			'PlayRequestsFromYou' => $PlayRequestsFromYou
+			'playRequestsFromYou' => $playRequestsFromYou
 		]);
 	}
 
 	public function toYou()
 	{
-		$PlayRequestsToYou = PlayRequest::all()->where('expired_at', null)->where('to_user_id', Auth::user()->id);
-		foreach ($PlayRequestsToYou as $pr)
+		$playRequestsToYou = PlayRequest::all()->where('expired_at', null)->where('to_user_id', Auth::user()->id);
+		foreach ($playRequestsToYou as $playRequest)
 		{
-			$UserPerPlayRequest = User::find($pr->from_user_id);
-			$pr->user_nickname = $UserPerPlayRequest->nickname;
+			$userPerPlayRequest = User::find($playRequest->from_user_id);
+			$playRequest->user_nickname = $userPerPlayRequest->nickname;
 		}
 		return view('play.playselect')->with([
-			'PlayRequestsToYou' => $PlayRequestsToYou
+			'playRequestsToYou' => $playRequestsToYou
 		]);
 	}
 
 	public function getNew()
 	{
 		//  ユーザープルダウンは現在ログイン中のユーザーを含まないようにする
-		$UsersOption = User::all()->where('id', '<>', Auth::user()->id);
-		$NewPlayRequest = new PlayRequest();
+		$usersOption = User::all()->where('id', '<>', Auth::user()->id);
+		$newPlayRequest = new PlayRequest();
 		return view('playrequests.newplayrequest')->with([
-			'UsersOption' => $UsersOption,
-			'NewPlayRequest' => $NewPlayRequest
+			'usersOption' => $usersOption,
+			'newPlayRequest' => $newPlayRequest
 		]);
 	}
 
-	public function postNew(Request $HttpRequest)
+	public function postNew(Request $httpRequest)
 	{
-		$allHttpRequest = $HttpRequest->all();
+		$allHttpRequest = $httpRequest->all();
 		$curDateTime = new Carbon();
-		$NewPlayRequest = new PlayRequest();
-		$NewPlayRequest->from_user_id = Auth::user()->id;
-		$NewPlayRequest->to_user_id = $allHttpRequest['to_user_id'];
-		$NewPlayRequest->created_at = $curDateTime;
-		$NewPlayRequest->updated_at = $curDateTime;
-		$NewPlayRequest->expired_at = null;
-		$NewPlayRequest->save();
+		$newPlayRequest = new PlayRequest();
+		$newPlayRequest->from_user_id = Auth::user()->id;
+		$newPlayRequest->to_user_id = $allHttpRequest['to_user_id'];
+		$newPlayRequest->created_at = $curDateTime;
+		$newPlayRequest->updated_at = $curDateTime;
+		$newPlayRequest->expired_at = null;
+		$newPlayRequest->save();
 		return redirect()->to('/menu');
 	}
 
-	public function getEdit(Request $HttpRequest, $IdForEdit)
+	public function getEdit(Request $httpRequest, $idForEdit)
 	{
-		$BackTo = $HttpRequest->session()->get('BackTo', '/');
+		$backTo = $httpRequest->session()->get('backTo', '/');
 		//  ユーザープルダウンは現在ログイン中のユーザーを含まないようにする
-		$UsersOption = User::all()->where('id', '<>', Auth::user()->id);
-		$curPlayRequest = PlayRequest::find($IdForEdit);
-		$UserOfCurPlayRequest = User::find($curPlayRequest->to_user_id);
-		$curPlayRequest->user_nickname = $UserOfCurPlayRequest->nickname;
+		$usersOption = User::all()->where('id', '<>', Auth::user()->id);
+		$curPlayRequest = PlayRequest::find($idForEdit);
+		$userOfCurPlayRequest = User::find($curPlayRequest->to_user_id);
+		$curPlayRequest->user_nickname = $userOfCurPlayRequest->nickname;
 
 		//  対象の申請があなたの作成した申請でなければ処理を中断してエラーに飛ばす。
 		if( $curPlayRequest->from_user_id !== Auth::user()->id )
 		{
-			return $this->RedirectToError($BackTo);
+			return $this->RedirectToError($backTo);
 		}
 		return view('playrequests.editplayrequest')->with([
-			'BackTo' => $BackTo,
-			'UsersOption' => $UsersOption,
+			'backTo' => $backTo,
+			'usersOption' => $usersOption,
 			'curPlayRequest' => $curPlayRequest
 		]);
 	}
 
-	public function postEdit(Request $HttpRequest, $IdForEdit)
+	public function postEdit(Request $httpRequest, $idForEdit)
 	{
-		$allHttpRequest = $HttpRequest->all();
-		$BackTo = $HttpRequest->session()->get('BackTo', '/');
+		$allHttpRequest = $httpRequest->all();
+		$backTo = $httpRequest->session()->get('backTo', '/');
 		$curDateTime = new Carbon();
-		$EditPlayRequest = PlayRequest::find($IdForEdit);
+		$editPlayRequest = PlayRequest::find($idForEdit);
 
 		//  対象の申請があなたの作成した申請でなければ処理を中断してエラーに飛ばす。
-		if( $EditPlayRequest->from_user_id !== Auth::user()->id )
+		if( $editPlayRequest->from_user_id !== Auth::user()->id )
 		{
-			return $this->RedirectToError($BackTo);
+			return $this->RedirectToError($backTo);
 		}
-		$EditPlayRequest->to_user_id = $allHttpRequest['to_user_id'];
-		$EditPlayRequest->updated_at = $curDateTime;
-		$EditPlayRequest->save();
-		return redirect()->to($BackTo);
+		$editPlayRequest->to_user_id = $allHttpRequest['to_user_id'];
+		$editPlayRequest->updated_at = $curDateTime;
+		$editPlayRequest->save();
+		return redirect()->to($backTo);
 	}
 
-	public function getDelete(Request $HttpRequest, $IdForDelete)
+	public function getDelete(Request $httpRequest, $idForDelete)
 	{
-		$BackTo = $HttpRequest->session()->get('BackTo', '/');
-		$curPlayRequest = PlayRequest::find($IdForDelete);
-		$UserOfCurPlayRequest = User::find($curPlayRequest->to_user_id);
-		$curPlayRequest->user_nickname = $UserOfCurPlayRequest->nickname;
+		$backTo = $httpRequest->session()->get('backTo', '/');
+		$curPlayRequest = PlayRequest::find($idForDelete);
+		$userOfCurPlayRequest = User::find($curPlayRequest->to_user_id);
+		$curPlayRequest->user_nickname = $userOfCurPlayRequest->nickname;
 
 		//  対象の申請があなたの作成した申請でなければ処理を中断してエラーに飛ばす。
 		if( $curPlayRequest->from_user_id !== Auth::user()->id )
 		{
-			return $this->RedirectToError($BackTo);
+			return $this->RedirectToError($backTo);
 		}
 		return view('playrequests.deleteplayrequest')->with([
-			'BackTo' => $BackTo,
+			'backTo' => $backTo,
 			'curPlayRequest' => $curPlayRequest
 		]);
 	}
 
-	public function postDelete(Request $HttpRequest, $IdForDelete)
+	public function postDelete(Request $httpRequest, $idForDelete)
 	{
-		$DeletePlayRequest = PlayRequest::find($IdForDelete);
-		$BackTo = $HttpRequest->session()->get('BackTo', '/');
+		$deletePlayRequest = PlayRequest::find($idForDelete);
+		$backTo = $httpRequest->session()->get('backTo', '/');
 
 		//  対象の申請があなたの作成した申請でなければ処理を中断してエラーに飛ばす。
-		if( $DeletePlayRequest->from_user_id !== Auth::user()->id )
+		if( $deletePlayRequest->from_user_id !== Auth::user()->id )
 		{
-			return $this->RedirectToError($BackTo);
+			return $this->RedirectToError($backTo);
 		}
-		$DeletePlayRequest->delete();
-		return redirect()->to($BackTo);
+		$deletePlayRequest->delete();
+		return redirect()->to($backTo);
 	}
 
-	protected function RedirectToError($BackTo)
+	protected function RedirectToError($backTo)
 	{
 		return view('error')->with([
-			'BackTo' => $BackTo,
-			'ErrorMsg' => "この申請はあなたの作成した申請ではありません。",
+			'backTo' => $backTo,
+			'errorMsg' => "この申請はあなたの作成した申請ではありません。",
 		]);
 	}
 }
