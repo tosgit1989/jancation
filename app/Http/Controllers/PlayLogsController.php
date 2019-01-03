@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Models\PlayLog;
+use DB;
 use App\Http\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,48 +18,48 @@ class PlayLogsController extends Controller
 		$this->middleware('auth');
 	}
 
-    public function index()
-    {
-        $playLogs = PlayLog::all()->where('from_user_id', Auth::user()->id)->where('to_user_id', Auth::user()->id);
-        foreach ($playLogs as $playLog)
-        {
-            $fromUserPerPlayLog = User::find($playLog->from_user_id);
-            $toUserPerPlayLog = User::find($playLog->to_user_id);
-            $playLog->from_user_nickname = $fromUserPerPlayLog->nickname;
-            $playLog->to_user_nickname = $toUserPerPlayLog->nickname;
-        }
-        return view('playlogs')->with([
-            'playLogs' => $playLogs
-        ]);
-    }
+	public function index()
+	{
+		$playLogs = DB::table('play_logs')->where('from_user_id', Auth::user()->id)->orWhere('to_user_id', Auth::user()->id)->orderBy('created_at')->get();
+		foreach ($playLogs as $playLog)
+		{
+			$fromUserPerPlayLog = User::find($playLog->from_user_id);
+			$toUserPerPlayLog = User::find($playLog->to_user_id);
+			$playLog->from_user_nickname = $fromUserPerPlayLog->nickname;
+			$playLog->to_user_nickname = $toUserPerPlayLog->nickname;
+		}
+		return view('playlogs')->with([
+			'playLogs' => $playLogs
+		]);
+	}
 
 	public function fromYou()
 	{
-		$playLogsFromYou = PlayLog::all()->where('from_user_id', Auth::user()->id);
-        foreach ($playLogsFromYou as $playLog)
-        {
-            $fromUserPerPlayLog = User::find($playLog->from_user_id);
-            $toUserPerPlayLog = User::find($playLog->to_user_id);
-            $playLog->from_user_nickname = $fromUserPerPlayLog->nickname;
-            $playLog->to_user_nickname = $toUserPerPlayLog->nickname;
-        }
+		$playLogsFromYou = DB::table('play_logs')->where('from_user_id', Auth::user()->id)->orderBy('created_at')->get();
+		foreach ($playLogsFromYou as $playLog)
+		{
+			$fromUserPerPlayLog = User::find($playLog->from_user_id);
+			$toUserPerPlayLog = User::find($playLog->to_user_id);
+			$playLog->from_user_nickname = $fromUserPerPlayLog->nickname;
+			$playLog->to_user_nickname = $toUserPerPlayLog->nickname;
+		}
 		return view('playlogs')->with([
 			'playLogs' => $playLogsFromYou
 		]);
 	}
 
-    public function toYou()
-    {
-        $playLogsToYou = PlayLog::all()->where('to_user_id', Auth::user()->id);
-        foreach ($playLogsToYou as $playLog)
-        {
-            $fromUserPerPlayLog = User::find($playLog->from_user_id);
-            $toUserPerPlayLog = User::find($playLog->to_user_id);
-            $playLog->from_user_nickname = $fromUserPerPlayLog->nickname;
-            $playLog->to_user_nickname = $toUserPerPlayLog->nickname;
-        }
-        return view('playlogs')->with([
-            'playLogs' => $playLogsToYou
-        ]);
-    }
+	public function toYou()
+	{
+		$playLogsToYou = DB::table('play_logs')->where('to_user_id', Auth::user()->id)->orderBy('created_at')->get();
+		foreach ($playLogsToYou as $playLog)
+		{
+			$fromUserPerPlayLog = User::find($playLog->from_user_id);
+			$toUserPerPlayLog = User::find($playLog->to_user_id);
+			$playLog->from_user_nickname = $fromUserPerPlayLog->nickname;
+			$playLog->to_user_nickname = $toUserPerPlayLog->nickname;
+		}
+		return view('playlogs')->with([
+			'playLogs' => $playLogsToYou
+		]);
+	}
 }
