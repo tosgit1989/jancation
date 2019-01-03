@@ -20,19 +20,6 @@ class PlayRequestsController extends Controller
 		$this->middleware('auth');
 	}
 
-	public function index()
-	{
-		$playRequestsFromYou = PlayRequest::all()->where('expired_at', null)->where('from_user_id', Auth::user()->id);
-		foreach ($playRequestsFromYou as $playRequest)
-		{
-			$userPerPlayRequest = User::find($playRequest->to_user_id);
-			$playRequest->user_nickname = $userPerPlayRequest->nickname;
-		}
-		return view('playrequests.yourplayrequests')->with([
-			'playRequestsFromYou' => $playRequestsFromYou
-		]);
-	}
-
 	public function fromYou(Request $httpRequest)
 	{
 		$httpRequest->session()->put('backTo', '/yourplayrequests');
@@ -44,19 +31,6 @@ class PlayRequestsController extends Controller
 		}
 		return view('playrequests.yourplayrequests')->with([
 			'playRequestsFromYou' => $playRequestsFromYou
-		]);
-	}
-
-	public function toYou()
-	{
-		$playRequestsToYou = PlayRequest::all()->where('expired_at', null)->where('to_user_id', Auth::user()->id);
-		foreach ($playRequestsToYou as $playRequest)
-		{
-			$userPerPlayRequest = User::find($playRequest->from_user_id);
-			$playRequest->user_nickname = $userPerPlayRequest->nickname;
-		}
-		return view('play.playselect')->with([
-			'playRequestsToYou' => $playRequestsToYou
 		]);
 	}
 
