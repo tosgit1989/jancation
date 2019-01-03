@@ -58,6 +58,7 @@
 
 								<ul class="dropdown-menu">
 									<li><a href="/mypage">マイページ</a></li>
+									<li><a href="/playlogs">プレイログ</a></li>
 									<li>
 										<a href="{{ route('logout') }}"
 											onclick="event.preventDefault();

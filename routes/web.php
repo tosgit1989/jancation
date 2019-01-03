@@ -25,6 +25,21 @@ Route::get('/mypage', [
 	'as' => 'top'
 ]);
 
+Route::get('/playlogs', [
+    'uses' => 'PlayLogsController@index',
+    'as' => 'top'
+]);
+
+Route::get('/playlogsfromyou', [
+    'uses' => 'PlayLogsController@fromYou',
+    'as' => 'top'
+]);
+
+Route::get('/playlogstoyou', [
+    'uses' => 'PlayLogsController@toYou',
+    'as' => 'top'
+]);
+
 Route::get('/yourplayrequests', [
 	'uses' => 'PlayRequestsController@fromYou',
 	'as' => 'top'
