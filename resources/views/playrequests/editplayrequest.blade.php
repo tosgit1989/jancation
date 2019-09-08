@@ -27,7 +27,7 @@
 					@else
 						<p>他のユーザーが存在しないため申請を編集できません。</p>
 					@endif
-				<a href={{ $backTo }} class="btn" style="background-color: silver; color: black">キャンセル</a>
+				<a href="{{ url($backTo) }}" class="btn" style="background-color: silver; color: black">キャンセル</a>
 				{!! Form::close() !!}
 
 			</div>

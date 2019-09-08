@@ -19,7 +19,7 @@
 								</strong>
 							</div>
 							<div class="panel-body">
-								<a href="/playhand/{{ $playRequest->id }}" class="btn btn-primary">対戦</a>
+								<a href="{{ url('/playhand/'.$playRequest->id) }}" class="btn btn-primary">対戦</a>
 							</div>
 							<div class="panel-footer">
 								申請日時: {{ $playRequest->created_at }} 更新日時: {{ $playRequest->updated_at }}

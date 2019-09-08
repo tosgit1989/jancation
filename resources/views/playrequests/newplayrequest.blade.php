@@ -23,7 +23,7 @@
 					@else
 						<p>他のユーザーが存在しないため申請を新規作成できません。</p>
 					@endif
-					<a href="/menu" class="btn" style="background-color: silver; color: black">キャンセル</a>
+					<a href="{{ url('/menu') }}" class="btn" style="background-color: silver; color: black">キャンセル</a>
 				{!! Form::close() !!}
 
 			</div>

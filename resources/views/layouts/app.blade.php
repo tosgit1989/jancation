@@ -40,7 +40,7 @@
 						@guest
 						<!-- 何も表示しない -->
 						@else
-							<li><a href="/menu" role="button">メニュー</a></li>
+							<li><a href="{{ url('/menu') }}" role="button">メニュー</a></li>
 						@endguest
 					</ul>
 
@@ -57,8 +57,8 @@
 								</a>
 
 								<ul class="dropdown-menu">
-									<li><a href="/mypage">マイページ</a></li>
-									<li><a href="/playlogs">プレイログ</a></li>
+									<li><a href="{{ url('/mypage') }}">マイページ</a></li>
+									<li><a href="{{ url('/playlogs') }}">プレイログ</a></li>
 									<li>
 										<a href="{{ route('logout') }}"
 											onclick="event.preventDefault();

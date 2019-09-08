@@ -26,7 +26,7 @@
 				{!! Form::open(['action' => ['PlayRequestsController@postDelete', $curPlayRequest->id], 'style' => 'display: inline']) !!}
 				<button type="submit" class="btn btn-danger">はい</button>
 				{!! Form::close() !!}
-				<a href={{ $backTo }} class="btn" style="background-color: silver; color: black">いいえ</a>
+				<a href="{{ url($backTo) }}" class="btn" style="background-color: silver; color: black">いいえ</a>
 
 			</div>
 		</div>

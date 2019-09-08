@@ -17,10 +17,10 @@
 					<a href="" class="btn btn-primary" role="button">もう一回</a>
 				@endif
 				<!--リンクここから-->
-				<a href="/playhand/{{ $curPlayRequest->id }}" class="btn btn-primary">連戦する</a>
+				<a href="{{ url('/playhand/'.$curPlayRequest->id) }}" class="btn btn-primary">連戦する</a>
 				<!--リンクここまで-->
 				<!--リンクここから-->
-				<a href="/" class="btn btn-primary">ゲーム終了</a>
+				<a href="{{ url('/') }}" class="btn btn-primary">ゲーム終了</a>
 				<!--リンクここまで-->
 
 			</div>

@@ -40,8 +40,8 @@
 								</strong>
 							</div>
 							<div class="panel-body">
-								<a href="/editplayrequest/{{ $playRequest->id }}" class="btn btn-primary">編集</a>
-								<a href="/deleteplayrequest/{{ $playRequest->id }}" class="btn btn-danger">削除</a>
+								<a href="{{ url('/editplayrequest/'.$playRequest->id) }}" class="btn btn-primary">編集</a>
+								<a href="{{ url('/deleteplayrequest/'.$playRequest->id) }}" class="btn btn-danger">削除</a>
 							</div>
 							<div class="panel-body">
 								申請日時: {{ $playRequest->created_at }} 更新日時: {{ $playRequest->updated_at }}

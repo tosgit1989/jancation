@@ -13,11 +13,11 @@
 
 				<h6>どの手を出しますか？</h6>
 				<!--グー(hand番号: 1)を出す-->
-				<a href="/playresult/{{ $curPlayRequest->id }}/1" class="btn btn-primary" role="button">グー</a>
+				<a href="{{ url('/playresult/'.$curPlayRequest->id.'/1') }}" class="btn btn-primary" role="button">グー</a>
 				<!--チョキ(hand番号: 2)を出す-->
-				<a href="/playresult/{{ $curPlayRequest->id }}/2" class="btn btn-primary" role="button">チョキ</a>
+				<a href="{{ url('/playresult/'.$curPlayRequest->id.'/2') }}" class="btn btn-primary" role="button">チョキ</a>
 				<!--パー(hand番号: 3)を出す-->
-				<a href="/playresult/{{ $curPlayRequest->id }}/3" class="btn btn-primary" role="button">パー</a>
+				<a href="{{ url('/playresult/'.$curPlayRequest->id.'/3') }}" class="btn btn-primary" role="button">パー</a>
 
 			</div>
 		</div>

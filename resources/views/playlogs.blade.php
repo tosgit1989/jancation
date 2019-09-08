@@ -9,9 +9,9 @@
 		<div class="col-xs-12">
 			<div class="bs-docs-section">
 
-				<a href="/playlogs" class="btn btn-primary" role="button">すべて</a>
-				<a href="/playlogsfromyou" class="btn btn-primary" role="button">あなたからの申請</a>
-				<a href="/playlogstoyou" class="btn btn-primary" role="button">あなたへの申請</a>
+				<a href="{{ url('/playlogs') }}" class="btn btn-primary" role="button">すべて</a>
+				<a href="{{ url('/playlogsfromyou') }}" class="btn btn-primary" role="button">あなたからの申請</a>
+				<a href="{{ url('/playlogstoyou') }}" class="btn btn-primary" role="button">あなたへの申請</a>
 
 				<!--自分のプレイログを表示-->
 				<h3 class="text-middle">{{ Auth::user()->nickname }}さんのプレイログ</h3>
