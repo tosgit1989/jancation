@@ -19,10 +19,10 @@ class TopPageController extends Controller
 
 	public function index()
 	{
-	    $sql = ''
-            .'select * from play_scores '
-            .'left join users on play_scores.user_id=users.id '
-            .'order by if( win_count+lose_count>0, win_count/(win_count+lose_count), 0 ) DESC';
+		$sql = ''
+			.'select * from play_scores '
+			.'left join users on play_scores.user_id=users.id '
+			.'order by if( win_count+lose_count>0, win_count/(win_count+lose_count), 0 ) DESC';
 		$playScores = DB::select($sql);
 		return view('index')->with([
 			'playScores' => $playScores,
