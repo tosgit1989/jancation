@@ -15,7 +15,7 @@
 
 				<!--自分のプレイログを表示-->
 				<h3 class="text-middle">{{ Auth::user()->nickname }}さんのプレイログ</h3>
-				@if (count($playLogs) >= 1)
+				@if(count($playLogs) >= 1)
 					@foreach($playLogs as $playLog)
 						<div class="panel panel-primary">
 							<div class="panel-body">

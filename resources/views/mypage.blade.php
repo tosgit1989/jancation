@@ -18,7 +18,7 @@
 
 				<!--自分の対戦成績を表示-->
 				<h3 class="text-middle">{{ Auth::user()->nickname }}さんの対戦成績</h3>
-				@if (count($curPlayScore) >= 1)
+				@if(isset($curPlayScore))
 					<p>プレイ回数: {{ ($curPlayScore->win_count) + ($curPlayScore->lose_count) }}</p>
 					<p>勝ち回数: {{ $curPlayScore->win_count }}</p>
 					<p>負け回数: {{ $curPlayScore->lose_count }}</p>
@@ -31,7 +31,7 @@
 
 				<!--自分のじゃんけん申請一覧を表示-->
 				<h3>{{ Auth::user()->nickname }}さんのじゃんけん申請一覧</h3>
-				@if (count($playRequestsFromYou) >= 1)
+				@if(count($playRequestsFromYou) >= 1)
 					@foreach($playRequestsFromYou as $playRequest)
 						<div class="panel panel-primary">
 							<div class="panel-heading">

@@ -10,7 +10,7 @@
 			<div class="bs-docs-section">
 
 				<div style="height:30px"></div>
-				@if (count($playRequestsToYou) >= 1)
+				@if(count($playRequestsToYou) >= 1)
 					@foreach($playRequestsToYou as $playRequest)
 						<div class="panel panel-primary">
 							<div class="panel-heading">
