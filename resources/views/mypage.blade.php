@@ -9,14 +9,14 @@
 		<div class="col-xs-12">
 			<div class="bs-docs-section">
 
-				<!--自分の基本情報を表示-->
+				{{-- 自分の基本情報を表示 --}}
 				<h3 class="text-middle">基本情報</h3>
 				<h4>ニックネーム  : {{ Auth::user()->nickname }}</h4>
 				<h4>メールアドレス: {{ Auth::user()->email }}</h4>
 
 				<hr>
 
-				<!--自分の対戦成績を表示-->
+				{{-- 自分の対戦成績を表示 --}}
 				<h3 class="text-middle">{{ Auth::user()->nickname }}さんの対戦成績</h3>
 				@if(isset($curPlayScore))
 					<p>プレイ回数: {{ ($curPlayScore->win_count) + ($curPlayScore->lose_count) }}</p>
@@ -29,7 +29,7 @@
 				@endif
 				<hr>
 
-				<!--自分のじゃんけん申請一覧を表示-->
+				{{-- 自分のじゃんけん申請一覧を表示 --}}
 				<h3>{{ Auth::user()->nickname }}さんのじゃんけん申請一覧</h3>
 				@if(count($playRequestsFromYou) >= 1)
 					@foreach($playRequestsFromYou as $playRequest)
@@ -53,7 +53,7 @@
 				@endif
 
 				<div style="height:30px"></div>
-				<!-- /コンテンツ-->
+				{{-- /コンテンツ --}}
 
 			</div>
 		</div>

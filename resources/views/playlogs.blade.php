@@ -13,7 +13,7 @@
 				<a href="{{ url('/playlogsfromyou') }}" class="btn btn-primary" role="button">あなたからの申請</a>
 				<a href="{{ url('/playlogstoyou') }}" class="btn btn-primary" role="button">あなたへの申請</a>
 
-				<!--自分のプレイログを表示-->
+				{{-- 自分のプレイログを表示 --}}
 				<h3 class="text-middle">{{ Auth::user()->nickname }}さんのプレイログ</h3>
 				@if(count($playLogs) >= 1)
 					@foreach($playLogs as $playLog)
@@ -34,7 +34,7 @@
 				<hr>
 
 				<div style="height:30px"></div>
-				<!-- /コンテンツ-->
+				{{-- /コンテンツ --}}
 
 			</div>
 		</div>
